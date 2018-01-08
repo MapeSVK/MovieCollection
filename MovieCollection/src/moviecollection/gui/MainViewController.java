@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package moviecollection;
+package moviecollection.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
  *
  * @author Pepe15224
  */
-public class MainView implements Initializable {
+public class MainViewController implements Initializable {
 
     @FXML
     private TableView<?> categoryMoviesTableView;
