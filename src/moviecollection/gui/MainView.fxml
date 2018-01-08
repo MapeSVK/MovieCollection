@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="613.0" prefWidth="1049.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="moviecollection.gui.MainViewController">
+   <children>
+      <TableView fx:id="categoryMoviesTableView" layoutX="194.0" layoutY="65.0" prefHeight="450.0" prefWidth="400.0">
+        <columns>
+          <TableColumn prefWidth="211.33099365234375" text="Title" />
+          <TableColumn prefWidth="88.84902954101562" text="Rating" />
+            <TableColumn prefWidth="102.15097045898438" text="Last Viewed" />
+        </columns>
+      </TableView>
+      <TableView fx:id="allMoviesTableView" layoutX="622.0" layoutY="67.0" prefHeight="450.0" prefWidth="400.0">
+        <columns>
+          <TableColumn prefWidth="213.4898681640625" text="Title" />
+          <TableColumn prefWidth="84.5101318359375" text="Rating" />
+            <TableColumn prefWidth="101.697265625" text="Last Viewed" />
+        </columns>
+      </TableView>
+      <ListView fx:id="categoryListView" layoutX="18.0" layoutY="66.0" prefHeight="450.0" prefWidth="160.0" />
+      <TextField fx:id="searchTextField" layoutX="657.0" layoutY="19.0" />
+      <Button fx:id="searchButton" layoutX="851.0" layoutY="19.0" mnemonicParsing="false" text="Search" />
+      <Button fx:id="addCategoryButton" layoutX="25.0" layoutY="532.0" mnemonicParsing="false" onAction="#addNewCategoryClick" prefHeight="21.0" prefWidth="48.0" text="Add" />
+      <Button fx:id="deleteCategoryButton" layoutX="94.0" layoutY="531.0" mnemonicParsing="false" onAction="#deleteCategoryClick" prefHeight="30.0" prefWidth="60.0" text="Delete" />
+      <Button fx:id="addMovieButton" layoutX="633.0" layoutY="533.0" mnemonicParsing="false" onAction="#addMovieClick" text="Add" />
+      <Button fx:id="editMovieButton" layoutX="690.0" layoutY="535.0" mnemonicParsing="false" onAction="#editMovieClick" text="Edit" />
+      <Button fx:id="deleteMovieButton" layoutX="744.0" layoutY="535.0" mnemonicParsing="false" onAction="#deleteMovieClick" text="Delete" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="37.0" prefHeight="17.0" prefWidth="156.0" text="Categories">
+         <font>
+            <Font name="Arial Bold" size="17.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
