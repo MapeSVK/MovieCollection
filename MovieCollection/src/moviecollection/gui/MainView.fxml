@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="613.0" prefWidth="1049.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.MainView">
+<AnchorPane id="AnchorPane" prefHeight="613.0" prefWidth="1049.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.MainViewController">
    <children>
       <TableView fx:id="categoryMoviesTableView" layoutX="194.0" layoutY="65.0" prefHeight="450.0" prefWidth="400.0">
         <columns>
