@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package moviecollection.gui;
+package moviecollection.gui.controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import moviecollection.be.Movie;
+import moviecollection.gui.model.moviecollectionModel;
 
 /**
  * FXML Controller class
@@ -158,7 +159,7 @@ public class MainViewController implements Initializable {
     private void clickAddM(MouseEvent event) throws IOException {
             vBox.setVisible(false);
             vBox.setDisable(true);
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/moviecollection/gui/NewMovie.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/NewMovie.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();          
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
@@ -187,6 +188,7 @@ public class MainViewController implements Initializable {
            
    }
 
+    @FXML
     private void exitAddC(MouseEvent event) {
         addC.setStyle("-fx-background-color: 0");
 
