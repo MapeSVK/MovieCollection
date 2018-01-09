@@ -5,6 +5,7 @@
  */
 package moviecollection.gui.controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 
 /**
  * FXML Controller class
@@ -52,6 +54,13 @@ public class NewMovieController implements Initializable {
 
     @FXML
     private void chooseFileButtonClick(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter filtermP4 = new FileChooser.ExtensionFilter("select MP4","*MP4");
+        fileChooser.getExtensionFilters().add(filtermP4);
+        File file = fileChooser.showOpenDialog(null);
+        String filePath = file.toString();
+        
+        filePathComboBox.setText(filePath);
     }
 
     @FXML
