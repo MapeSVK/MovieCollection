@@ -18,13 +18,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import moviecollection.be.Movie;
-import moviecollection.gui.model.moviecollectionModel;
+import moviecollection.gui.model.MovieModel;
+
 
 /**
  * FXML Controller class
@@ -40,21 +40,7 @@ public class MainViewController implements Initializable {
     @FXML
     private ListView<?> categoryListView;
     @FXML
-    private TextField searchTextField;
-    @FXML
     private Button searchButton;
-    @FXML
-    private Button addCategoryButton;
-    @FXML
-    private Button deleteCategoryButton;
-    @FXML
-    private Button editMovieButton;
-    @FXML
-    private Button deleteMovieButton;
-    
-    
-    private moviecollectionModel model;
-    private Movie movie;
     @FXML
     private AnchorPane mainWindow;
     @FXML
@@ -74,26 +60,6 @@ public class MainViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
-    
-    
-    private void loadData() {
-        model.loadDataFromDB();
-    }
-
-    @FXML
-    private void addNewCategoryClick(ActionEvent event) {
-    }
-
-    @FXML
-    private void deleteCategoryClick(ActionEvent event) {
-    }
-
-
-
-    @FXML
-    private void deleteMovieClick(ActionEvent event) {
-    }
 
     @FXML
     private void mICClick(MouseEvent event) {
@@ -159,19 +125,20 @@ public class MainViewController implements Initializable {
     private void clickAddM(MouseEvent event) throws IOException {
             vBox.setVisible(false);
             vBox.setDisable(true);
+           /* 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/NewMovie.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();          
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Add/Edit song");
             stage.show();
-            
+           */ 
+           MovieModel model = new MovieModel();
+           model.addMovie(new Movie(-1,
+                   "kanapka", 7d, 7d, "lubie kanapki", 0d));
            
     }
-
-
-        
- @FXML
+       
  private void editMovieClick(ActionEvent event) throws IOException {   
             
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mytunes/gui/View/NewSong.fxml"));

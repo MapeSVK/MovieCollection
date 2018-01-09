@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package moviecollection.bll;
+package moviecollection.gui.model;
 
 import moviecollection.be.Movie;
-import moviecollection.dal.ConnectionModel;
+import moviecollection.bll.BllManager;
 
 /**
  *
  * @author Pepe15224
  */
-public class BllManager {
-   ConnectionModel model = new ConnectionModel(); 
-   
-   public void addMovie(Movie movie)
-   {
-       model.addMovie(movie);
-   }
+public class MovieModel {
+    BllManager manager = new BllManager();
+    
+    public void addMovie(Movie movie)
+    {
+        manager.addMovie(movie);
+    }
 }

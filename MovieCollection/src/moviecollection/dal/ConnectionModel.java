@@ -18,9 +18,9 @@ import moviecollection.be.Movie;
  *
  * @author Pepe15224
  */
-public class DALManager {
+public class ConnectionModel {
     
-    ConnectionManager cm = new ConnectionManager();
+    private ConnectionManager cm = new ConnectionManager();
     
     public void addMovie(Movie movie) {
         try (Connection con = cm.getConnection()) {
@@ -39,7 +39,7 @@ public class DALManager {
 
             int affected = pstmt.executeUpdate();
             if (affected<1)
-                throw new SQLException("Movie could not be added");
+                throw new SQLException("Song could not be added");
 
             // Get database generated id
             ResultSet rs = pstmt.getGeneratedKeys();
@@ -48,9 +48,8 @@ public class DALManager {
             }
         }
         catch (SQLException ex) {
-            Logger.getLogger(DALManager.class.getName()).log(
+            Logger.getLogger(ConnectionManager.class.getName()).log(
                     Level.SEVERE, null, ex);
         }
     }
-    
 }
