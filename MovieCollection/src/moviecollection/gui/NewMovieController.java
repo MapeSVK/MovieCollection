@@ -5,6 +5,7 @@
  */
 package moviecollection.gui;
 
+import java.net.URI;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -12,7 +13,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.stage.FileChooser;
+import moviecollection.be.Movie;
 
 /**
  * FXML Controller class
@@ -37,6 +42,14 @@ public class NewMovieController implements Initializable {
     private TextField filePathComboBox;
     @FXML
     private Button chooseFileButton;
+    @FXML
+    private Button saveNewMovieButton;
+    @FXML
+    private Button closeNewMovieButton;
+    
+    
+   private Movie movie;
+   private moviecollectionModel model;
 
     /**
      * Initializes the controller class.
@@ -49,5 +62,15 @@ public class NewMovieController implements Initializable {
     @FXML
     private void chooseFileButtonClick(ActionEvent event) {
     }
+
+    @FXML
+    private void saveNewMovieButtonClick(ActionEvent event) {
+    }
+
+    @FXML
+    private void closeNewMovieButtonClick(ActionEvent event) {
+    }
+    
+    
     
 }
