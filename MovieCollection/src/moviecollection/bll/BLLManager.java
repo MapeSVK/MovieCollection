@@ -5,6 +5,8 @@
  */
 package moviecollection.bll;
 
+import java.util.List;
+import moviecollection.be.Category;
 import moviecollection.be.Movie;
 import moviecollection.dal.DALManager;
 
@@ -18,4 +20,12 @@ public class BLLManager {
     {
         manager.addMovie(movie);
     }
+    
+     public List<Movie> loadMovies(){
+         return null;
+     }
+     
+     public List<Category> loadCategories() {
+         return null;
+     }
 }
