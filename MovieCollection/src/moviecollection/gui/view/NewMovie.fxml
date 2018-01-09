@@ -20,7 +20,7 @@
       <Label layoutX="72.0" layoutY="469.0" text="File" />
       <TextField fx:id="personalRatingComboBox" layoutX="69.0" layoutY="363.0" prefHeight="27.0" prefWidth="100.0" />
       <TextField fx:id="imdbRatingComboBox" layoutX="403.0" layoutY="363.0" prefHeight="27.0" prefWidth="100.0" />
-      <TextField fx:id="filePathComboBox" layoutX="167.0" layoutY="464.0" prefHeight="27.0" prefWidth="263.0" />
+      <TextField fx:id="filePathTextField" layoutX="167.0" layoutY="464.0" prefHeight="27.0" prefWidth="263.0" />
       <Button fx:id="chooseFileButton" layoutX="451.0" layoutY="464.0" mnemonicParsing="false" onAction="#chooseFileButtonClick" prefHeight="27.0" prefWidth="96.0" text="Choose" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="167.0" layoutY="14.0" prefHeight="17.0" prefWidth="263.0" text="Add / Edit Movie" textFill="#da1f1f">
          <font>

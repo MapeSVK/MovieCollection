@@ -5,11 +5,8 @@
  */
 package moviecollection.gui.controller;
 
-<<<<<<< HEAD:MovieCollection/src/moviecollection/gui/NewMovieController.java
-import java.net.URI;
-=======
+
 import java.io.File;
->>>>>>> e2eeeb98f91f716a88cbd06a12632e827ac8a796:MovieCollection/src/moviecollection/gui/controller/NewMovieController.java
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,15 +14,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ContextMenu;
 import javafx.scene.control.TextField;
-<<<<<<< HEAD:MovieCollection/src/moviecollection/gui/NewMovieController.java
-import javafx.scene.media.Media;
-import javafx.stage.FileChooser;
 import moviecollection.be.Movie;
-=======
 import javafx.stage.FileChooser;
->>>>>>> e2eeeb98f91f716a88cbd06a12632e827ac8a796:MovieCollection/src/moviecollection/gui/controller/NewMovieController.java
+import moviecollection.gui.model.moviecollectionModel;
 
 /**
  * FXML Controller class
@@ -47,20 +39,18 @@ public class NewMovieController implements Initializable {
     @FXML
     private TextField imdbRatingComboBox;
     @FXML
-    private TextField filePathComboBox;
-    @FXML
     private Button chooseFileButton;
     @FXML
     private Button saveNewMovieButton;
     @FXML
     private Button closeNewMovieButton;
-<<<<<<< HEAD:MovieCollection/src/moviecollection/gui/NewMovieController.java
     
     
    private Movie movie;
    private moviecollectionModel model;
-=======
->>>>>>> e2eeeb98f91f716a88cbd06a12632e827ac8a796:MovieCollection/src/moviecollection/gui/controller/NewMovieController.java
+    @FXML
+    private TextField filePathTextField;
+
 
     /**
      * Initializes the controller class.
@@ -78,7 +68,7 @@ public class NewMovieController implements Initializable {
         File file = fileChooser.showOpenDialog(null);
         String filePath = file.toString();
         
-        filePathComboBox.setText(filePath);
+        filePathTextField.setText(filePath);
     }
 
     @FXML
@@ -89,13 +79,7 @@ public class NewMovieController implements Initializable {
     private void closeNewMovieButtonClick(ActionEvent event) {
     }
 
-    @FXML
-    private void saveNewMovieButtonClick(ActionEvent event) {
-    }
-
-    @FXML
-    private void closeNewMovieButtonClick(ActionEvent event) {
-    }
+    
     
     
     
