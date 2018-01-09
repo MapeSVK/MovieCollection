@@ -88,9 +88,7 @@ public class MainViewController implements Initializable {
     private void deleteCategoryClick(ActionEvent event) {
     }
 
-    @FXML
-    private void editMovieClick(ActionEvent event) {
-    }
+
 
     @FXML
     private void deleteMovieClick(ActionEvent event) {
@@ -170,11 +168,10 @@ public class MainViewController implements Initializable {
            
     }
 
-    @FXML
-<<<<<<< HEAD
-    private void editMovieClick(ActionEvent event) throws IOException {
+
         
-            
+ @FXML
+ private void editMovieClick(ActionEvent event) throws IOException {   
             
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mytunes/gui/View/NewSong.fxml"));
 
@@ -187,10 +184,12 @@ public class MainViewController implements Initializable {
             
             allMoviesTableView.refresh();   //Udate the movies table view
             categoryListView.refresh();
-=======
+           
+   }
+
     private void exitAddC(MouseEvent event) {
         addC.setStyle("-fx-background-color: 0");
->>>>>>> 8ff440ab053cd8e4e461a23e7c9b37d96a62807c
+
     }
 
     @FXML
