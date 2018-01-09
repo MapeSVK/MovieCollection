@@ -17,6 +17,14 @@ public class Movie {
         private double personalrating;
         private String filelink;
         private double lastview;
+
+    public Movie(int id, String name, double personalrating, String filelink, double lastview) {
+        this.id = id;
+        this.name = name;
+        this.personalrating = personalrating;
+        this.filelink = filelink;
+        this.lastview = lastview;
+    }
         
     public double getLastview() {
         return lastview;
