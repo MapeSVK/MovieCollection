@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package moviecollection.gui;
+package moviecollection.gui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,6 +37,10 @@ public class NewMovieController implements Initializable {
     private TextField filePathComboBox;
     @FXML
     private Button chooseFileButton;
+    @FXML
+    private Button saveNewMovieButton;
+    @FXML
+    private Button closeNewMovieButton;
 
     /**
      * Initializes the controller class.
@@ -48,6 +52,14 @@ public class NewMovieController implements Initializable {
 
     @FXML
     private void chooseFileButtonClick(ActionEvent event) {
+    }
+
+    @FXML
+    private void saveNewMovieButtonClick(ActionEvent event) {
+    }
+
+    @FXML
+    private void closeNewMovieButtonClick(ActionEvent event) {
     }
     
 }

@@ -19,7 +19,7 @@ public class MovieCollection extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/moviecollection/gui/MainView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/moviecollection/gui/view/MainView.fxml"));
         
         Scene scene = new Scene(root);
         

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="mainWindow" onMouseClicked="#mainWindowClick" prefHeight="613.0" prefWidth="1141.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.MainViewController">
+<AnchorPane id="AnchorPane" fx:id="mainWindow" onMouseClicked="#mainWindowClick" prefHeight="613.0" prefWidth="1141.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.controller.MainViewController">
    <children>
       <TableView fx:id="categoryMoviesTableView" layoutX="194.0" layoutY="65.0" onMouseClicked="#mICClick" prefHeight="450.0" prefWidth="463.0">
         <columns>
