@@ -16,6 +16,8 @@ import moviecollection.dal.DALManager;
  */
 public class BLLManager {
     DALManager manager = new DALManager();
+    
+    
     public void addMovie(Movie movie)
     {
         manager.addMovie(movie);
@@ -28,4 +30,7 @@ public class BLLManager {
      public List<Category> loadCategories() {
          return null;
      }
+     
+     
+    
 }

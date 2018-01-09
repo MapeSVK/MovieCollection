@@ -28,4 +28,6 @@ public class moviecollectionModel {
         categories.addAll(bllManager.loadCategories());   //Load the categories
         
     }
+    
+    
 }

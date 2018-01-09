@@ -95,7 +95,21 @@ public class MainViewController implements Initializable {
     }
 
     @FXML
-    private void editMovieClick(ActionEvent event) {
+    private void editMovieClick(ActionEvent event) throws IOException {
+        
+            
+            
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mytunes/gui/View/NewSong.fxml"));
+
+            Parent root1 = (Parent) fxmlLoader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Add/Edit media");
+            stage.setScene(new Scene(root1));
+            stage.showAndWait();
+            
+            allMoviesTableView.refresh();   //Udate the movies table view
+            categoryListView.refresh();
     }
 
     @FXML
