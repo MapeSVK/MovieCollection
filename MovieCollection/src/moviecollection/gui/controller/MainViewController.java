@@ -27,6 +27,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import moviecollection.be.Movie;
+import moviecollection.gui.model.MovieModel;
 
 
 /**
@@ -149,13 +151,6 @@ public class MainViewController implements Initializable {
             stage.setScene(new Scene(root1));
             stage.setTitle("Add/Edit Movie");
             stage.show();
-<<<<<<< HEAD
-          
-           
-=======
-           */ 
-                    
->>>>>>> 5a4299dcd0225f45e7ae6225c9b4a500bffc451b
     }
        
  private void editMovieClick(ActionEvent event) throws IOException {   

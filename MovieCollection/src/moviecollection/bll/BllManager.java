@@ -25,6 +25,6 @@ public class BllManager {
    
    public List<Movie> getAllMovies()
    {
-       return model.getAllMovies();
+       return connectionModel.getAllMovies();
    }
 }
