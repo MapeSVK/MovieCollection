@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import moviecollection.be.Category;
 import moviecollection.be.Movie;
 
 /**
@@ -79,4 +80,30 @@ public class ConnectionModel {
           }
         return allMovies;
 }
+    public void addCategory(Category category) {
+        try (Connection con = cm.getConnection()) {
+            String sql
+                    = "INSERT INTO Category"
+                    + "(name)"
+                    + "VALUES(?)";
+            PreparedStatement pstmt
+                    = con.prepareStatement(
+                            sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, category.getName());
+            
+            int affected = pstmt.executeUpdate();
+            if (affected<1)
+                throw new SQLException("Movie could not be added");
+
+            // Get database generated id
+            ResultSet rs = pstmt.getGeneratedKeys();
+            if (rs.next()) {
+                category.setId(rs.getInt(1));
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(ConnectionModel.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }
+    }
 }

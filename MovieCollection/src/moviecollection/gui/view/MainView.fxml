@@ -40,7 +40,7 @@
       </VBox>
       <VBox fx:id="vBoxCat" accessibleRole="BUTTON" disable="true" layoutX="134.0" layoutY="290.0" prefHeight="53.0" prefWidth="100.0" style="-fx-border-color: #000000; -fx-background-color: #e8ebed;" visible="false">
          <children>
-            <Label fx:id="addC" accessibleRole="BUTTON" onMouseEntered="#enterAddC" onMouseExited="#exitAddC" prefHeight="22.0" prefWidth="201.0" text="Add Categories  &gt;" />
+            <Label fx:id="addC" accessibleRole="BUTTON" onMouseClicked="#clickAddC" onMouseEntered="#enterAddC" onMouseExited="#exitAddC" prefHeight="22.0" prefWidth="201.0" text="Add Categories  &gt;" />
          </children>
       </VBox>
    </children>

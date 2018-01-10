@@ -7,10 +7,7 @@ package moviecollection.gui.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -157,7 +154,7 @@ public class MainViewController implements Initializable {
        
  private void editMovieClick(ActionEvent event) throws IOException {   
             
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mytunes/gui/View/NewSong.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/MovieCollection/gui/View/NewSong.fxml"));
 
             Parent root1 = (Parent) fxmlLoader.load();
 
@@ -180,6 +177,18 @@ public class MainViewController implements Initializable {
     @FXML
     private void enterAddC(MouseEvent event) {
         addC.setStyle("-fx-background-color: #66c3ff");
+    }
+
+    @FXML
+    private void clickAddC(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/Category.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();          
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("Add a category");
+            stage.show();
+            vBoxCat.setVisible(false);
+            vBoxCat.setDisable(true);
     }
     
 }
