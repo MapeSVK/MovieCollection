@@ -8,15 +8,17 @@ package moviecollection.bll;
 import moviecollection.be.Movie;
 import moviecollection.dal.ConnectionModel;
 
+
 /**
  *
  * @author Pepe15224
  */
 public class BllManager {
-   ConnectionModel model = new ConnectionModel(); 
+   ConnectionModel connectionModel = new ConnectionModel(); 
    
-   public void addMovie(Movie movie)
-   {
-       model.addMovie(movie);
+   
+   
+  public void addNewMovie(Movie movie){
+       connectionModel.addMovie(movie);
    }
 }

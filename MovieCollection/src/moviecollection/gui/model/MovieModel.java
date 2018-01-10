@@ -5,6 +5,8 @@
  */
 package moviecollection.gui.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import moviecollection.be.Movie;
 import moviecollection.bll.BllManager;
 
@@ -14,9 +16,16 @@ import moviecollection.bll.BllManager;
  */
 public class MovieModel {
     BllManager manager = new BllManager();
+    private ObservableList<Movie> allMovies = FXCollections.observableArrayList();
     
-    public void addMovie(Movie movie)
-    {
-        manager.addMovie(movie);
-    }
+
+    
+    
+    public void addNewMovie(Movie movie)  {
+        
+            manager.addNewMovie(movie);
+            allMovies.add(movie);
+            
+            
+}
 }

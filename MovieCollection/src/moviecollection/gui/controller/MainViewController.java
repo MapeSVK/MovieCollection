@@ -22,8 +22,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import moviecollection.be.Movie;
-import moviecollection.gui.model.MovieModel;
 
 
 /**
@@ -125,17 +123,14 @@ public class MainViewController implements Initializable {
     private void clickAddM(MouseEvent event) throws IOException {
             vBox.setVisible(false);
             vBox.setDisable(true);
-           /* 
+           
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/NewMovie.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();          
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
-            stage.setTitle("Add/Edit song");
+            stage.setTitle("Add/Edit Movie");
             stage.show();
-           */ 
-           MovieModel model = new MovieModel();
-           model.addMovie(new Movie(-1,
-                   "kanapka", 7d, 7d, "lubie kanapki", 0d));
+          
            
     }
        
@@ -146,7 +141,7 @@ public class MainViewController implements Initializable {
             Parent root1 = (Parent) fxmlLoader.load();
 
             Stage stage = new Stage();
-            stage.setTitle("Add/Edit media");
+            stage.setTitle("Add/Edit Movie");
             stage.setScene(new Scene(root1));
             stage.showAndWait();
             
