@@ -5,6 +5,7 @@
  */
 package moviecollection.bll;
 
+import java.util.List;
 import moviecollection.be.Movie;
 import moviecollection.dal.ConnectionModel;
 
@@ -18,5 +19,10 @@ public class BllManager {
    public void addMovie(Movie movie)
    {
        model.addMovie(movie);
+   }
+   
+   public List<Movie> getAllMovies()
+   {
+       return model.getAllMovies();
    }
 }

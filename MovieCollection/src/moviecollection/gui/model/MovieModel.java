@@ -5,6 +5,9 @@
  */
 package moviecollection.gui.model;
 
+import java.sql.SQLException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import moviecollection.be.Movie;
 import moviecollection.bll.BllManager;
 
@@ -15,8 +18,20 @@ import moviecollection.bll.BllManager;
 public class MovieModel {
     BllManager manager = new BllManager();
     
+    private ObservableList<Movie> allMovies = FXCollections.observableArrayList();
+    
     public void addMovie(Movie movie)
     {
         manager.addMovie(movie);
+    }
+    public void loadAllMovies()
+    {
+        allMovies.clear();
+        allMovies.addAll(manager.getAllMovies());
+    }
+ 
+    public ObservableList<Movie> getAllSongs()
+    {
+        return allMovies;
     }
 }

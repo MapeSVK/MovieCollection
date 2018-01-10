@@ -13,7 +13,6 @@
    <children>
       <TableView fx:id="categoryMoviesTableView" layoutX="194.0" layoutY="65.0" onMouseClicked="#mICClick" prefHeight="450.0" prefWidth="463.0">
         <columns>
-          <TableColumn prefWidth="196.0" text="Title" />
           <TableColumn prefWidth="82.0" text="My Rating" />
             <TableColumn prefWidth="95.0" text="IMDB Rating" />
             <TableColumn prefWidth="89.0" text="Last Viewed" />
@@ -21,10 +20,10 @@
       </TableView>
       <TableView fx:id="allMoviesTableView" layoutX="672.0" layoutY="66.0" onMouseClicked="#mClick" prefHeight="450.0" prefWidth="455.0">
         <columns>
-          <TableColumn prefWidth="182.0" text="Title" />
-          <TableColumn prefWidth="87.0" text="My Rating" />
-            <TableColumn prefWidth="96.0" text="IMDB Rating" />
-            <TableColumn prefWidth="89.0" text="Last Viewed" />
+          <TableColumn fx:id="columnTitle" prefWidth="182.0" text="Title" />
+          <TableColumn fx:id="columnMyRating" prefWidth="87.0" text="My Rating" />
+            <TableColumn fx:id="columnImdbRating" prefWidth="96.0" text="IMDB Rating" />
+            <TableColumn fx:id="columnView" prefWidth="89.0" text="Last Viewed" />
         </columns>
       </TableView>
       <ListView fx:id="categoryListView" layoutX="18.0" layoutY="66.0" onMouseClicked="#categoryClick" prefHeight="450.0" prefWidth="160.0" />

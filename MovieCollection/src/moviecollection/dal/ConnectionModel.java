@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import moviecollection.be.Movie;
@@ -48,8 +50,33 @@ public class ConnectionModel {
             }
         }
         catch (SQLException ex) {
-            Logger.getLogger(ConnectionManager.class.getName()).log(
+            Logger.getLogger(ConnectionModel.class.getName()).log(
                     Level.SEVERE, null, ex);
         }
     }
+    
+    public List<Movie> getAllMovies()
+    {
+        List<Movie> allMovies = new ArrayList();
+        try (Connection con = cm.getConnection())
+        {
+         PreparedStatement pstmt = con.prepareCall("SELECT * FROM Movie");
+         ResultSet rs = pstmt.executeQuery();
+            while(rs.next())
+            {
+                Movie m = new Movie(rs.getInt("id"),
+                       rs.getString("name"),
+                        rs.getDouble("rating"),
+                        rs.getDouble("personalrating"),
+                        rs.getString("filelink"), rs.getDouble("lastview"));
+      
+                allMovies.add(m);
+            }
+         }
+         catch (SQLException ex) {
+            Logger.getLogger(ConnectionModel.class.getName()).log(
+                    Level.SEVERE, null, ex);
+          }
+        return allMovies;
+}
 }
