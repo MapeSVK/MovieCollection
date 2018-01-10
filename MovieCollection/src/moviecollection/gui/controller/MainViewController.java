@@ -7,7 +7,10 @@ package moviecollection.gui.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +20,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -34,7 +39,7 @@ public class MainViewController implements Initializable {
     @FXML
     private TableView<?> categoryMoviesTableView;
     @FXML
-    private TableView<?> allMoviesTableView;
+    private TableView<Movie> allMoviesTableView;
     @FXML
     private ListView<?> categoryListView;
     @FXML
@@ -49,14 +54,28 @@ public class MainViewController implements Initializable {
     private VBox vBoxCat;
     @FXML
     private Label addC;
-    
+    @FXML
+    private TableColumn<Movie, String> columnTitle;
+    @FXML
+    private TableColumn<Movie, Double> columnMyRating;
+    @FXML
+    private TableColumn<Movie, Double> columnImdbRating;
+    @FXML
+    private TableColumn<Movie, Double> columnView;
+    MovieModel model = new MovieModel();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       columnTitle.setCellValueFactory(new PropertyValueFactory("name"));
+       columnMyRating.setCellValueFactory(new PropertyValueFactory("personalrating"));
+       columnImdbRating.setCellValueFactory(new PropertyValueFactory("rating"));
+       columnView.setCellValueFactory(new PropertyValueFactory("lastview"));  
+
+       model.loadAllMovies();
+       allMoviesTableView.setItems(model.getAllSongs());
     }    
 
     @FXML
@@ -130,8 +149,13 @@ public class MainViewController implements Initializable {
             stage.setScene(new Scene(root1));
             stage.setTitle("Add/Edit Movie");
             stage.show();
+<<<<<<< HEAD
           
            
+=======
+           */ 
+                    
+>>>>>>> 5a4299dcd0225f45e7ae6225c9b4a500bffc451b
     }
        
  private void editMovieClick(ActionEvent event) throws IOException {   
