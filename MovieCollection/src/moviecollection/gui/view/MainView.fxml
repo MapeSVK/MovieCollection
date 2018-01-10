@@ -36,6 +36,8 @@
       <VBox fx:id="vBox" accessibleRole="BUTTON" disable="true" layoutX="134.0" layoutY="120.0" prefHeight="53.0" prefWidth="100.0" style="-fx-border-color: #000000; -fx-background-color: #e8ebed;" visible="false">
          <children>
             <Label fx:id="addM" accessibleRole="BUTTON" onMouseClicked="#clickAddM" onMouseEntered="#enterAddM" onMouseExited="#exitAddM" prefHeight="22.0" prefWidth="201.0" text="Add Movie" />
+            <Label fx:id="editM" accessibleRole="BUTTON" onMouseClicked="#cliclEditM" onMouseEntered="#enterEditM" onMouseExited="#exitEditM" prefHeight="11.0" prefWidth="98.0" text="Edit Movie" />
+            <Label fx:id="DeleteM" accessibleRole="BUTTON" onMouseClicked="#clickDeleteM" onMouseEntered="#enterDeleteM" onMouseExited="#exitDeleteM" prefHeight="36.0" prefWidth="98.0" text="Delete Movie" />
          </children>
       </VBox>
       <VBox fx:id="vBoxCat" accessibleRole="BUTTON" disable="true" layoutX="134.0" layoutY="290.0" prefHeight="53.0" prefWidth="100.0" style="-fx-border-color: #000000; -fx-background-color: #e8ebed;" visible="false">
