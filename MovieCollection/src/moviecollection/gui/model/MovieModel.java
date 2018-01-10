@@ -15,13 +15,11 @@ import moviecollection.bll.BllManager;
  * @author Pepe15224
  */
 public class MovieModel {
+    
     BllManager manager = new BllManager();
+    
     private ObservableList<Movie> allMovies = FXCollections.observableArrayList();
-    
-
-
-    
-    
+ 
     public void addNewMovie(Movie movie)  {
         
             manager.addNewMovie(movie);

@@ -62,10 +62,6 @@ public class MainViewController implements Initializable {
     @FXML
     private TableColumn<Movie, Double> columnView;
     MovieModel model = new MovieModel();
-    @FXML
-    private Label editM;
-    @FXML
-    private Label DeleteM;
 
     /**
      * Initializes the controller class.
@@ -87,10 +83,9 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void mClick(MouseEvent event) {
-        Movie selectedMovie = allMoviesTableView.getSelectionModel().getSelectedItem();
         switch(event.getButton())
         {
-            case SECONDARY:     
+            case SECONDARY:
             vBoxCat.setVisible(false);
             vBoxCat.setDisable(true);
             vBox.setVisible(true);
@@ -179,32 +174,5 @@ public class MainViewController implements Initializable {
     private void enterAddC(MouseEvent event) {
         addC.setStyle("-fx-background-color: #66c3ff");
     }  
-
-    @FXML
-    private void cliclEditM(MouseEvent event) {
-    }
-
-    @FXML
-    private void clickDeleteM(MouseEvent event) {
-    }
-
-    @FXML
-    private void exitEditM(MouseEvent event) {
-        editM.setStyle("-fx-background-color: 0");
-    }
-
-    @FXML
-    private void enterEditM(MouseEvent event) {
-        editM.setStyle("-fx-background-color: #66c3ff");
-    }
-
-    @FXML
-    private void exitDeleteM(MouseEvent event) {
-        DeleteM.setStyle("-fx-background-color: 0");
-    }
-
-    @FXML
-    private void enterDeleteM(MouseEvent event) {
-        DeleteM.setStyle("-fx-background-color: #66c3ff");
-    }
 }
+
