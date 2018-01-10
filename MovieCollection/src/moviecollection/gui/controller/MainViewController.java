@@ -7,6 +7,7 @@ package moviecollection.gui.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +15,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -186,6 +190,15 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void clickDeleteM(MouseEvent event) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setContentText("Are you sure?");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                System.out.println("code for OK here");
+            } else {
+                System.out.println("code for cancel here");
+            }
     }
 
     @FXML
