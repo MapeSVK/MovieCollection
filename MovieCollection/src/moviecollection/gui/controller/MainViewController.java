@@ -65,7 +65,7 @@ public class MainViewController implements Initializable {
     private TableColumn<Movie, Double> columnImdbRating;
     @FXML
     private TableColumn<Movie, Double> columnView;
-    MovieModel model = new MovieModel();
+    private MovieModel model = new MovieModel();
     @FXML
     private Label editM;
     @FXML
@@ -80,33 +80,38 @@ public class MainViewController implements Initializable {
        columnMyRating.setCellValueFactory(new PropertyValueFactory("personalrating"));
        columnImdbRating.setCellValueFactory(new PropertyValueFactory("rating"));
        columnView.setCellValueFactory(new PropertyValueFactory("lastview"));  
-
+    
        model.loadAllMovies();
-       allMoviesTableView.setItems(model.getAllSongs());
+       allMoviesTableView.setItems(model.getAllMovies());
     }    
 
     @FXML
     private void mICClick(MouseEvent event) {
+        disableVbox(vBox);
+        disableVbox(vBoxCat);
     }
 
     @FXML
     private void mClick(MouseEvent event) {
-        Movie selectedMovie = allMoviesTableView.getSelectionModel().getSelectedItem();
+        
         switch(event.getButton())
         {
-            case SECONDARY:     
-            vBoxCat.setVisible(false);
-            vBoxCat.setDisable(true);
-            vBox.setVisible(true);
-            vBox.setDisable(false);
+            case SECONDARY:  
+                if(allMoviesTableView.getSelectionModel().getSelectedItem()!=null)
+                {
+                    editM.setDisable(false);
+                    DeleteM.setDisable(false);
+                }
+             disableVbox(vBoxCat);
+             showVbox(vBox);
             vBox.setLayoutX(allMoviesTableView.getLayoutX()+event.getX());
             vBox.setLayoutY(allMoviesTableView.getLayoutY()+event.getY());
              break;
             case PRIMARY:
-            vBox.setVisible(false);
-            vBox.setDisable(true);
-            vBoxCat.setVisible(false);
-            vBoxCat.setDisable(true);
+                    editM.setDisable(true);
+                    DeleteM.setDisable(true);
+                disableVbox(vBox);
+                disableVbox(vBoxCat);
             break;
         }
     }
@@ -116,18 +121,15 @@ public class MainViewController implements Initializable {
         switch(event.getButton())
         {
             case SECONDARY:
-            vBox.setVisible(false);
-            vBox.setDisable(true);
-            vBoxCat.setVisible(true);
-            vBoxCat.setDisable(false);
+                
+                disableVbox(vBox);
+                showVbox(vBoxCat);
             vBoxCat.setLayoutX(categoryListView.getLayoutX()+event.getX());
             vBoxCat.setLayoutY(categoryListView.getLayoutY()+event.getY());
              break;
             case PRIMARY:
-            vBoxCat.setVisible(false);
-            vBoxCat.setDisable(true);
-            vBox.setVisible(false);
-            vBox.setDisable(true);
+            disableVbox(vBoxCat);
+            disableVbox(vBox);
             break;
         }
     }
@@ -144,12 +146,13 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void mainWindowClick(MouseEvent event) {
+        disableVbox(vBox);
+        disableVbox(vBoxCat);
     }
 
     @FXML
     private void clickAddM(MouseEvent event) throws IOException {
-            vBox.setVisible(false);
-            vBox.setDisable(true);
+            disableVbox(vBox);
            
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/NewMovie.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();          
@@ -186,18 +189,21 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void cliclEditM(MouseEvent event) {
+        disableVbox(vBox);
     }
 
     @FXML
     private void clickDeleteM(MouseEvent event) {
+        disableVbox(vBox);
+        editM.setDisable(true);
+        DeleteM.setDisable(true);
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setContentText("Are you sure?");
         
         Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                System.out.println("code for OK here");
+            model.deleteMovie(allMoviesTableView.getSelectionModel().getSelectedItem());
             } else {
-                System.out.println("code for cancel here");
             }
     }
 
@@ -219,5 +225,15 @@ public class MainViewController implements Initializable {
     @FXML
     private void enterDeleteM(MouseEvent event) {
         DeleteM.setStyle("-fx-background-color: #66c3ff");
+    }
+    private void disableVbox(VBox vBox)
+    {
+        vBox.setVisible(false);
+        vBox.setDisable(true);
+    }
+    private void showVbox(VBox vBox)
+    {
+        vBox.setVisible(true);
+        vBox.setDisable(false);
     }
 }

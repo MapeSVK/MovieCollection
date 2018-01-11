@@ -19,20 +19,26 @@ public class MovieModel {
     BllManager manager = new BllManager();
     
     private ObservableList<Movie> allMovies = FXCollections.observableArrayList();
- 
-    public void addNewMovie(Movie movie)  {
-        
-            manager.addNewMovie(movie);
-            allMovies.add(movie);         
-}
+    
     public void loadAllMovies()
     {
         allMovies.clear();
         allMovies.addAll(manager.getAllMovies());
     }
- 
-    public ObservableList<Movie> getAllSongs()
+    public ObservableList<Movie> getAllMovies()
     {
         return allMovies;
     }
+        public void addMovie(Movie movie)
+{
+    allMovies.add(movie);
+    manager.addNewMovie(movie);
+    
+}
+        public void deleteMovie(Movie movie)
+{
+    allMovies.remove(movie);
+    manager.deleteMovies(movie);
+    
+}
 }

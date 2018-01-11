@@ -15,16 +15,21 @@ import moviecollection.dal.ConnectionModel;
  * @author Pepe15224
  */
 public class BllManager {
+    
    ConnectionModel connectionModel = new ConnectionModel(); 
-   
-   
-   
-  public void addNewMovie(Movie movie){
-       connectionModel.addMovie(movie);
+  
+  public void addNewMovie(Movie movie)
+  {
+      connectionModel.addMovie(movie);
    }
    
    public List<Movie> getAllMovies()
    {
        return connectionModel.getAllMovies();
+   }
+   
+   public void deleteMovies(Movie selectedMovie)
+   {
+       connectionModel.deleteMovies(selectedMovie);
    }
 }

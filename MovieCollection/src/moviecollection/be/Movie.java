@@ -16,9 +16,9 @@ public class Movie {
         private Double rating;
         private Double personalrating;
         private String filelink;
-        private Double lastview;
+        private String lastview;
 
-    public Movie(int id, String name, Double rating, Double personalrating, String filelink, Double lastview) {
+    public Movie(int id, String name, Double rating, Double personalrating, String filelink, String lastview) {
         this.id = id;
         this.name = name;
         this.rating = rating;
@@ -27,11 +27,11 @@ public class Movie {
         this.lastview = lastview;
     }
   
-    public Double getLastview() {
+    public String getLastview() {
         return lastview;
     }
 
-    public void setLastview(Double lastview) {
+    public void setLastview(String lastview) {
         this.lastview = lastview;
     }
 

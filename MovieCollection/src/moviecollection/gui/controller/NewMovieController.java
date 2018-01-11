@@ -8,8 +8,6 @@ package moviecollection.gui.controller;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -43,8 +41,6 @@ public class NewMovieController implements Initializable {
     private TextField FileTextField;
     @FXML
     private Button ChooseButton;
-    
-    private Movie movie;
     private MovieModel model = new MovieModel();
     
     /**
@@ -77,8 +73,13 @@ public class NewMovieController implements Initializable {
     
     @FXML
     private void SaveButtonClick(ActionEvent event) {
-        saveDataFromTextFields();
-        closeWindow();
+        model.addMovie(new Movie(-1,
+                TitleTextField.getText(),
+                Double.valueOf(PRatingTextField.getText()),
+                Double.valueOf(IMDBRatingTextField.getText()),
+                FileTextField.getText(),
+                null));
+               closeWindow();
     }
 
     @FXML
@@ -95,28 +96,4 @@ public class NewMovieController implements Initializable {
         Stage stage = (Stage) CloseButton.getScene().getWindow();
         stage.close();
     }
-        
-    private void saveDataFromTextFields()
-    {
-       
-            String name = TitleTextField.getText();
-            String ratingString = IMDBRatingTextField.getText();
-            String personalratingString = PRatingTextField.getText();
-            String filelink = FileTextField.getText();
-            
-            Double ratingDouble = Double.parseDouble(ratingString);
-            Double personalratingDouble = Double.parseDouble(personalratingString);
-            
-            model.addNewMovie(new Movie(-1,
-                    name, ratingDouble, personalratingDouble, filelink, ratingDouble));
-            
-        
-        
-    }
-    
-        
-    
-    
-    
-    
 }
