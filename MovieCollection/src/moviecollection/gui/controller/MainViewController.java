@@ -7,6 +7,10 @@ package moviecollection.gui.controller;
 
 import java.io.IOException;
 import java.net.URL;
+<<<<<<< HEAD
+=======
+import java.util.Optional;
+>>>>>>> 63f0b18ccfa04258988cb231d44d2ff95fda7ddd
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +18,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -62,6 +69,10 @@ public class MainViewController implements Initializable {
     @FXML
     private TableColumn<Movie, Double> columnView;
     MovieModel model = new MovieModel();
+    @FXML
+    private Label editM;
+    @FXML
+    private Label DeleteM;
 
     /**
      * Initializes the controller class.
@@ -83,9 +94,10 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void mClick(MouseEvent event) {
+        Movie selectedMovie = allMoviesTableView.getSelectionModel().getSelectedItem();
         switch(event.getButton())
         {
-            case SECONDARY:
+            case SECONDARY:     
             vBoxCat.setVisible(false);
             vBoxCat.setDisable(true);
             vBox.setVisible(true);
@@ -141,15 +153,13 @@ public class MainViewController implements Initializable {
     private void clickAddM(MouseEvent event) throws IOException {
             vBox.setVisible(false);
             vBox.setDisable(true);
-           /* 
+           
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/NewMovie.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();          
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
-            stage.setTitle("Add/Edit song");
+            stage.setTitle("Add/Edit Movie");
             stage.show();
-           */ 
-                    
     }
        
  private void editMovieClick(ActionEvent event) throws IOException {   
@@ -159,25 +169,61 @@ public class MainViewController implements Initializable {
             Parent root1 = (Parent) fxmlLoader.load();
 
             Stage stage = new Stage();
-            stage.setTitle("Add/Edit media");
+            stage.setTitle("Add/Edit Movie");
             stage.setScene(new Scene(root1));
             stage.showAndWait();
             
             allMoviesTableView.refresh();   //Udate the movies table view
-            categoryListView.refresh();
-           
+            categoryListView.refresh();      
    }
-
+ 
     @FXML
     private void exitAddC(MouseEvent event) {
         addC.setStyle("-fx-background-color: 0");
-
     }
-
+    
     @FXML
     private void enterAddC(MouseEvent event) {
         addC.setStyle("-fx-background-color: #66c3ff");
+    }  
+
+    @FXML
+    private void cliclEditM(MouseEvent event) {
     }
+
+    @FXML
+    private void clickDeleteM(MouseEvent event) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setContentText("Are you sure?");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                System.out.println("code for OK here");
+            } else {
+                System.out.println("code for cancel here");
+            }
+    }
+
+    @FXML
+    private void exitEditM(MouseEvent event) {
+        editM.setStyle("-fx-background-color: 0");
+    }
+
+    @FXML
+    private void enterEditM(MouseEvent event) {
+        editM.setStyle("-fx-background-color: #66c3ff");
+    }
+
+    @FXML
+    private void exitDeleteM(MouseEvent event) {
+        DeleteM.setStyle("-fx-background-color: 0");
+    }
+
+    @FXML
+    private void enterDeleteM(MouseEvent event) {
+        DeleteM.setStyle("-fx-background-color: #66c3ff");
+    }
+<<<<<<< HEAD
 
     @FXML
     private void clickAddC(MouseEvent event) throws IOException {
@@ -191,4 +237,6 @@ public class MainViewController implements Initializable {
             vBoxCat.setDisable(true);
     }
     
+=======
+>>>>>>> 63f0b18ccfa04258988cb231d44d2ff95fda7ddd
 }
