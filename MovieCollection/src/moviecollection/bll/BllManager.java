@@ -37,4 +37,12 @@ public class BllManager {
    {
        connectionModel.deleteMovies(selectedMovie);
    }
+       
+   public List<Category> getAllCategories() {
+       return connectionModel.getAllCategories();
+   }
+   public void deleteCategory(Category selectedCategory) 
+   {
+     connectionModel.deleteCategory(selectedCategory);
+   }
 }

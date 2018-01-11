@@ -5,6 +5,9 @@
  */
 package moviecollection.be;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author 1
@@ -13,7 +16,7 @@ public class Category {
     
     private int id;
     private String name;
-
+    
     public Category(int id, String name) {
         this.id = id;
         this.name = name;
@@ -35,4 +38,9 @@ public class Category {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+    
 }

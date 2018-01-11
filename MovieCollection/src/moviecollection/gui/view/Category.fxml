@@ -9,6 +9,7 @@
    <children>
       <ComboBox fx:id="categoryBox" layoutX="270.0" layoutY="42.0" prefWidth="150.0" promptText="Category" />
       <Label layoutX="14.0" layoutY="47.0" text="Select the category you  want to add:" />
-      <Button fx:id="addC" layoutX="193.0" layoutY="101.0" mnemonicParsing="false" onAction="#addCategory" text="Add" />
+      <Button fx:id="addC" layoutX="148.0" layoutY="110.0" mnemonicParsing="false" onAction="#addCategory" text="Add" />
+      <Button fx:id="closeButton" layoutX="234.0" layoutY="110.0" mnemonicParsing="false" onAction="#closeButtonClick" text="Close" />
    </children>
 </AnchorPane>

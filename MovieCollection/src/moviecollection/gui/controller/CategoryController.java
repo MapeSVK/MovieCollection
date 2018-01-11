@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
 import moviecollection.be.Category;
 import moviecollection.gui.model.MovieModel;
 
@@ -27,6 +28,8 @@ public class CategoryController implements Initializable {
     @FXML
     private Button addC;
     private MovieModel model = new MovieModel();
+    @FXML
+    private Button closeButton;
 
     
     @Override
@@ -39,6 +42,18 @@ public class CategoryController implements Initializable {
     @FXML
     private void addCategory(ActionEvent event) {
         model.addCategory(new Category(-1, categoryBox.getValue()));
+        closeWindow();
+    }
+
+    @FXML
+    private void closeButtonClick(ActionEvent event) {
+        closeWindow();
+    }
+    
+    private void closeWindow()
+    {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
     }
     
 }

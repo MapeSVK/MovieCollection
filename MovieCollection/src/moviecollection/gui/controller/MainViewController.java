@@ -28,6 +28,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import moviecollection.be.Category;
 import moviecollection.be.Movie;
 import moviecollection.gui.model.MovieModel;
 
@@ -44,7 +45,7 @@ public class MainViewController implements Initializable {
     @FXML
     private TableView<Movie> allMoviesTableView;
     @FXML
-    private ListView<?> categoryListView;
+    private ListView<Category> categoryListView;
     @FXML
     private Button searchButton;
     @FXML
@@ -79,10 +80,14 @@ public class MainViewController implements Initializable {
        columnTitle.setCellValueFactory(new PropertyValueFactory("name"));
        columnMyRating.setCellValueFactory(new PropertyValueFactory("personalrating"));
        columnImdbRating.setCellValueFactory(new PropertyValueFactory("rating"));
-       columnView.setCellValueFactory(new PropertyValueFactory("lastview"));  
-    
+       columnView.setCellValueFactory(new PropertyValueFactory("lastview")); 
+      
        model.loadAllMovies();
        allMoviesTableView.setItems(model.getAllMovies());
+       
+       
+       model.loadAllCategories();
+       categoryListView.setItems(model.getAllCategories());
     }    
 
     @FXML
@@ -246,5 +251,11 @@ public class MainViewController implements Initializable {
             stage.show();
             vBoxCat.setVisible(false);
             vBoxCat.setDisable(true);
+    }
+
+    @FXML
+    private void deleteCClick(MouseEvent event) {
+        
+        model.deleteCategory(categoryListView.getSelectionModel().getSelectedItem());
     }
 }

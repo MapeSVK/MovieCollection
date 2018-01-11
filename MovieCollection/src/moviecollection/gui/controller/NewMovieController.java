@@ -80,6 +80,8 @@ public class NewMovieController implements Initializable {
                 FileTextField.getText(),
                 null));
                closeWindow();
+               
+        
     }
 
     @FXML

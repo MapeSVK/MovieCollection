@@ -44,8 +44,7 @@ public class ConnectionModel {
             pstmt.setString(5, movie.getLastview());
 
             int affected = pstmt.executeUpdate();
-            if (affected<1)
-                throw new SQLException("Song could not be added");
+            
 
             // Get database generated id
             ResultSet rs = pstmt.getGeneratedKeys();
@@ -165,6 +164,40 @@ public class ConnectionModel {
         catch (SQLException ex) {
             Logger.getLogger(ConnectionModel.class.getName()).log(
                     Level.SEVERE, null, ex);
+        }
+    }
+        
+        
+       public List<Category> getAllCategories()
+    {
+        List<Category> allCategories = new ArrayList();
+        try (Connection con = cm.getConnection())
+        {
+         PreparedStatement pstmt = con.prepareCall("SELECT * FROM Category");
+         ResultSet rs = pstmt.executeQuery();
+            while(rs.next())
+            {
+                Category c = new Category(rs.getInt("id"), rs.getString("name"));
+                allCategories.add(c);
+            }
+         }
+         catch (SQLException ex) {
+            Logger.getLogger(ConnectionModel.class.getName()).log(
+                    Level.SEVERE, null, ex);
+          }
+        return allCategories;
+}
+       public void deleteCategory(Category selectedCategory) {
+        try (Connection con = cm.getConnection()) {
+            String sql
+                    = "DELETE FROM Category WHERE id=?";
+            PreparedStatement pstmt
+                    = con.prepareStatement(sql);
+            pstmt.setInt(1, selectedCategory.getId());
+            pstmt.execute();
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
