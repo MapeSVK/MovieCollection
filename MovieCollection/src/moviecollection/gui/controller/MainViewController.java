@@ -164,7 +164,7 @@ public class MainViewController implements Initializable {
        
  private void editMovieClick(ActionEvent event) throws IOException {   
             
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mytunes/gui/View/NewSong.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/MovieCollection/gui/View/NewSong.fxml"));
 
             Parent root1 = (Parent) fxmlLoader.load();
 
@@ -235,5 +235,16 @@ public class MainViewController implements Initializable {
     {
         vBox.setVisible(true);
         vBox.setDisable(false);
+    }
+    @FXML
+    private void clickAddC(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/Category.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();          
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("Add a category");
+            stage.show();
+            vBoxCat.setVisible(false);
+            vBoxCat.setDisable(true);
     }
 }

@@ -7,6 +7,7 @@ package moviecollection.gui.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import moviecollection.be.Category;
 import moviecollection.be.Movie;
 import moviecollection.bll.BllManager;
 
@@ -29,6 +30,10 @@ public class MovieModel {
     {
         return allMovies;
     }
+     public void addCategory(Category category)
+   {
+       manager.addCategory(category);
+   }
         public void addMovie(Movie movie)
 {
     allMovies.add(movie);

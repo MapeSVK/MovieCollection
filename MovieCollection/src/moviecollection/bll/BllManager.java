@@ -6,6 +6,7 @@
 package moviecollection.bll;
 
 import java.util.List;
+import moviecollection.be.Category;
 import moviecollection.be.Movie;
 import moviecollection.dal.ConnectionModel;
 
@@ -28,7 +29,11 @@ public class BllManager {
        return connectionModel.getAllMovies();
    }
    
-   public void deleteMovies(Movie selectedMovie)
+    public void addCategory(Category category)
+   {
+       connectionModel.addCategory(category);
+   }
+       public void deleteMovies(Movie selectedMovie)
    {
        connectionModel.deleteMovies(selectedMovie);
    }
