@@ -45,4 +45,8 @@ public class BllManager {
    {
      connectionModel.deleteCategory(selectedCategory);
    }
+   
+   public void addMovieToCategory(Category category, Movie movie) {
+      connectionModel.addMovieToCategory(category, movie);
+    }
 }

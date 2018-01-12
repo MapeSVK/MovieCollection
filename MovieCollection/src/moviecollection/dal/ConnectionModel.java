@@ -200,4 +200,19 @@ public class ConnectionModel {
             Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+       
+       public void addMovieToCategory(Category category, Movie movie)  {
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement pstmt = con.prepareStatement(
+                    "INSERT INTO Category(listID, musicID)"
+                    + "VALUES(?, ?)");
+            pstmt.setInt(1, category.getId());
+            pstmt.setInt(2, movie.getId());
+            int affected = pstmt.executeUpdate();
+            
+        }
+        catch (Exception e) {
+            System.out.println("");
+        }
+    }
 }
