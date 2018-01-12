@@ -45,4 +45,8 @@ public class BllManager {
    {
      connectionModel.deleteCategory(selectedCategory);
    }
+   public void updateDate(Movie movie)
+   {
+       connectionModel.updateDate(movie);
+   }
 }

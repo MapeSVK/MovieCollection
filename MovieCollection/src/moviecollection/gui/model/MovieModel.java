@@ -66,5 +66,9 @@ public class MovieModel {
       allCategories.remove(selectedCategory);
       manager.deleteCategory(selectedCategory);
   }
-        
+    public void updateDate(Movie movie)
+    {
+        manager.updateDate(movie);
+        loadAllMovies();
+    }
 }

@@ -27,6 +27,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import moviecollection.be.Category;
 import moviecollection.be.Movie;
@@ -257,5 +258,20 @@ public class MainViewController implements Initializable {
     private void deleteCClick(MouseEvent event) {
         
         model.deleteCategory(categoryListView.getSelectionModel().getSelectedItem());
+    }
+
+    @FXML
+    private void playMovie(ActionEvent event) throws IOException {
+        Parent root;
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/MoviePlayer.fxml"));
+            root = loader.load();
+            MoviePlayerController controller = loader.getController();
+            Movie selectedMovie = allMoviesTableView.getSelectionModel().getSelectedItem();
+            controller.setModelAndMovie(model, selectedMovie);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("New/Edit Playlist");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
     }
 }
