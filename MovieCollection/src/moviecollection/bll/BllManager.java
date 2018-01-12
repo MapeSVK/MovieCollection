@@ -45,15 +45,16 @@ public class BllManager {
    {
      connectionModel.deleteCategory(selectedCategory);
    }
-<<<<<<< HEAD
+
    
    public void addMovieToCategory(Category category, Movie movie) {
       connectionModel.addMovieToCategory(category, movie);
     }
-=======
+
    public void updateDate(Movie movie)
    {
        connectionModel.updateDate(movie);
+
    }
->>>>>>> 2d0b9757e996ce6b15d27853fe59ad1ed14e9b18
+   
 }
