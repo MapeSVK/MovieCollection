@@ -107,17 +107,17 @@ public class ConnectionModel {
             pstmt.setDouble(2, movie.getRating());
             pstmt.setDouble(3, movie.getPersonalrating());
             pstmt.setString(4, movie.getFilelink());
-            pstmt.setInt(6, movie.getId());
+            pstmt.setInt(5, movie.getId());
 
             int affected = pstmt.executeUpdate();
             if (affected<1)
-                throw new SQLException("Movie could not be edited");
+                throw new SQLException("Movie could not be updated");
 
         }
         catch (SQLException ex) {
             Logger.getLogger(ConnectionManager.class.getName()).log(
                     Level.SEVERE, null, ex);
-        }
+        }    
     }
     public void updateDate(Movie movie) {
         try (Connection con = cm.getConnection()) {

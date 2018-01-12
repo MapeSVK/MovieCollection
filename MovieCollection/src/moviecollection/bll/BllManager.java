@@ -54,7 +54,9 @@ public class BllManager {
    public void updateDate(Movie movie)
    {
        connectionModel.updateDate(movie);
-
    }
-   
+   public void editMovies(Movie movie)
+   {
+       connectionModel.editMovies(movie);
+   }
 }

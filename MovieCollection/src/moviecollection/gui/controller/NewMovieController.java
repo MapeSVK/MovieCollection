@@ -41,7 +41,8 @@ public class NewMovieController implements Initializable {
     private TextField FileTextField;
     @FXML
     private Button ChooseButton;
-    private MovieModel model = new MovieModel();
+    private MovieModel model;
+    private Movie selectedMovie;
     
     /**
      * Initializes the controller class.
@@ -50,14 +51,15 @@ public class NewMovieController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
-    
-    
-    
+    public void setModelAndMovie(MovieModel model, Movie selectedMovie) {
+        this.model=model;
+        this.selectedMovie=selectedMovie;
+        fill();
+    }
+ 
     @FXML
     private void ChooseButtonClick(ActionEvent event) {
-        
-       
+ 
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter filtermP4 = new FileChooser.ExtensionFilter("select mp4","*.mp4");
         fileChooser.getExtensionFilters().add(filtermP4);
@@ -73,6 +75,8 @@ public class NewMovieController implements Initializable {
     
     @FXML
     private void SaveButtonClick(ActionEvent event) {
+        if(selectedMovie==null)
+        {
         model.addMovie(new Movie(-1,
                 TitleTextField.getText(),
                 Double.valueOf(PRatingTextField.getText()),
@@ -80,22 +84,36 @@ public class NewMovieController implements Initializable {
                 FileTextField.getText(),
                 null));
                closeWindow();
-               
-        
+        }
+        else if(selectedMovie!=null)
+        {
+            selectedMovie.setName(TitleTextField.getText());
+            selectedMovie.setRating(Double.valueOf(IMDBRatingTextField.getText()));
+            selectedMovie.setPersonalrating(Double.valueOf(PRatingTextField.getText()));
+            selectedMovie.setFilelink(FileTextField.getText());
+            model.editMovies(selectedMovie);
+        }
+    
     }
-
-    @FXML
-    private void CloseButtonClick(ActionEvent event) {
-        closeWindow();
-    }
-
-    
-    
-    
+ 
     /*********** OTHER METHODS *************/
     private void closeWindow()
     {
         Stage stage = (Stage) CloseButton.getScene().getWindow();
         stage.close();
+    }
+    @FXML
+    private void CloseButtonClick(ActionEvent event) {
+        closeWindow();
+    }
+    private void fill()
+    {
+        if(selectedMovie!=null)
+        {
+            TitleTextField.setText(selectedMovie.getName());
+            PRatingTextField.setText(""+selectedMovie.getPersonalrating());
+            IMDBRatingTextField.setText(""+selectedMovie.getRating());
+            FileTextField.setText(selectedMovie.getFilelink());       
+        }
     }
 }

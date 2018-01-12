@@ -160,28 +160,17 @@ public class MainViewController implements Initializable {
     private void clickAddM(MouseEvent event) throws IOException {
             disableVbox(vBox);
            
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/NewMovie.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();          
+            Parent root;
             Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.setTitle("Add/Edit Movie");
-            stage.show();
-    }
-       
- private void editMovieClick(ActionEvent event) throws IOException {   
-            
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/MovieCollection/gui/View/NewSong.fxml"));
-
-            Parent root1 = (Parent) fxmlLoader.load();
-
-            Stage stage = new Stage();
-            stage.setTitle("Add/Edit Movie");
-            stage.setScene(new Scene(root1));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/NewMovie.fxml"));
+            root = loader.load();
+            NewMovieController controller = loader.getController();
+            controller.setModelAndMovie(model, null);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("New/Edit Movie");
+            stage.setScene(new Scene(root));
             stage.showAndWait();
-            
-            allMoviesTableView.refresh();   //Udate the movies table view
-            categoryListView.refresh();      
-   }
+    }
  
     @FXML
     private void exitAddC(MouseEvent event) {
@@ -193,7 +182,6 @@ public class MainViewController implements Initializable {
         addC.setStyle("-fx-background-color: #66c3ff");
     }  
 
-    @FXML
     private void cliclEditM(MouseEvent event) {
         disableVbox(vBox);
     }
@@ -271,6 +259,21 @@ public class MainViewController implements Initializable {
             controller.setModelAndMovie(model, selectedMovie);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("New/Edit Playlist");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+    }
+
+    @FXML
+    private void ClickEditM(MouseEvent event) throws IOException {
+                Parent root;
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/NewMovie.fxml"));
+            root = loader.load();
+            NewMovieController controller = loader.getController();
+            Movie selectedMovie = allMoviesTableView.getSelectionModel().getSelectedItem();
+            controller.setModelAndMovie(model, selectedMovie);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("New/Edit Movie");
             stage.setScene(new Scene(root));
             stage.showAndWait();
     }

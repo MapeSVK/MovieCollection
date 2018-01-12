@@ -21,8 +21,7 @@ public class MovieModel {
     
     private ObservableList<Movie> allMovies = FXCollections.observableArrayList();
     private ObservableList<Category> allCategories = FXCollections.observableArrayList();
-
-    
+  
     public void loadAllMovies()
     {
         allMovies.clear();
@@ -33,9 +32,7 @@ public class MovieModel {
     {
         return allMovies;
     }
-    
-    
-    
+
     public void loadAllCategories(){
         allCategories.clear();
         allCategories.addAll(manager.getAllCategories());
@@ -45,7 +42,6 @@ public class MovieModel {
         return allCategories;
     }
 
-    
      public void addCategory(Category category)
    {
        manager.addCategory(category);
@@ -54,7 +50,6 @@ public class MovieModel {
 {
     allMovies.add(movie);
     manager.addNewMovie(movie);
-    
 }
         public void deleteMovie(Movie movie)
 {
@@ -66,20 +61,20 @@ public class MovieModel {
       allCategories.remove(selectedCategory);
       manager.deleteCategory(selectedCategory);
   }
-
-  
+ 
 //  public void addMovieToCategory(Category category, Movie movie) {
 //      manager.addMovieToCategory(category, movie);
 //      allCategories.addMovie(movie);
 //    }
-  
-  
-        
 
     public void updateDate(Movie movie)
     {
         manager.updateDate(movie);
         loadAllMovies();
     }
-
+public void editMovies(Movie movie)
+{
+    manager.editMovies(movie);
+    loadAllMovies();
+}
 }
