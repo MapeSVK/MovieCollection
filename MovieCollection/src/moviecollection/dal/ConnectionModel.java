@@ -204,7 +204,7 @@ public class ConnectionModel {
        public void addMovieToCategory(Category category, Movie movie)  {
         try (Connection con = cm.getConnection()) {
             PreparedStatement pstmt = con.prepareStatement(
-                    "INSERT INTO Category(listID, musicID)"
+                    "INSERT INTO CatMovie(CategoryId, MovieId)"
                     + "VALUES(?, ?)");
             pstmt.setInt(1, category.getId());
             pstmt.setInt(2, movie.getId());

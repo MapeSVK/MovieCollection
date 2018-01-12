@@ -66,16 +66,18 @@ public class MovieModel {
       allCategories.remove(selectedCategory);
       manager.deleteCategory(selectedCategory);
   }
+  
+  
+ 
+  
+  public void addMovieToCategory(Category category, Movie movie) {
+      manager.addMovieToCategory(category, movie);
+      category.addMovie(movie);
+    }
+  
+  
 
-  
-//  public void addMovieToCategory(Category category, Movie movie) {
-//      manager.addMovieToCategory(category, movie);
-//      allCategories.addMovie(movie);
-//    }
-  
-  
-        
-
+ 
     public void updateDate(Movie movie)
     {
         manager.updateDate(movie);
