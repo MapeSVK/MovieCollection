@@ -83,7 +83,7 @@ public class NewMovieController implements Initializable {
                 Double.valueOf(IMDBRatingTextField.getText()),
                 FileTextField.getText(),
                 null));
-               closeWindow();
+               
         }
         else if(selectedMovie!=null)
         {
@@ -93,7 +93,7 @@ public class NewMovieController implements Initializable {
             selectedMovie.setFilelink(FileTextField.getText());
             model.editMovies(selectedMovie);
         }
-    
+    closeWindow();
     }
  
     /*********** OTHER METHODS *************/

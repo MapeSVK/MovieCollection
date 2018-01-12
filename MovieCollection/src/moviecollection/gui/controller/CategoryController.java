@@ -27,7 +27,7 @@ public class CategoryController implements Initializable {
     private ComboBox<String> categoryBox;
     @FXML
     private Button addC;
-    private MovieModel model = new MovieModel();
+    private MovieModel model;
     @FXML
     private Button closeButton;
 
@@ -38,11 +38,15 @@ public class CategoryController implements Initializable {
     categoryBox.getItems().addAll("Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film-Noir", "Game-Show", "History", "Horror", "Music", "Musical", "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi", "Sport", "Talk-Show", "Thriller", "War", "Western");
     
     }    
-
+    public void setModel(MovieModel model) 
+    {
+        this.model=model;
+    }
     @FXML
     private void addCategory(ActionEvent event) {
         model.addCategory(new Category(-1, categoryBox.getValue()));
         closeWindow();
+        
     }
 
     @FXML
@@ -55,5 +59,4 @@ public class CategoryController implements Initializable {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
-    
 }

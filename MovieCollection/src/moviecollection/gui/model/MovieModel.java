@@ -45,6 +45,7 @@ public class MovieModel {
      public void addCategory(Category category)
    {
        manager.addCategory(category);
+       allCategories.add(category);
    }
         public void addMovie(Movie movie)
 {
@@ -62,19 +63,11 @@ public class MovieModel {
       manager.deleteCategory(selectedCategory);
   }
 
-
- 
-  
- 
-  
   public void addMovieToCategory(Category category, Movie movie) {
       manager.addMovieToCategory(category, movie);
       category.addMovie(movie);
     }
-  
 
-
- 
     public void updateDate(Movie movie)
     {
         manager.updateDate(movie);

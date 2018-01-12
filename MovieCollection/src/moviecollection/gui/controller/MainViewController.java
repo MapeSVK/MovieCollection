@@ -232,14 +232,16 @@ public class MainViewController implements Initializable {
     }
     @FXML
     private void clickAddC(MouseEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/Category.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();          
+        Parent root;
             Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.setTitle("Add a category");
-            stage.show();
-            vBoxCat.setVisible(false);
-            vBoxCat.setDisable(true);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/Category.fxml"));
+            root = loader.load();
+            CategoryController controller = loader.getController();
+            controller.setModel(model);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Add Category");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
     }
 
     @FXML
