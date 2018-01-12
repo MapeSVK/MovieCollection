@@ -27,7 +27,7 @@
         </columns>
       </TableView>
       <ListView fx:id="categoryListView" layoutX="18.0" layoutY="66.0" onMouseClicked="#categoryClick" prefHeight="450.0" prefWidth="160.0" />
-      <Button fx:id="searchButton" layoutX="1066.0" layoutY="24.0" mnemonicParsing="false" text="Search" />
+      <Button fx:id="searchButton" layoutX="1066.0" layoutY="24.0" mnemonicParsing="false" onAction="#playMovie" text="Search" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="37.0" prefHeight="17.0" prefWidth="156.0" text="Categories">
          <font>
             <Font name="Arial Bold" size="17.0" />
