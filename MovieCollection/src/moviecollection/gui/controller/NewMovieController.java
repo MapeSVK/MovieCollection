@@ -16,6 +16,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import moviecollection.be.Category;
 import moviecollection.be.Movie;
 import moviecollection.gui.model.MovieModel;
 
@@ -45,26 +46,24 @@ public class NewMovieController implements Initializable {
     private MovieModel model;
     private Movie selectedMovie;
     @FXML
-    private ComboBox<String> firstCat;
+    private ComboBox<Category> firstCat;
     @FXML
-    private ComboBox<String> secCat;
+    private ComboBox<Category> secCat;
     @FXML
-    private ComboBox<String> thirdCat;
+    private ComboBox<Category> thirdCat;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    firstCat.getItems().addAll("Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film-Noir", "Game-Show", "History", "Horror", "Music", "Musical", "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi", "Sport", "Talk-Show", "Thriller", "War", "Western");
-    secCat.getItems().addAll("Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film-Noir", "Game-Show", "History", "Horror", "Music", "Musical", "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi", "Sport", "Talk-Show", "Thriller", "War", "Western");
-    thirdCat.getItems().addAll("Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film-Noir", "Game-Show", "History", "Horror", "Music", "Musical", "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi", "Sport", "Talk-Show", "Thriller", "War", "Western");
-
     }    
     public void setModelAndMovie(MovieModel model, Movie selectedMovie) {
         this.model=model;
         this.selectedMovie=selectedMovie;
+        firstCat.setItems(model.getAllCategories());
+        secCat.setItems(model.getAllCategories());
+        thirdCat.setItems(model.getAllCategories());
         fill();
     }
  
