@@ -147,17 +147,7 @@ public class NewMovieController implements Initializable {
         }
     }
 
-    @FXML
-    private void firstCatClick(ActionEvent event) {
-    }
-
-    @FXML
-    private void secCatClick(ActionEvent event) {
-    }
-
-    @FXML
-    private void thirdCatClick(ActionEvent event) {
-    }
+    
 
 
 }
