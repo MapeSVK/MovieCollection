@@ -16,7 +16,7 @@ public class Category {
     
     private int id;
     private String name;
-    private ObservableList<Movie> movieList = FXCollections.observableArrayList();
+//    private ObservableList<Movie> movieList = FXCollections.observableArrayList();
         
     public Category(int id, String name) {
         this.id = id;
@@ -45,9 +45,9 @@ public class Category {
     }
     
     
-    // Add movie to the category
-     public void addMovie(Movie movie){
-      movieList.add(movie);
-  }
+//    // Add movie to the category
+//     public void addMovie(Movie movie){
+//      movieList.add(movie);
+//  }
     
 }
