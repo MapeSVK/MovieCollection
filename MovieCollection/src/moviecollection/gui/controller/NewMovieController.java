@@ -66,9 +66,11 @@ public class NewMovieController implements Initializable {
         this.model=model;
         this.selectedMovie=selectedMovie;
         firstCat.setItems(model.getAllCategories());
-        firstCat.getItems().add(new Category(-1, "none"));
+        firstCat.getItems().add(new Category(-1, "None"));
         secCat.setItems(model.getAllCategories());
+        secCat.getItems().add(new Category(-1, "None"));
         thirdCat.setItems(model.getAllCategories());
+        thirdCat.getItems().add(new Category(-1, "None"));
         fill();
     }
  
@@ -94,8 +96,6 @@ public class NewMovieController implements Initializable {
                 secCat.getValue() != thirdCat.getValue() &&
                 thirdCat.getValue() != firstCat.getValue()) {
                 Save();
-                
-            
         }
         else {
             Alert alert = new Alert(AlertType.INFORMATION);
