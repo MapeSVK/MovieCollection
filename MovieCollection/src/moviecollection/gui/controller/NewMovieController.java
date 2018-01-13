@@ -7,7 +7,6 @@ package moviecollection.gui.controller;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -65,12 +63,7 @@ public class NewMovieController implements Initializable {
     public void setModelAndMovie(MovieModel model, Movie selectedMovie) {
         this.model=model;
         this.selectedMovie=selectedMovie;
-        firstCat.setItems(model.getAllCategories());
-        firstCat.getItems().add(new Category(-1, "None"));
-        secCat.setItems(model.getAllCategories());
-        secCat.getItems().add(new Category(-1, "None"));
-        thirdCat.setItems(model.getAllCategories());
-        thirdCat.getItems().add(new Category(-1, "None"));
+        fillCombo();
         fill();
     }
  
@@ -95,7 +88,8 @@ public class NewMovieController implements Initializable {
         if (firstCat.getValue() != secCat.getValue() && 
                 secCat.getValue() != thirdCat.getValue() &&
                 thirdCat.getValue() != firstCat.getValue()) {
-                Save();
+            System.out.println(""+firstCat.getValue());
+            Save();
         }
         else {
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -108,12 +102,14 @@ public class NewMovieController implements Initializable {
     private void Save(){
         if(selectedMovie==null)
         {
-            model.addMovie(new Movie(-1,
+            Movie myMovie = new Movie(-1,
             TitleTextField.getText(),
             Double.valueOf(PRatingTextField.getText()),
             Double.valueOf(IMDBRatingTextField.getText()),
             FileTextField.getText(),
-            null));       
+            null);
+            model.addMovie(myMovie); 
+            addMovieToCat(myMovie);
         }
         else if(selectedMovie!=null)
         {
@@ -125,7 +121,11 @@ public class NewMovieController implements Initializable {
         }
         closeWindow();
     }
- 
+ private void addMovieToCat(Movie movie)
+ {
+     System.out.println(""+movie.getId());
+     
+ }
     /*********** OTHER METHODS *************/
     private void closeWindow()
     {
@@ -146,8 +146,16 @@ public class NewMovieController implements Initializable {
             FileTextField.setText(selectedMovie.getFilelink());       
         }
     }
-
-    
-
-
+private void fillCombo()
+{
+    firstCat.getItems().add(new Category(-1,"None"));
+        firstCat.getItems().addAll(model.getAllCategories());
+        secCat.getItems().add(new Category(-1,"None"));
+        secCat.getItems().addAll(model.getAllCategories());
+        thirdCat.getItems().add(new Category(-1,"None"));
+        thirdCat.getItems().addAll(model.getAllCategories());
+        firstCat.getSelectionModel().selectFirst();
+        secCat.getSelectionModel().selectFirst();
+        thirdCat.getSelectionModel().selectFirst();
+}
 }

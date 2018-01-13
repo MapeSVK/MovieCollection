@@ -16,9 +16,9 @@
       <Button fx:id="SaveButton" layoutX="397.0" layoutY="669.0" mnemonicParsing="false" onAction="#SaveButtonClick" text="Save" />
       <Button fx:id="CloseButton" layoutX="479.0" layoutY="669.0" mnemonicParsing="false" onAction="#CloseButtonClick" text="Close" />
       <TextField fx:id="TitleTextField" layoutX="123.0" layoutY="56.0" prefHeight="27.0" prefWidth="373.0" />
-      <ComboBox fx:id="firstCat" layoutX="123.0" layoutY="156.0" onAction="#firstCatClick" prefWidth="150.0" />
-      <ComboBox fx:id="secCat" layoutX="123.0" layoutY="192.0" onAction="#secCatClick" prefWidth="150.0" />
-      <ComboBox fx:id="thirdCat" layoutX="123.0" layoutY="226.0" onAction="#thirdCatClick" prefWidth="150.0" />
+      <ComboBox fx:id="firstCat" layoutX="123.0" layoutY="156.0" prefWidth="150.0" />
+      <ComboBox fx:id="secCat" layoutX="123.0" layoutY="192.0" prefWidth="150.0" />
+      <ComboBox fx:id="thirdCat" layoutX="123.0" layoutY="226.0" prefWidth="150.0" />
       <TextField fx:id="PRatingTextField" layoutX="33.0" layoutY="415.0" />
       <TextField fx:id="IMDBRatingTextField" layoutX="396.0" layoutY="415.0" />
       <TextField fx:id="FileTextField" layoutX="129.0" layoutY="566.0" prefHeight="27.0" prefWidth="373.0" />
