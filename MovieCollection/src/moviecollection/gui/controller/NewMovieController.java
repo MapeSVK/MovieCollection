@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -43,13 +44,23 @@ public class NewMovieController implements Initializable {
     private Button ChooseButton;
     private MovieModel model;
     private Movie selectedMovie;
+    @FXML
+    private ComboBox<String> firstCat;
+    @FXML
+    private ComboBox<String> secCat;
+    @FXML
+    private ComboBox<String> thirdCat;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+    firstCat.getItems().addAll("Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film-Noir", "Game-Show", "History", "Horror", "Music", "Musical", "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi", "Sport", "Talk-Show", "Thriller", "War", "Western");
+    secCat.getItems().addAll("Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film-Noir", "Game-Show", "History", "Horror", "Music", "Musical", "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi", "Sport", "Talk-Show", "Thriller", "War", "Western");
+    thirdCat.getItems().addAll("Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film-Noir", "Game-Show", "History", "Horror", "Music", "Musical", "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi", "Sport", "Talk-Show", "Thriller", "War", "Western");
+
     }    
     public void setModelAndMovie(MovieModel model, Movie selectedMovie) {
         this.model=model;
@@ -116,4 +127,18 @@ public class NewMovieController implements Initializable {
             FileTextField.setText(selectedMovie.getFilelink());       
         }
     }
+
+    @FXML
+    private void firstCatClick(ActionEvent event) {
+    }
+
+    @FXML
+    private void secCatClick(ActionEvent event) {
+    }
+
+    @FXML
+    private void thirdCatClick(ActionEvent event) {
+    }
+
+
 }
