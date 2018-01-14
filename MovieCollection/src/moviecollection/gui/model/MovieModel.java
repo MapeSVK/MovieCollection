@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import moviecollection.be.Category;
 import moviecollection.be.Movie;
+import moviecollection.be.MovieInCategory;
 import moviecollection.bll.BllManager;
 
 /**
@@ -21,6 +22,7 @@ public class MovieModel {
     
     private ObservableList<Movie> allMovies = FXCollections.observableArrayList();
     private ObservableList<Category> allCategories = FXCollections.observableArrayList();
+    private final ObservableList<MovieInCategory> moviesInC = FXCollections.observableArrayList();
   
     public void loadAllMovies()
     {
@@ -78,4 +80,36 @@ public void editMovies(Movie movie)
     manager.editMovies(movie);
     loadAllMovies();
 }
+public ObservableList<MovieInCategory> getMoviesById(int id)
+{
+    moviesInC.setAll(manager.getMoviesById(id));   
+    moviesInC.setAll(getNameEtc());
+   return moviesInC; 
+}
+public ObservableList<MovieInCategory> getNameEtc()
+    {
+        loadAllMovies();
+    ObservableList<MovieInCategory> IlikeToSing = FXCollections.observableArrayList();
+        for(Movie movie : allMovies)
+        {
+            
+            for(MovieInCategory catMovie : moviesInC)
+            {
+               movie.getId();
+               catMovie.getMovieId();
+               if(movie.getId()==catMovie.getMovieId())
+               {
+                   catMovie.setName(movie.getName());
+                   catMovie.setRating(movie.getRating());
+                   catMovie.setPersonalrating(movie.getPersonalrating());
+                   catMovie.setFilelink(movie.getFilelink());
+                   catMovie.setLastview(movie.getLastview());
+                   IlikeToSing.add(catMovie);
+                   
+               }
+            }
+        }
+        
+        return IlikeToSing;
+    }
 }

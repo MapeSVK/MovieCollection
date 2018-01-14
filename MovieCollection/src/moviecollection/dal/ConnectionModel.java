@@ -218,4 +218,29 @@ public class ConnectionModel {
             System.out.println("");
         }
     }
+       public List<MovieInCategory> getMoviesById(int id)
+    {
+        List<MovieInCategory> moviesById = new ArrayList();
+
+        try (Connection con = cm.getConnection()) 
+        {
+          String query
+                    = "SELECT * FROM CatMovie "
+                    + "WHERE CategoryId LIKE ?";
+             
+            PreparedStatement pstmt
+                    = con.prepareStatement(query);
+            pstmt.setInt(1,id);
+           ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                MovieInCategory moviesInC = new MovieInCategory(rs.getInt("CategoryId"), rs.getInt("MovieId"), rs.getInt("Id"));
+                
+                moviesById.add(moviesInC);
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return moviesById;
+    }
 }

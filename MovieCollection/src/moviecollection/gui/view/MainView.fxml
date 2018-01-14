@@ -12,19 +12,12 @@
 <AnchorPane id="AnchorPane" fx:id="mainWindow" onMouseClicked="#mainWindowClick" prefHeight="532.0" prefWidth="1141.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.controller.MainViewController">
    <children>
       <TableView fx:id="categoryMoviesTableView" layoutX="194.0" layoutY="65.0" onMouseClicked="#mICClick" prefHeight="450.0" prefWidth="463.0">
-        <columns>
-          <TableColumn prefWidth="82.0" text="My Rating" />
-            <TableColumn prefWidth="95.0" text="IMDB Rating" />
-            <TableColumn prefWidth="89.0" text="Last Viewed" />
-        </columns>
-      </TableView>
-      <TableView fx:id="allMoviesTableView" layoutX="672.0" layoutY="66.0" onMouseClicked="#mClick" prefHeight="450.0" prefWidth="455.0">
-        <columns>
+         <columns>
           <TableColumn fx:id="columnTitle" prefWidth="182.0" text="Title" />
           <TableColumn fx:id="columnMyRating" prefWidth="87.0" text="My Rating" />
             <TableColumn fx:id="columnImdbRating" prefWidth="96.0" text="IMDB Rating" />
             <TableColumn fx:id="columnView" prefWidth="89.0" text="Last Viewed" />
-        </columns>
+         </columns>
       </TableView>
       <ListView fx:id="categoryListView" layoutX="18.0" layoutY="66.0" onMouseClicked="#categoryClick" prefHeight="450.0" prefWidth="160.0" />
       <Button fx:id="searchButton" layoutX="1066.0" layoutY="24.0" mnemonicParsing="false" onAction="#playMovie" text="Search" />
@@ -35,7 +28,6 @@
       </Label>
       <VBox fx:id="vBox" accessibleRole="BUTTON" disable="true" layoutX="134.0" layoutY="120.0" prefHeight="53.0" prefWidth="100.0" style="-fx-border-color: #000000; -fx-background-color: #e8ebed;" visible="false">
          <children>
-            <Label fx:id="addM" accessibleRole="BUTTON" onMouseClicked="#clickAddM" onMouseEntered="#enterAddM" onMouseExited="#exitAddM" prefHeight="22.0" prefWidth="201.0" text="Add Movie" />
             <Label fx:id="editM" accessibleRole="BUTTON" disable="true" onMouseClicked="#ClickEditM" onMouseEntered="#enterEditM" onMouseExited="#exitEditM" prefHeight="11.0" prefWidth="98.0" text="Edit Movie" />
             <Label fx:id="DeleteM" accessibleRole="BUTTON" disable="true" onMouseClicked="#clickDeleteM" onMouseEntered="#enterDeleteM" onMouseExited="#exitDeleteM" prefHeight="36.0" prefWidth="98.0" text="Delete Movie" />
          </children>

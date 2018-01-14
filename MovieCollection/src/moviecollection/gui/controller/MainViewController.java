@@ -31,6 +31,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import moviecollection.be.Category;
 import moviecollection.be.Movie;
+import moviecollection.be.MovieInCategory;
 import moviecollection.gui.model.MovieModel;
 
 
@@ -42,8 +43,7 @@ import moviecollection.gui.model.MovieModel;
 public class MainViewController implements Initializable {
 
     @FXML
-    private TableView<?> categoryMoviesTableView;
-    @FXML
+    private TableView<MovieInCategory> categoryMoviesTableView;
     private TableView<Movie> allMoviesTableView;
     @FXML
     private ListView<Category> categoryListView;
@@ -60,13 +60,13 @@ public class MainViewController implements Initializable {
     @FXML
     private Label addC;
     @FXML
-    private TableColumn<Movie, String> columnTitle;
+    private TableColumn<MovieInCategory, String> columnTitle;
     @FXML
-    private TableColumn<Movie, Double> columnMyRating;
+    private TableColumn<MovieInCategory, Double> columnMyRating;
     @FXML
-    private TableColumn<Movie, Double> columnImdbRating;
+    private TableColumn<MovieInCategory, Double> columnImdbRating;
     @FXML
-    private TableColumn<Movie, Double> columnView;
+    private TableColumn<MovieInCategory, Double> columnView;
     private MovieModel model = new MovieModel();
     @FXML
     private Label editM;
@@ -82,22 +82,16 @@ public class MainViewController implements Initializable {
        columnMyRating.setCellValueFactory(new PropertyValueFactory("personalrating"));
        columnImdbRating.setCellValueFactory(new PropertyValueFactory("rating"));
        columnView.setCellValueFactory(new PropertyValueFactory("lastview")); 
-      
-       model.loadAllMovies();
-       allMoviesTableView.setItems(model.getAllMovies());
-       
-       
+ 
        model.loadAllCategories();
        categoryListView.setItems(model.getAllCategories());
     }    
 
     @FXML
     private void mICClick(MouseEvent event) {
-        disableVbox(vBox);
-        disableVbox(vBoxCat);
+      
     }
 
-    @FXML
     private void mClick(MouseEvent event) {
         
         switch(event.getButton())
@@ -124,6 +118,12 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void categoryClick(MouseEvent event) {
+        Category selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
+        if(selectedCategory!=null)
+        {
+           
+            categoryMoviesTableView.setItems(model.getMoviesById(selectedCategory.getId()));
+        }
         switch(event.getButton())
         {
             case SECONDARY:
@@ -257,8 +257,8 @@ public class MainViewController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/MoviePlayer.fxml"));
             root = loader.load();
             MoviePlayerController controller = loader.getController();
-            Movie selectedMovie = allMoviesTableView.getSelectionModel().getSelectedItem();
-            controller.setModelAndMovie(model, selectedMovie);
+            MovieInCategory selectedMovieinC = categoryMoviesTableView.getSelectionModel().getSelectedItem();
+            controller.setModelAndMovie(model, selectedMovieinC);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("New/Edit Playlist");
             stage.setScene(new Scene(root));

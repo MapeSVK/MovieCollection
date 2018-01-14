@@ -8,6 +8,7 @@ package moviecollection.bll;
 import java.util.List;
 import moviecollection.be.Category;
 import moviecollection.be.Movie;
+import moviecollection.be.MovieInCategory;
 import moviecollection.dal.ConnectionModel;
 
 
@@ -57,5 +58,9 @@ public class BllManager {
    public void editMovies(Movie movie)
    {
        connectionModel.editMovies(movie);
+   }
+   public List<MovieInCategory> getMoviesById(int id)
+   {
+       return connectionModel.getMoviesById(id);
    }
 }

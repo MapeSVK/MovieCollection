@@ -19,6 +19,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import moviecollection.be.Movie;
+import moviecollection.be.MovieInCategory;
 import moviecollection.gui.model.MovieModel;
 
 /**
@@ -34,7 +35,8 @@ public class MoviePlayerController implements Initializable {
     private Media me;
     private String filePath="";
     private MovieModel model;
-    private Movie selectedMovie;
+    private MovieInCategory selectedMovieinC;
+    
 
     /**
      * Initializes the controller class.
@@ -44,15 +46,15 @@ public class MoviePlayerController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        
     }    
-  public void setModelAndMovie(MovieModel model, Movie selectedMovie) {
+  public void setModelAndMovie(MovieModel model, MovieInCategory selectedMovieinC) {
         this.model=model;
-        this.selectedMovie=selectedMovie;
+        this.selectedMovieinC=selectedMovieinC;
         playMovie();
         setDate();
     }
   public void playMovie()
   {
-      File file = new File(selectedMovie.getFilelink());
+      File file = new File(selectedMovieinC.getFilelink());
         filePath = file.toURI().toString();
         Media media = new Media(filePath);
         mp = new MediaPlayer(media);
@@ -67,7 +69,6 @@ public class MoviePlayerController implements Initializable {
   {
       DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
-        selectedMovie.setLastview(dateFormat.format(date));
-        model.updateDate(selectedMovie);
+        
   }
 }
