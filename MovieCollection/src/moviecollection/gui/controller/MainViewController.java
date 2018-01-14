@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,7 +44,7 @@ import moviecollection.gui.model.MovieModel;
 public class MainViewController implements Initializable {
 
     @FXML
-    private TableView<?> categoryMoviesTableView;
+    private TableView<Movie> categoryMoviesTableView;
     @FXML
     private TableView<Movie> allMoviesTableView;
     @FXML
@@ -103,15 +105,15 @@ public class MainViewController implements Initializable {
         switch(event.getButton())
         {
             case SECONDARY:  
-                if(allMoviesTableView.getSelectionModel().getSelectedItem()!=null)
+                if(categoryMoviesTableView.getSelectionModel().getSelectedItem()!=null)
                 {
                     editM.setDisable(false);
                     DeleteM.setDisable(false);
                 }
              disableVbox(vBoxCat);
              showVbox(vBox);
-            vBox.setLayoutX(allMoviesTableView.getLayoutX()+event.getX());
-            vBox.setLayoutY(allMoviesTableView.getLayoutY()+event.getY());
+            vBox.setLayoutX(categoryMoviesTableView.getLayoutX()+event.getX());
+            vBox.setLayoutY(categoryMoviesTableView.getLayoutY()+event.getY());
              break;
             case PRIMARY:
                     editM.setDisable(true);
@@ -196,7 +198,7 @@ public class MainViewController implements Initializable {
         
         Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-            model.deleteMovie(allMoviesTableView.getSelectionModel().getSelectedItem());
+            model.deleteMovie(categoryMoviesTableView.getSelectionModel().getSelectedItem());
             } else {
             }
     }
@@ -257,7 +259,7 @@ public class MainViewController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/MoviePlayer.fxml"));
             root = loader.load();
             MoviePlayerController controller = loader.getController();
-            Movie selectedMovie = allMoviesTableView.getSelectionModel().getSelectedItem();
+            Movie selectedMovie = categoryMoviesTableView.getSelectionModel().getSelectedItem();
             controller.setModelAndMovie(model, selectedMovie);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("New/Edit Playlist");
@@ -272,11 +274,13 @@ public class MainViewController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/NewMovie.fxml"));
             root = loader.load();
             NewMovieController controller = loader.getController();
-            Movie selectedMovie = allMoviesTableView.getSelectionModel().getSelectedItem();
+            Movie selectedMovie = categoryMoviesTableView.getSelectionModel().getSelectedItem();
             controller.setModelAndMovie(model, selectedMovie);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("New/Edit Movie");
             stage.setScene(new Scene(root));
             stage.showAndWait();
     }
+    
+    
 }
