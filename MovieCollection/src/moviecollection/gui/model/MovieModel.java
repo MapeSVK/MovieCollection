@@ -64,10 +64,9 @@ public class MovieModel {
   }
 
   
-//  public void addMovieToCategory(Category category, Movie movie) {
-//      manager.addMovieToCategory(category, movie);
-//      category.addMovie(movie);
-//    }
+  public void addMovieToCategory(Category category, Movie movie) {
+      manager.addMovieToCategory(category, movie);
+  }
 
     public void updateDate(Movie movie)
     {

@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import moviecollection.be.Category;
 import moviecollection.be.Movie;
+import moviecollection.be.MovieInCategory;
 
 /**
  *
@@ -190,10 +191,12 @@ public class ConnectionModel {
        public void deleteCategory(Category selectedCategory) {
         try (Connection con = cm.getConnection()) {
             String sql
-                    = "DELETE FROM Category WHERE id=?";
+                    = "DELETE FROM CatMovie WHERE CategoryId=?"
+                    + " DELETE FROM Category WHERE id=?";
             PreparedStatement pstmt
                     = con.prepareStatement(sql);
             pstmt.setInt(1, selectedCategory.getId());
+            pstmt.setInt(2, selectedCategory.getId());
             pstmt.execute();
         }
         catch (SQLException ex) {

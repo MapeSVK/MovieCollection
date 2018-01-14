@@ -53,7 +53,7 @@ public class NewMovieController implements Initializable {
     private ComboBox<Category> secCat;
     @FXML
     private ComboBox<Category> thirdCat;
-    
+    private Category none = new Category(-1, "None");
     /**
      * Initializes the controller class.
      */
@@ -87,14 +87,21 @@ public class NewMovieController implements Initializable {
     private void SaveButtonClick(ActionEvent event) {
         if (firstCat.getValue() != secCat.getValue() && 
                 secCat.getValue() != thirdCat.getValue() &&
-                thirdCat.getValue() != firstCat.getValue()) {
-            System.out.println(""+firstCat.getValue());
+                thirdCat.getValue() != firstCat.getValue() 
+                
+                || firstCat.getValue() == none && secCat.getValue()== none && thirdCat.getValue() != none
+                || secCat.getValue() == none && thirdCat.getValue()== none && firstCat.getValue() != none
+                || thirdCat.getValue() == none && firstCat.getValue() == none && secCat.getValue() != none
+                
+                
+                
+                ) {
             Save();
         }
         else {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("CATEGORY PROBLEM");
-            alert.setContentText("You cannot add movie to two same categories");
+            alert.setContentText("You cannot add movie to categories");
             alert.showAndWait();
         }
     }
@@ -123,7 +130,12 @@ public class NewMovieController implements Initializable {
     }
  private void addMovieToCat(Movie movie)
  {
-     System.out.println(""+movie.getId());
+     if(firstCat.getValue()!=none )
+     model.addMovieToCategory(firstCat.getValue(), movie);
+     if(secCat.getValue()!=none )
+     model.addMovieToCategory(secCat.getValue(), movie);
+     if(thirdCat.getValue()!=none )
+     model.addMovieToCategory(thirdCat.getValue(), movie);
      
  }
     /*********** OTHER METHODS *************/
@@ -148,11 +160,11 @@ public class NewMovieController implements Initializable {
     }
 private void fillCombo()
 {
-    firstCat.getItems().add(new Category(-1,"None"));
+    firstCat.getItems().add(none);
         firstCat.getItems().addAll(model.getAllCategories());
-        secCat.getItems().add(new Category(-1,"None"));
+        secCat.getItems().add(none);
         secCat.getItems().addAll(model.getAllCategories());
-        thirdCat.getItems().add(new Category(-1,"None"));
+        thirdCat.getItems().add(none);
         thirdCat.getItems().addAll(model.getAllCategories());
         firstCat.getSelectionModel().selectFirst();
         secCat.getSelectionModel().selectFirst();
