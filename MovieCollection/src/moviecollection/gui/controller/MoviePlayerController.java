@@ -18,7 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import moviecollection.be.Movie;
 import moviecollection.be.MovieInCategory;
 import moviecollection.gui.model.MovieModel;
 

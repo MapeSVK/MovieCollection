@@ -86,10 +86,13 @@ public class ConnectionModel {
     public void deleteMovies(Movie selectedMovie) {
         try (Connection con = cm.getConnection()) {
             String sql
-                    = "DELETE FROM Movie WHERE id=?";
+                    = "DELETE FROM Movie WHERE id=?" + 
+                    " AND DELETE FROM CatMovie WHERE MovieId=?";
             PreparedStatement pstmt
                     = con.prepareStatement(sql);
             pstmt.setInt(1, selectedMovie.getId());
+            pstmt.setInt(2, selectedMovie.getId());
+
             pstmt.execute();
         }
         catch (SQLException ex) {
