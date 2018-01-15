@@ -5,9 +5,6 @@
  */
 package moviecollection.be;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 /**
  *
  * @author 1
@@ -16,7 +13,6 @@ public class Category {
     
     private int id;
     private String name;
-//    private ObservableList<Movie> movieList = FXCollections.observableArrayList();
         
     public Category(int id, String name) {
         this.id = id;

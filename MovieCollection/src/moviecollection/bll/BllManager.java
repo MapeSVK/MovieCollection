@@ -18,31 +18,28 @@ import moviecollection.dal.ConnectionModel;
  */
 public class BllManager {
     
-   ConnectionModel connectionModel = new ConnectionModel(); 
+  ConnectionModel connectionModel = new ConnectionModel(); 
   
   public void addNewMovie(Movie movie)
   {
       connectionModel.addMovie(movie);
    }
    
-   public List<Movie> getAllMovies()
+  public List<Movie> getAllMovies()
    {
        return connectionModel.getAllMovies();
    }
    
-    public void addCategory(Category category)
+  public void addCategory(Category category)
    {
        connectionModel.addCategory(category);
    }
-       public void deleteMovies(Movie selectedMovie)
-   {
-       connectionModel.deleteMovies(selectedMovie);
-   }
-       
-   public List<Category> getAllCategories() {
+    
+  public List<Category> getAllCategories() {
        return connectionModel.getAllCategories();
    }
-   public void deleteCategory(Category selectedCategory) 
+  
+  public void deleteCategory(Category selectedCategory) 
    {
      connectionModel.deleteCategory(selectedCategory);
    }
@@ -50,17 +47,24 @@ public class BllManager {
   public void addMovieToCategory(Category category, Movie movie) {
       connectionModel.addMovieToCategory(category, movie);
     }
-
-   public void updateDate(Movie movie)
-   {
-       connectionModel.updateDate(movie);
-   }
-   public void editMovies(Movie movie)
-   {
-       connectionModel.editMovies(movie);
-   }
-   public List<MovieInCategory> getMoviesById(int id)
+  
+  public List<MovieInCategory> getMoviesById(int id)
    {
        return connectionModel.getMoviesById(id);
+   }
+  
+  public void editMovies(MovieInCategory movieinC)
+   {
+       connectionModel.editMovies(movieinC);
+   }
+  
+  public void deleteMovie(MovieInCategory movieinC)
+   {
+       connectionModel.deleteMovie(movieinC);
+   }
+  
+  public void editDate(MovieInCategory movieinC)
+   {
+       connectionModel.editDate(movieinC);
    }
 }

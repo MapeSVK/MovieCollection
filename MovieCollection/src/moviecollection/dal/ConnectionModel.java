@@ -83,68 +83,8 @@ public class ConnectionModel {
           }
         return allMovies;
 }
-    public void deleteMovies(Movie selectedMovie) {
-        try (Connection con = cm.getConnection()) {
-            String sql
-                    = "DELETE FROM Movie WHERE id=?" + 
-                    " AND DELETE FROM CatMovie WHERE MovieId=?";
-            PreparedStatement pstmt
-                    = con.prepareStatement(sql);
-            pstmt.setInt(1, selectedMovie.getId());
-            pstmt.setInt(2, selectedMovie.getId());
-
-            pstmt.execute();
-        }
-        catch (SQLException ex) {
-            Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    public void editMovies(Movie movie) {
-        try (Connection con = cm.getConnection()) {
-            String sql
-                    = "UPDATE Movie SET "
-                    + "name=?, rating=?, personalrating=?, filelink=? "
-                    + "WHERE id=?";
-            PreparedStatement pstmt
-                    = con.prepareStatement(sql);
-            pstmt.setString(1, movie.getName());
-            pstmt.setDouble(2, movie.getRating());
-            pstmt.setDouble(3, movie.getPersonalrating());
-            pstmt.setString(4, movie.getFilelink());
-            pstmt.setInt(5, movie.getId());
-
-            int affected = pstmt.executeUpdate();
-            if (affected<1)
-                throw new SQLException("Movie could not be updated");
-
-        }
-        catch (SQLException ex) {
-            Logger.getLogger(ConnectionManager.class.getName()).log(
-                    Level.SEVERE, null, ex);
-        }    
-    }
-    public void updateDate(Movie movie) {
-        try (Connection con = cm.getConnection()) {
-            String sql
-                    = "UPDATE Movie SET "
-                    + "lastview=? "
-                    + "WHERE id=?";
-            PreparedStatement pstmt
-                    = con.prepareStatement(sql);
-            pstmt.setString(1, movie.getLastview());
-            pstmt.setInt(2, movie.getId());
-
-            int affected = pstmt.executeUpdate();
-            if (affected<1)
-                throw new SQLException("Date could not be updated");
-
-        }
-        catch (SQLException ex) {
-            Logger.getLogger(ConnectionManager.class.getName()).log(
-                    Level.SEVERE, null, ex);
-        }    
-    }
-        public void addCategory(Category category) {
+       
+    public void addCategory(Category category) {
         try (Connection con = cm.getConnection()) {
             String sql
                     = "INSERT INTO Category"
@@ -170,9 +110,8 @@ public class ConnectionModel {
                     Level.SEVERE, null, ex);
         }
     }
-        
-        
-       public List<Category> getAllCategories()
+  
+    public List<Category> getAllCategories()
     {
         List<Category> allCategories = new ArrayList();
         try (Connection con = cm.getConnection())
@@ -191,7 +130,8 @@ public class ConnectionModel {
           }
         return allCategories;
 }
-       public void deleteCategory(Category selectedCategory) {
+   
+    public void deleteCategory(Category selectedCategory) {
         try (Connection con = cm.getConnection()) {
             String sql
                     = "DELETE FROM CatMovie WHERE CategoryId=?"
@@ -207,7 +147,7 @@ public class ConnectionModel {
         }
     }
        
-       public void addMovieToCategory(Category category, Movie movie)  {
+    public void addMovieToCategory(Category category, Movie movie)  {
         try (Connection con = cm.getConnection()) {
             PreparedStatement pstmt = con.prepareStatement(
                     "INSERT INTO CatMovie(CategoryId, MovieId)"
@@ -221,7 +161,8 @@ public class ConnectionModel {
             System.out.println("");
         }
     }
-       public List<MovieInCategory> getMoviesById(int id)
+      
+    public List<MovieInCategory> getMoviesById(int id)
     {
         List<MovieInCategory> moviesById = new ArrayList();
 
@@ -246,4 +187,66 @@ public class ConnectionModel {
         }
         return moviesById;
     }
+    public void editMovies(MovieInCategory movieinC) {
+        try (Connection con = cm.getConnection()) {
+            String sql
+                    = "UPDATE Movie SET "
+                    + "name=?, rating=?, personalrating=?, filelink=? "
+                    + "WHERE id=?";
+            PreparedStatement pstmt
+                    = con.prepareStatement(sql);
+            pstmt.setString(1, movieinC.getName());
+            pstmt.setDouble(2, movieinC.getRating());
+            pstmt.setDouble(3, movieinC.getPersonalrating());
+            pstmt.setString(4, movieinC.getFilelink());
+            pstmt.setInt(5, movieinC.getMovieId());
+
+            int affected = pstmt.executeUpdate();
+            if (affected<1)
+                throw new SQLException("Movie could not be updated");
+
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(ConnectionManager.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }    
+    }
+       
+    public void editDate(MovieInCategory movieinC) {
+        try (Connection con = cm.getConnection()) {
+            String sql
+                    = "UPDATE Movie SET "
+                    + "lastview=? "
+                    + "WHERE id=?";
+            PreparedStatement pstmt
+                    = con.prepareStatement(sql);
+            pstmt.setString(1, movieinC.getLastview());
+            pstmt.setInt(2, movieinC.getMovieId());
+            int affected = pstmt.executeUpdate();
+            if (affected<1)
+                throw new SQLException("Date could not be updated");
+
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(ConnectionManager.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }    
+}
+      
+    public void deleteMovie(MovieInCategory movieinC) {
+        try (Connection con = cm.getConnection()) {
+            String sql
+                    = "DELETE FROM CatMovie WHERE MovieId=?"
+                    + " DELETE FROM Movie WHERE id=?";
+            PreparedStatement pstmt
+                    = con.prepareStatement(sql);
+            pstmt.setInt(1, movieinC.getMovieId());
+            pstmt.setInt(2, movieinC.getMovieId());
+            pstmt.execute();
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+       
 }

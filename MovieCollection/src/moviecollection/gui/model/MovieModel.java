@@ -7,6 +7,7 @@ package moviecollection.gui.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import moviecollection.be.Category;
 import moviecollection.be.Movie;
 import moviecollection.be.MovieInCategory;
@@ -49,37 +50,33 @@ public class MovieModel {
        manager.addCategory(category);
        allCategories.add(category);
    }
+    
         public void addMovie(Movie movie)
 {
     allMovies.add(movie);
     manager.addNewMovie(movie);
 }
-        public void deleteMovie(Movie movie)
-{
-    allMovies.remove(movie);
-    manager.deleteMovies(movie);
-}
   public void deleteCategory(Category selectedCategory) 
   {
       allCategories.remove(selectedCategory);
       manager.deleteCategory(selectedCategory);
+      moviesInC.clear();
   }
-
-  
   public void addMovieToCategory(Category category, Movie movie) {
-      manager.addMovieToCategory(category, movie);
+      manager.addMovieToCategory(category, movie);  
+     moviesInC.add(new MovieInCategory(category.getId(), movie.getId(), -1));
+      getMoviesById(category.getId());
   }
-
-    public void updateDate(Movie movie)
+    public void editMovies(MovieInCategory movieinC)
     {
-        manager.updateDate(movie);
-        loadAllMovies();
+        manager.editMovies(movieinC);
+        moviesInC.setAll(getNameEtc());
     }
-public void editMovies(Movie movie)
-{
-    manager.editMovies(movie);
-    loadAllMovies();
-}
+    public void editDate(MovieInCategory movieinC)
+    {
+        manager.editDate(movieinC);
+        moviesInC.setAll(getNameEtc());
+    }
 public ObservableList<MovieInCategory> getMoviesById(int id)
 {
     moviesInC.setAll(manager.getMoviesById(id));   
@@ -112,4 +109,11 @@ public ObservableList<MovieInCategory> getNameEtc()
         
         return IlikeToSing;
     }
+
+
+public void deleteMovie(MovieInCategory movieinC)
+{
+    manager.deleteMovie(movieinC);
+    moviesInC.setAll(getNameEtc());
+}
 }

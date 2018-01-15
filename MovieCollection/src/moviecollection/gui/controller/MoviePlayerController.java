@@ -13,11 +13,14 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
 import moviecollection.be.MovieInCategory;
 import moviecollection.gui.model.MovieModel;
 
@@ -35,7 +38,19 @@ public class MoviePlayerController implements Initializable {
     private String filePath="";
     private MovieModel model;
     private MovieInCategory selectedMovieinC;
-    
+    @FXML
+    private Button stopM;
+    @FXML
+    private Button pauseM;
+    @FXML
+    private Button playM;
+    @FXML
+    private Button rightM;
+    @FXML
+    private Button leftM;
+    @FXML
+    private Button exitM;
+    private Double speed=1d;
 
     /**
      * Initializes the controller class.
@@ -68,6 +83,43 @@ public class MoviePlayerController implements Initializable {
   {
       DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
+        selectedMovieinC.setLastview(dateFormat.format(date));
+        model.editDate(selectedMovieinC);
         
   }
+
+    @FXML
+    private void stop(ActionEvent event) {
+        mp.stop();
+    }
+
+    @FXML
+    private void pause(ActionEvent event) {
+        mp.pause();
+    }
+
+    @FXML
+    private void play(ActionEvent event) {
+        mp.play();
+    }
+
+    @FXML
+    private void fast(ActionEvent event) {
+        speed=speed+0.5;
+        mp.setRate(speed);
+    }
+
+    @FXML
+    private void slow(ActionEvent event) {
+        speed=speed-0.5;
+        mp.setRate(speed);
+    }
+
+    @FXML
+    private void exit(ActionEvent event) {
+        mp.stop();
+        Stage stage = (Stage) exitM.getScene().getWindow();
+        stage.close();
+        
+    }
 }
