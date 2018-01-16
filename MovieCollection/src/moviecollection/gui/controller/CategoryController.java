@@ -26,8 +26,7 @@ public class CategoryController implements Initializable {
 
     @FXML
     private ComboBox<String> categoryBox;
-    @FXML
-    private Button addC;
+    
     private MovieModel model;
     @FXML
     private Button closeButton;  

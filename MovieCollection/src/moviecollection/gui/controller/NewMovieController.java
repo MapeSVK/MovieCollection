@@ -86,7 +86,33 @@ public class NewMovieController implements Initializable {
     
     @FXML
     private void SaveButtonClick(ActionEvent event) {
-       // Save();
+        boolean exist=false;
+        boolean isFilled = false;
+        
+        model.loadAllMovies();
+        for(Movie movie : model.getAllMovies()){
+           
+               if(movie.getName().equals(TitleTextField.getText()))
+               {
+                Alert("Invalid name","This movie already exists!");   
+                exist=true;
+               }
+           }
+        if (!TitleTextField.getText().isEmpty() && 
+            !PRatingTextField.getText().isEmpty() && 
+            !IMDBRatingTextField.getText().isEmpty() &&
+            !FileTextField.getText().isEmpty()){
+            isFilled = true;
+        }
+        else {
+            Alert("Invalid fields","Fields must be filled!");   
+        }
+        
+        if(exist==false && isFilled ==true)
+        {
+           Save();
+        }
+        
     }
     
     private void Save(){
