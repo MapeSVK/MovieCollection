@@ -64,9 +64,15 @@ public class NewMovieController implements Initializable {
         this.model=model;
         this.selectedMovieinC=selectedMovieinC;
         fillCombo();
-        fill();
+        
     }
- 
+ public void setModelAndMovie(MovieModel model)
+ {
+     this.model=model;
+     this.selectedMovieinC=null;
+     fillCombo();
+     fill();
+ }
     @FXML
     private void ChooseButtonClick(ActionEvent event) {
  
@@ -86,7 +92,7 @@ public class NewMovieController implements Initializable {
     
     @FXML
     private void SaveButtonClick(ActionEvent event) {
-       // Save();
+       Save();
     }
     
     private void Save(){

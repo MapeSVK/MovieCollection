@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="mainWindow" onMouseClicked="#mainWindowClick" prefHeight="477.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.controller.MainViewController">
@@ -37,5 +42,20 @@
             <Label fx:id="addM" accessibleRole="BUTTON" onMouseClicked="#clickAddM" onMouseEntered="#enterAddM" onMouseExited="#exitAddM" prefHeight="54.0" prefWidth="104.0" text="Add Movie" />
          </children>
       </VBox>
+      <TitledPane layoutX="468.0" layoutY="14.0" text="Filter">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="filterText" layoutX="15.0" layoutY="14.0" />
+                  <ToggleButton fx:id="filterButton" layoutX="145.0" layoutY="141.0" mnemonicParsing="false" onAction="#filterButt" text="Save" />
+                  <TextField fx:id="minFilter" layoutX="15.0" layoutY="47.0" prefHeight="25.0" prefWidth="42.0" />
+                  <ComboBox layoutX="15.0" layoutY="78.0" prefHeight="25.0" prefWidth="116.0" />
+                  <ComboBox layoutX="14.0" layoutY="109.0" prefHeight="25.0" prefWidth="119.0" />
+                  <ComboBox layoutX="15.0" layoutY="141.0" prefHeight="25.0" prefWidth="119.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <Circle fx:id="statusDot" fill="#58ff21" layoutX="657.0" layoutY="27.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </AnchorPane>

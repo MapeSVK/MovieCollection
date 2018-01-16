@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,10 +24,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import moviecollection.be.Category;
@@ -70,6 +76,14 @@ public class MainViewController implements Initializable {
     private Label DeleteM;
     @FXML
     private Label deleteC;
+    @FXML
+    private TextField filterText;
+    @FXML
+    private ToggleButton filterButton;
+    @FXML
+    private TextField minFilter;
+    @FXML
+    private Circle statusDot;
 
     /**
      * Initializes the controller class.
@@ -105,51 +119,22 @@ MovieInCategory selectedMovieinC = categoryMoviesTableView.getSelectionModel().g
               Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
           }
 }
-      else
-      {
-          switch(event.getButton())
-        {
-            case SECONDARY:  
-                if(categoryMoviesTableView.getSelectionModel().getSelectedItem()!=null)
-                {
-                    editM.setDisable(false);
-                    DeleteM.setDisable(false);
-                }
-             disableVbox(vBoxCat);
-             showVbox(vBox);
-            vBox.setLayoutX(categoryMoviesTableView.getLayoutX()+event.getX());
-            vBox.setLayoutY(categoryMoviesTableView.getLayoutY()+event.getY());
-             break;
-            case PRIMARY:
-                    editM.setDisable(true);
-                    DeleteM.setDisable(true);
-                disableVbox(vBox);
-                disableVbox(vBoxCat);
-            break;
-        }
-      }
+      
     }
     @FXML
     private void categoryClick(MouseEvent event) {
         Category selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
         if(selectedCategory!=null)
         {
-           
             categoryMoviesTableView.setItems(model.getMoviesById(selectedCategory.getId()));
-        }
-        switch(event.getButton())
-        {
-            case SECONDARY:
-                
-                disableVbox(vBox);
-                showVbox(vBoxCat);
-            vBoxCat.setLayoutX(categoryListView.getLayoutX()+event.getX());
-            vBoxCat.setLayoutY(categoryListView.getLayoutY()+event.getY());
-             break;
-            case PRIMARY:
-            disableVbox(vBoxCat);
-            disableVbox(vBox);
-            break;
+            if(filterButton.isSelected()==true && minFilter.getText().equals(""))
+            {
+               categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+            }
+            else if(filterButton.isSelected()==true && !minFilter.getText().equals(""))
+            {
+                categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
+            }
         }
     }
 
@@ -162,14 +147,13 @@ MovieInCategory selectedMovieinC = categoryMoviesTableView.getSelectionModel().g
     @FXML
     private void clickAddM(MouseEvent event) {
         try {
-            disableVbox(vBox);
            
             Parent root;
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/moviecollection/gui/view/NewMovie.fxml"));
             root = loader.load();
             NewMovieController controller = loader.getController();
-            controller.setModelAndMovie(model, null);
+            controller.setModelAndMovie(model);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("New/Edit Movie");
             stage.setScene(new Scene(root));
@@ -177,10 +161,6 @@ MovieInCategory selectedMovieinC = categoryMoviesTableView.getSelectionModel().g
         } catch (IOException ex) {
             Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    private void cliclEditM(MouseEvent event) {
-        disableVbox(vBox);
     }
 
     @FXML
@@ -294,5 +274,26 @@ MovieInCategory selectedMovieinC = categoryMoviesTableView.getSelectionModel().g
     @FXML
     private void enterAddM(MouseEvent event) {
          addM.setStyle("-fx-background-color: #66c3ff");
+    }
+
+    @FXML
+    private void filterButt(ActionEvent event) {
+if(filterButton.isSelected()==true && minFilter.getText().equals(""))
+            {
+                
+          statusDot.setFill(Color.valueOf("#58ff21"));
+                categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+            }
+else if(filterButton.isSelected()==true && !minFilter.getText().equals(""))
+            {       
+          statusDot.setFill(Color.valueOf("#58ff21"));
+                categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
+            }
+else if(categoryListView.getSelectionModel().getSelectedItem()!=null)
+    
+{statusDot.setFill(Color.valueOf("#ff2121"));
+    categoryMoviesTableView.setItems(model.getMoviesById(categoryListView.getSelectionModel().getSelectedItem().getId())); 
+}
+else {statusDot.setFill(Color.valueOf("#bada55"));}
     }
 }
