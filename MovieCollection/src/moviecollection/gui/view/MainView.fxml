@@ -36,10 +36,10 @@
          <contextMenu>
             <ContextMenu>
               <items>
-                <MenuItem fx:id="addC" mnemonicParsing="false" onAction="#clickAddC" text="Add Category" />
+                <MenuItem mnemonicParsing="false" onAction="#clickAddC" text="Add Category" />
                  <MenuItem fx:id="deleteC" mnemonicParsing="false" onAction="#clickDeleteC" text="Delete Category" />
                  <MenuItem mnemonicParsing="false" />
-                 <MenuItem fx:id="addM" mnemonicParsing="false" onAction="#clickAddM" text="Add Movie" />
+                 <MenuItem mnemonicParsing="false" onAction="#clickAddM" text="Add Movie" />
               </items>
             </ContextMenu>
          </contextMenu></ListView>

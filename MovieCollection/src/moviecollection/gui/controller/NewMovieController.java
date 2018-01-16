@@ -64,6 +64,7 @@ public class NewMovieController implements Initializable {
         this.model=model;
         this.selectedMovieinC=selectedMovieinC;
         fillCombo();
+        fill();
         
     }
  public void setModelAndMovie(MovieModel model)
@@ -71,7 +72,7 @@ public class NewMovieController implements Initializable {
      this.model=model;
      this.selectedMovieinC=null;
      fillCombo();
-     fill();
+     
  }
     @FXML
     private void ChooseButtonClick(ActionEvent event) {
@@ -180,13 +181,13 @@ public class NewMovieController implements Initializable {
     }
     private void fill()
     {
-        if(selectedMovieinC!=null)
-        {
+        
+        
             TitleTextField.setText(selectedMovieinC.getName());
             PRatingTextField.setText(""+selectedMovieinC.getPersonalrating());
             IMDBRatingTextField.setText(""+selectedMovieinC.getRating());
             FileTextField.setText(selectedMovieinC.getFilelink());       
-        }
+        
     }
 private void fillCombo()
 {
