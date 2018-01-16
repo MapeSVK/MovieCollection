@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
@@ -29,13 +30,12 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-<<<<<<< HEAD
-=======
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
->>>>>>> 07b4fe3cbe53678d0f98f487927a3f0ac8cb1e9e
+
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import moviecollection.be.Category;
@@ -69,15 +69,14 @@ public class MainViewController implements Initializable {
     @FXML
     private MenuItem deleteM;
     @FXML
-<<<<<<< HEAD
+
     private MenuItem addC;
     @FXML
     private MenuItem deleteC;
     @FXML
     private MenuItem addM;
     
-=======
-    private Label deleteC;
+   
     @FXML
     private TextField filterText;
     @FXML
@@ -86,7 +85,7 @@ public class MainViewController implements Initializable {
     private TextField minFilter;
     @FXML
     private Circle statusDot;
->>>>>>> 07b4fe3cbe53678d0f98f487927a3f0ac8cb1e9e
+
 
     /**
      * Initializes the controller class.
@@ -123,7 +122,7 @@ private void mICClick(MouseEvent event) {
           } catch (IOException ex) {
               Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
           }
-<<<<<<< HEAD
+
         }
       if (selectedMovieinC!=null) 
         {           
@@ -139,35 +138,35 @@ private void mICClick(MouseEvent event) {
   }
 
    
-=======
-}
+
+
       
-    }
->>>>>>> 07b4fe3cbe53678d0f98f487927a3f0ac8cb1e9e
+ 
+
     @FXML
     private void categoryClick(MouseEvent event) {
         Category selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
         if(selectedCategory!=null)
         {
             categoryMoviesTableView.setItems(model.getMoviesById(selectedCategory.getId()));
-<<<<<<< HEAD
+
             deleteC.setDisable(false);
         }
         else {
             deleteC.setDisable(true);
-=======
-            if(filterButton.isSelected()==true && minFilter.getText().equals(""))
-            {
-               categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
-            }
-            else if(filterButton.isSelected()==true && !minFilter.getText().equals(""))
-            {
-                categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
-            }
->>>>>>> 07b4fe3cbe53678d0f98f487927a3f0ac8cb1e9e
+        }
+        if(filterButton.isSelected()==true && minFilter.getText().equals(""))
+        {
+           categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+        }
+        else if(filterButton.isSelected()==true && !minFilter.getText().equals(""))
+        {
+            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
+        }
+
         }
         
-    }
+    
     
     
 
@@ -175,10 +174,7 @@ private void mICClick(MouseEvent event) {
     @FXML
     private void clickAddM(ActionEvent event) {
         try {
-<<<<<<< HEAD
-            
-=======
->>>>>>> 07b4fe3cbe53678d0f98f487927a3f0ac8cb1e9e
+
            
             Parent root;
             Stage stage = new Stage();
@@ -194,7 +190,7 @@ private void mICClick(MouseEvent event) {
             Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-<<<<<<< HEAD
+
     
     
     @FXML
@@ -216,9 +212,7 @@ private void mICClick(MouseEvent event) {
         }
     }
 
-    
-=======
->>>>>>> 07b4fe3cbe53678d0f98f487927a3f0ac8cb1e9e
+
 
     @FXML
     private void clickDeleteM(ActionEvent event) {
@@ -262,10 +256,7 @@ private void mICClick(MouseEvent event) {
     
    
 
-<<<<<<< HEAD
- 
-=======
-    @FXML
+
     private void enterAddM(MouseEvent event) {
          addM.setStyle("-fx-background-color: #66c3ff");
     }
@@ -288,7 +279,8 @@ else if(categoryListView.getSelectionModel().getSelectedItem()!=null)
 {statusDot.setFill(Color.valueOf("#ff2121"));
     categoryMoviesTableView.setItems(model.getMoviesById(categoryListView.getSelectionModel().getSelectedItem().getId())); 
 }
-else {statusDot.setFill(Color.valueOf("#bada55"));}
+else {statusDot.setFill(Color.valueOf("#ff2121"));}
     }
->>>>>>> 07b4fe3cbe53678d0f98f487927a3f0ac8cb1e9e
+
+
 }

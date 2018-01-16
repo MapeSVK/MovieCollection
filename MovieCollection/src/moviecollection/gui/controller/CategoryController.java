@@ -45,7 +45,7 @@ public class CategoryController implements Initializable {
     @FXML
     private void addCategory(ActionEvent event) {
         boolean exist=false;
-        System.out.println(""+categoryBox.getValue());
+        
         if(categoryBox.getValue()==null)
         {
             Alert("Category problem","You need to choose category");

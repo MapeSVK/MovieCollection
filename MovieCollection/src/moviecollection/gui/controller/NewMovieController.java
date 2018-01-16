@@ -92,7 +92,7 @@ public class NewMovieController implements Initializable {
     
     @FXML
     private void SaveButtonClick(ActionEvent event) {
-<<<<<<< HEAD
+
         boolean exist=false;
         boolean isFilled = false;
         
@@ -120,9 +120,8 @@ public class NewMovieController implements Initializable {
            Save();
         }
         
-=======
-       Save();
->>>>>>> 07b4fe3cbe53678d0f98f487927a3f0ac8cb1e9e
+
+
     }
     
     private void Save(){
