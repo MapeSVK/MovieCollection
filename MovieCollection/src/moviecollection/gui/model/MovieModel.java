@@ -83,6 +83,42 @@ public ObservableList<MovieInCategory> getMoviesById(int id)
     moviesInC.setAll(getNameEtc());
    return moviesInC; 
 }
+public ObservableList<MovieInCategory> getTest(String part)
+{
+    ObservableList<MovieInCategory> IlikeToSing = FXCollections.observableArrayList();
+         
+            for(MovieInCategory catMovie : moviesInC)
+            {
+               catMovie.getName();
+               if(catMovie.getName().contains(part))
+               {
+                  
+                   IlikeToSing.add(catMovie);
+                   
+               }
+            }
+        
+        
+        return IlikeToSing;
+}
+public ObservableList<MovieInCategory> getTest(String part,Double score)
+{
+    ObservableList<MovieInCategory> IlikeToSing = FXCollections.observableArrayList();
+         
+            for(MovieInCategory catMovie : moviesInC)
+            {
+               catMovie.getName();
+               if(catMovie.getName().contains(part) && catMovie.getRating()>=score)
+               {
+                  
+                   IlikeToSing.add(catMovie);
+                   
+               }
+            }
+        
+        
+        return IlikeToSing;
+}
 public ObservableList<MovieInCategory> getNameEtc()
     {
         loadAllMovies();
@@ -109,8 +145,6 @@ public ObservableList<MovieInCategory> getNameEtc()
         
         return IlikeToSing;
     }
-
-
 public void deleteMovie(MovieInCategory movieinC)
 {
     manager.deleteMovie(movieinC);

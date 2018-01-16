@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<<<<<<< HEAD
 <?import javafx.scene.control.ContextMenu?>
+=======
+<?import javafx.scene.control.ComboBox?>
+>>>>>>> 07b4fe3cbe53678d0f98f487927a3f0ac8cb1e9e
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
+<<<<<<< HEAD
+=======
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+>>>>>>> 07b4fe3cbe53678d0f98f487927a3f0ac8cb1e9e
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="477.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.controller.MainViewController">
@@ -43,5 +55,36 @@
             <Font name="Arial Bold" size="17.0" />
          </font>
       </Label>
+<<<<<<< HEAD
+=======
+      <VBox fx:id="vBox" accessibleRole="BUTTON" disable="true" layoutX="134.0" layoutY="120.0" prefHeight="17.0" prefWidth="102.0" style="-fx-border-color: #000000; -fx-background-color: #e8ebed;" visible="false">
+         <children>
+            <Label fx:id="editM" accessibleRole="BUTTON" disable="true" onMouseClicked="#ClickEditM" onMouseEntered="#enterEditM" onMouseExited="#exitEditM" prefHeight="11.0" prefWidth="98.0" text="Edit Movie" />
+            <Label fx:id="DeleteM" accessibleRole="BUTTON" disable="true" onMouseClicked="#clickDeleteM" onMouseEntered="#enterDeleteM" onMouseExited="#exitDeleteM" prefHeight="5.0" prefWidth="116.0" text="Delete Movie" />
+         </children>
+      </VBox>
+      <VBox fx:id="vBoxCat" accessibleRole="BUTTON" disable="true" layoutX="134.0" layoutY="290.0" prefHeight="36.0" prefWidth="106.0" style="-fx-border-color: #000000; -fx-background-color: #e8ebed;" visible="false">
+         <children>
+            <Label fx:id="addC" accessibleRole="BUTTON" onMouseClicked="#clickAddC" onMouseEntered="#enterAddC" onMouseExited="#exitAddC" prefHeight="22.0" prefWidth="201.0" text="Add Category" />
+            <Label fx:id="deleteC" accessibleRole="BUTTON" onMouseClicked="#deleteCClick" onMouseEntered="#enterDeleteC" onMouseExited="#exitDeleteC" prefHeight="17.0" prefWidth="102.0" text="Delete Category" />
+            <Label fx:id="addM" accessibleRole="BUTTON" onMouseClicked="#clickAddM" onMouseEntered="#enterAddM" onMouseExited="#exitAddM" prefHeight="54.0" prefWidth="104.0" text="Add Movie" />
+         </children>
+      </VBox>
+      <TitledPane layoutX="468.0" layoutY="14.0" text="Filter">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="filterText" layoutX="15.0" layoutY="14.0" />
+                  <ToggleButton fx:id="filterButton" layoutX="145.0" layoutY="141.0" mnemonicParsing="false" onAction="#filterButt" text="Save" />
+                  <TextField fx:id="minFilter" layoutX="15.0" layoutY="47.0" prefHeight="25.0" prefWidth="42.0" />
+                  <ComboBox layoutX="15.0" layoutY="78.0" prefHeight="25.0" prefWidth="116.0" />
+                  <ComboBox layoutX="14.0" layoutY="109.0" prefHeight="25.0" prefWidth="119.0" />
+                  <ComboBox layoutX="15.0" layoutY="141.0" prefHeight="25.0" prefWidth="119.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <Circle fx:id="statusDot" fill="#58ff21" layoutX="657.0" layoutY="27.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+>>>>>>> 07b4fe3cbe53678d0f98f487927a3f0ac8cb1e9e
    </children>
 </AnchorPane>
