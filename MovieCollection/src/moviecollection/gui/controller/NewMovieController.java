@@ -100,7 +100,7 @@ public class NewMovieController implements Initializable {
         model.loadAllMovies();
         for(Movie movie : model.getAllMovies()){
            
-               if(movie.getName().equals(TitleTextField.getText()))
+               if(movie.getName().equals(TitleTextField.getText()) && selectedMovieinC==null)
                {
                 Alert("Invalid name","This movie already exists!");   
                 exist=true;
@@ -182,12 +182,13 @@ public class NewMovieController implements Initializable {
     private void fill()
     {
         
-        
+        if(selectedMovieinC!=null)
+        {
             TitleTextField.setText(selectedMovieinC.getName());
             PRatingTextField.setText(""+selectedMovieinC.getPersonalrating());
             IMDBRatingTextField.setText(""+selectedMovieinC.getRating());
             FileTextField.setText(selectedMovieinC.getFilelink());       
-        
+        }
     }
 private void fillCombo()
 {
