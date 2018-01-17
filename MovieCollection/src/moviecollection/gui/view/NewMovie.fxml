@@ -23,9 +23,9 @@
       <TextField fx:id="IMDBRatingTextField" layoutX="396.0" layoutY="415.0" />
       <TextField fx:id="FileTextField" layoutX="129.0" layoutY="566.0" prefHeight="27.0" prefWidth="373.0" />
       <Label layoutX="30.0" layoutY="571.0" text="File" />
-<<<<<<< HEAD
+
       <Button layoutX="520.0" layoutY="566.0" mnemonicParsing="false" onAction="#ChooseButtonClick" text="Choose" />
-=======
+
       <Button fx:id="ChooseButton" layoutX="520.0" layoutY="566.0" mnemonicParsing="false" onAction="#ChooseButtonClick" text="Choose" />
       <TableView fx:id="allCategory" layoutX="62.0" layoutY="180.0" prefHeight="140.0" prefWidth="83.0">
         <columns>
@@ -51,6 +51,6 @@
             </ContextMenu>
          </contextMenu>
       </TableView>
->>>>>>> 3ea5f82aba856d4022ce5ccfd6d4db97228f52a1
+
    </children>
 </AnchorPane>

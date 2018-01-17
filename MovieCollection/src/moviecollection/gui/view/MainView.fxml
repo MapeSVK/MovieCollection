@@ -12,11 +12,10 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<<<<<<< HEAD
-<AnchorPane id="AnchorPane" onMouseEntered="#showNotification" prefHeight="477.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.controller.MainViewController">
-=======
-<AnchorPane id="AnchorPane" prefHeight="497.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.controller.MainViewController">
->>>>>>> 3ea5f82aba856d4022ce5ccfd6d4db97228f52a1
+
+
+<AnchorPane id="AnchorPane" onMouseEntered="#showNotification" prefHeight="497.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.controller.MainViewController">
+
    <children>
       <ListView fx:id="categoryListView" layoutX="18.0" layoutY="47.0" onMouseClicked="#categoryClick" prefHeight="450.0" prefWidth="160.0">
          <contextMenu>

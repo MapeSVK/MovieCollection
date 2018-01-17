@@ -30,6 +30,8 @@ public class CategoryController implements Initializable {
     private MovieModel model;
     @FXML
     private Button closeButton;  
+    @FXML
+    private Button addC;
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {

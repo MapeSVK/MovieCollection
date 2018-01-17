@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package moviecollection.gui.controller;
 
 import java.io.IOException;
@@ -37,11 +32,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-<<<<<<< HEAD
 import javafx.scene.media.MediaException;
-import javafx.scene.paint.Color;
-=======
->>>>>>> 3ea5f82aba856d4022ce5ccfd6d4db97228f52a1
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -77,17 +68,10 @@ public class MainViewController implements Initializable {
     private ToggleButton filterButton;
     @FXML
     private TextField minFilter;
-    @FXML
-    private Circle statusDot;
-<<<<<<< HEAD
+
     
-    private boolean alreadyExecuted;
-
-
-=======
-    private ComboBox<Category> firstCombo;
-    private ComboBox<Category> secondCombo;
-    private ComboBox<Category> thirdCombo;
+    
+    
     private Category none = new Category(-1, "None");
     @FXML
     private TitledPane filterPane;
@@ -99,7 +83,9 @@ public class MainViewController implements Initializable {
     private TableView<Category> allCategoriesTable;
     @FXML
     private TableColumn<Category, String> allCategoriesColumn;
->>>>>>> 3ea5f82aba856d4022ce5ccfd6d4db97228f52a1
+    @FXML
+    private Circle statusDot;
+
     /* INITIALIZE */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -112,13 +98,9 @@ public class MainViewController implements Initializable {
  
        fillCat();
        model.loadAllCategories();
-<<<<<<< HEAD
+
        categoryListView.setItems(model.getAllCategories()); 
        
-=======
-       categoryListView.setItems(model.getAllCategories());
-    
->>>>>>> 3ea5f82aba856d4022ce5ccfd6d4db97228f52a1
     }    
     
     /* 1. MediaPlayer appears when you double-click on the Movie. Double-click on the Movie also updates date.
@@ -166,23 +148,23 @@ public class MainViewController implements Initializable {
         Category selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
         if(selectedCategory!=null)
         {
-            fillCat();
+//            fillCat();
             selectedCategoriesTable.getItems().clear();
             categoryMoviesTableView.setItems(model.getMoviesById(selectedCategory.getId()));
             deleteC.setDisable(false);
             
-            if(minFilter.getText().equals(""))
-        {          
-            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+//            if(minFilter.getText().equals(""))
+//        {          
+//            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+//        }
+//        else if(!minFilter.getText().equals(""))
+//        {       
+//            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
+//        }
         }
-        else if(!minFilter.getText().equals(""))
-        {       
-            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
-        }
-        }
-        else {
-            deleteC.setDisable(true);
-        }
+//        else {
+//            deleteC.setDisable(true);
+//        }
         }
 
     /* Opens new FXML - NewMovie */
@@ -268,43 +250,7 @@ public class MainViewController implements Initializable {
    
     /************* FILTER SETTINGS **************/
 
-    private void filterButt(ActionEvent event) {
-//         if(firstCombo.getValue()!=none || secondCombo.getValue()!=none || thirdCombo.getValue()!=none)
-//        {
-//            categoryMoviesTableView.setItems(model.getMultipleMoviesById(firstCombo.getValue().getId(), secondCombo.getValue().getId(), thirdCombo.getValue().getId()));   
-//            statusDot.setFill(Color.valueOf("#58ff21")); 
-//            if(filterButton.isSelected()==true && minFilter.getText().equals(""))
-//        {
-//            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
-//        }
-//            else if(filterButton.isSelected()==true && !minFilter.getText().equals(""))
-//        {       
-//            
-//            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
-//        }
-//        categoryListView.getSelectionModel().select(-1);
-//        }
-//         else if(filterButton.isSelected()==true && minFilter.getText().equals(""))
-//        {
-//            statusDot.setFill(Color.valueOf("#58ff21"));
-//            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
-//        }
-//        else if(filterButton.isSelected()==true && !minFilter.getText().equals(""))
-//        {       
-//            statusDot.setFill(Color.valueOf("#58ff21"));
-//            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
-//        }
-//         else if(categoryListView.getSelectionModel().getSelectedItem()!=null)
-//        {
-//            statusDot.setFill(Color.valueOf("#ff2121"));
-//            categoryMoviesTableView.setItems(model.getMoviesById(categoryListView.getSelectionModel().getSelectedItem().getId())); 
-//        }
-//        
-//        else 
-//        {
-//            statusDot.setFill(Color.valueOf("#ff2121"));
-//        }
-        }
+    
     @FXML
     private void ClickFilterPane(MouseEvent event) {
         if(filterPane.isExpanded()==true)
@@ -338,7 +284,8 @@ public class MainViewController implements Initializable {
         {          
             categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
         }
-<<<<<<< HEAD
+        });
+    }
     
     
     /************ DATE NOTIFICATION ***************/
@@ -403,6 +350,7 @@ public class MainViewController implements Initializable {
     /* Show notification when there is old and bad movie. 
     Notification appears after mouse enter application and 
     this method is executed only once (trick with boolean) */
+    private boolean alreadyExecuted;
     @FXML
     private void showNotification(MouseEvent event) {
         if(!alreadyExecuted) {
@@ -414,9 +362,6 @@ public class MainViewController implements Initializable {
    
 }
     
-=======
-         });
-    }
 private void fillCat()
 {
     model.loadAllCategories();
@@ -462,5 +407,5 @@ private void fillCat()
         }
     }
    
->>>>>>> 3ea5f82aba856d4022ce5ccfd6d4db97228f52a1
+
 }

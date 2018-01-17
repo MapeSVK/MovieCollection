@@ -41,11 +41,10 @@ public class NewMovieController implements Initializable {
     private ComboBox<Category> firstCat;
     private ComboBox<Category> secCat;
     private ComboBox<Category> thirdCat;
-<<<<<<< HEAD
+
     private Category none = new Category(-1, "None");
     
-    
-=======
+
     private TableColumn<Category, String> allCategories;
     @FXML
     private TableView<Category> allCategory;
@@ -55,10 +54,12 @@ public class NewMovieController implements Initializable {
     private TableView<Category> addToCategory;
     @FXML
     private TableColumn<Category, String> addToCategoriesColumn;
+    @FXML
+    private Button ChooseButton;
     /**
      * Initializes the controller class.
      */
->>>>>>> 3ea5f82aba856d4022ce5ccfd6d4db97228f52a1
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         allCategoryCollumn.setCellValueFactory(new PropertyValueFactory("name"));
@@ -212,7 +213,7 @@ public class NewMovieController implements Initializable {
     }
 private void fillCombo()
 {
-    model.loadAllCategories();
+   
    allCategory.getItems().addAll(model.getAllCategories());
 }
 private void Alert(String title,String text)
