@@ -27,16 +27,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+<<<<<<< HEAD
 import javafx.scene.media.MediaException;
 import javafx.scene.paint.Color;
+=======
+>>>>>>> 3ea5f82aba856d4022ce5ccfd6d4db97228f52a1
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -59,8 +64,7 @@ public class MainViewController implements Initializable {
     @FXML
     private TableColumn<MovieInCategory, Double> columnImdbRating;
     @FXML
-    private TableColumn<MovieInCategory, Double> columnView;
-    
+    private TableColumn<MovieInCategory, Double> columnView; 
     private MovieModel model = new MovieModel();
     @FXML
     private MenuItem editM;
@@ -68,31 +72,53 @@ public class MainViewController implements Initializable {
     private MenuItem deleteM;
     @FXML
     private MenuItem deleteC;  
-    
-   
     @FXML
     private TextField filterText;
-    @FXML
     private ToggleButton filterButton;
     @FXML
     private TextField minFilter;
     @FXML
     private Circle statusDot;
+<<<<<<< HEAD
     
     private boolean alreadyExecuted;
 
 
+=======
+    private ComboBox<Category> firstCombo;
+    private ComboBox<Category> secondCombo;
+    private ComboBox<Category> thirdCombo;
+    private Category none = new Category(-1, "None");
+    @FXML
+    private TitledPane filterPane;
+    @FXML
+    private TableView<Category> selectedCategoriesTable;
+    @FXML
+    private TableColumn<Category, String> selectedCategoriesColumn;
+    @FXML
+    private TableView<Category> allCategoriesTable;
+    @FXML
+    private TableColumn<Category, String> allCategoriesColumn;
+>>>>>>> 3ea5f82aba856d4022ce5ccfd6d4db97228f52a1
     /* INITIALIZE */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        columnTitle.setCellValueFactory(new PropertyValueFactory("name"));
        columnMyRating.setCellValueFactory(new PropertyValueFactory("personalrating"));
        columnImdbRating.setCellValueFactory(new PropertyValueFactory("rating"));
-       columnView.setCellValueFactory(new PropertyValueFactory("lastview")); 
+       columnView.setCellValueFactory(new PropertyValueFactory("lastview"));
+       allCategoriesColumn.setCellValueFactory(new PropertyValueFactory("name"));
+       selectedCategoriesColumn.setCellValueFactory(new PropertyValueFactory("name"));
  
+       fillCat();
        model.loadAllCategories();
+<<<<<<< HEAD
        categoryListView.setItems(model.getAllCategories()); 
        
+=======
+       categoryListView.setItems(model.getAllCategories());
+    
+>>>>>>> 3ea5f82aba856d4022ce5ccfd6d4db97228f52a1
     }    
     
     /* 1. MediaPlayer appears when you double-click on the Movie. Double-click on the Movie also updates date.
@@ -140,22 +166,23 @@ public class MainViewController implements Initializable {
         Category selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
         if(selectedCategory!=null)
         {
+            fillCat();
+            selectedCategoriesTable.getItems().clear();
             categoryMoviesTableView.setItems(model.getMoviesById(selectedCategory.getId()));
-
             deleteC.setDisable(false);
+            
+            if(minFilter.getText().equals(""))
+        {          
+            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+        }
+        else if(!minFilter.getText().equals(""))
+        {       
+            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
+        }
         }
         else {
             deleteC.setDisable(true);
         }
-        if(filterButton.isSelected()==true && minFilter.getText().equals(""))
-        {
-           categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
-        }
-        else if(filterButton.isSelected()==true && !minFilter.getText().equals(""))
-        {
-            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
-        }
-
         }
 
     /* Opens new FXML - NewMovie */
@@ -241,31 +268,77 @@ public class MainViewController implements Initializable {
    
     /************* FILTER SETTINGS **************/
 
-    @FXML
     private void filterButt(ActionEvent event) {
-        
-        if(filterButton.isSelected()==true && minFilter.getText().equals(""))
+//         if(firstCombo.getValue()!=none || secondCombo.getValue()!=none || thirdCombo.getValue()!=none)
+//        {
+//            categoryMoviesTableView.setItems(model.getMultipleMoviesById(firstCombo.getValue().getId(), secondCombo.getValue().getId(), thirdCombo.getValue().getId()));   
+//            statusDot.setFill(Color.valueOf("#58ff21")); 
+//            if(filterButton.isSelected()==true && minFilter.getText().equals(""))
+//        {
+//            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+//        }
+//            else if(filterButton.isSelected()==true && !minFilter.getText().equals(""))
+//        {       
+//            
+//            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
+//        }
+//        categoryListView.getSelectionModel().select(-1);
+//        }
+//         else if(filterButton.isSelected()==true && minFilter.getText().equals(""))
+//        {
+//            statusDot.setFill(Color.valueOf("#58ff21"));
+//            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+//        }
+//        else if(filterButton.isSelected()==true && !minFilter.getText().equals(""))
+//        {       
+//            statusDot.setFill(Color.valueOf("#58ff21"));
+//            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
+//        }
+//         else if(categoryListView.getSelectionModel().getSelectedItem()!=null)
+//        {
+//            statusDot.setFill(Color.valueOf("#ff2121"));
+//            categoryMoviesTableView.setItems(model.getMoviesById(categoryListView.getSelectionModel().getSelectedItem().getId())); 
+//        }
+//        
+//        else 
+//        {
+//            statusDot.setFill(Color.valueOf("#ff2121"));
+//        }
+        }
+    @FXML
+    private void ClickFilterPane(MouseEvent event) {
+        if(filterPane.isExpanded()==true)
         {
-            statusDot.setFill(Color.valueOf("#58ff21"));
+            filterPane.setPrefHeight(235);
+        }
+        else
+            filterPane.setPrefHeight(20);
+    }
+    @FXML
+    private void clickFilterText(MouseEvent event) {
+        filterText.textProperty().addListener((observable, oldValue, newValue) -> {
+    if(minFilter.getText().equals(""))
+        {          
             categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
         }
-        
-        else if(filterButton.isSelected()==true && !minFilter.getText().equals(""))
+        else if(!minFilter.getText().equals(""))
         {       
-            statusDot.setFill(Color.valueOf("#58ff21"));
             categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
         }
-        
-        else if(categoryListView.getSelectionModel().getSelectedItem()!=null)
-        {
-            statusDot.setFill(Color.valueOf("#ff2121"));
-            categoryMoviesTableView.setItems(model.getMoviesById(categoryListView.getSelectionModel().getSelectedItem().getId())); 
+});
+    }
+    @FXML
+    private void clickFilterMin(MouseEvent event) {
+        minFilter.textProperty().addListener((observable, oldValue, newValue) -> {
+        if(!minFilter.getText().equals(""))
+        {       
+            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
         }
-        
-        else 
-        {
-            statusDot.setFill(Color.valueOf("#ff2121"));}
+        else if(minFilter.getText().equals(""))
+        {          
+            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
         }
+<<<<<<< HEAD
     
     
     /************ DATE NOTIFICATION ***************/
@@ -341,4 +414,53 @@ public class MainViewController implements Initializable {
    
 }
     
+=======
+         });
+    }
+private void fillCat()
+{
+    model.loadAllCategories();
+    allCategoriesTable.getItems().clear();
+    allCategoriesTable.getItems().addAll(model.getAllCategories());
+}
+
+    @FXML
+    private void removeCategoryFilter(ActionEvent event) {
+        Category selectedCat = selectedCategoriesTable.getSelectionModel().getSelectedItem();
+        if(selectedCat!=null)
+        {
+           selectedCategoriesTable.getItems().remove(selectedCat);
+           allCategoriesTable.getItems().add(selectedCat);
+           categoryMoviesTableView.setItems(model.getMultipleMoviesById(selectedCategoriesTable.getItems()));
+           if(!minFilter.getText().equals(""))
+        {       
+            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
+        }
+        else if(minFilter.getText().equals(""))
+        {          
+            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+        }
+        }
+    }
+
+    @FXML
+    private void addCategoryFilter(ActionEvent event) {
+        Category selectedCat = allCategoriesTable.getSelectionModel().getSelectedItem();
+        if(selectedCat!=null)
+        {
+           allCategoriesTable.getItems().remove(selectedCat);
+           selectedCategoriesTable.getItems().add(selectedCat);
+         categoryMoviesTableView.setItems(model.getMultipleMoviesById(selectedCategoriesTable.getItems())); 
+         if(!minFilter.getText().equals(""))
+        {       
+            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
+        }
+        else if(minFilter.getText().equals(""))
+        {          
+            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+        }
+        }
+    }
+   
+>>>>>>> 3ea5f82aba856d4022ce5ccfd6d4db97228f52a1
 }

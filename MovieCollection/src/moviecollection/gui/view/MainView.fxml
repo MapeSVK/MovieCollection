@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -9,29 +8,16 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <AnchorPane id="AnchorPane" onMouseEntered="#showNotification" prefHeight="477.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.controller.MainViewController">
+=======
+<AnchorPane id="AnchorPane" prefHeight="497.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.controller.MainViewController">
+>>>>>>> 3ea5f82aba856d4022ce5ccfd6d4db97228f52a1
    <children>
-      <TableView fx:id="categoryMoviesTableView" layoutX="194.0" layoutY="47.0" onMouseClicked="#mICClick" prefHeight="450.0" prefWidth="463.0">
-         <columns>
-          <TableColumn fx:id="columnTitle" prefWidth="182.0" text="Title" />
-          <TableColumn fx:id="columnMyRating" prefWidth="87.0" text="My Rating" />
-            <TableColumn fx:id="columnImdbRating" prefWidth="96.0" text="IMDB Rating" />
-            <TableColumn fx:id="columnView" prefWidth="89.0" text="Last Viewed" />
-         </columns>
-         <contextMenu>
-            <ContextMenu>
-              <items>
-                <MenuItem fx:id="editM" mnemonicParsing="false" onAction="#clickEditM" text="Edit Movie" />
-                <MenuItem fx:id="deleteM" mnemonicParsing="false" onAction="#clickDeleteM" text="Delete Movie" />
-              </items>
-            </ContextMenu>
-         </contextMenu>
-      </TableView>
       <ListView fx:id="categoryListView" layoutX="18.0" layoutY="47.0" onMouseClicked="#categoryClick" prefHeight="450.0" prefWidth="160.0">
          <contextMenu>
             <ContextMenu>
@@ -48,23 +34,57 @@
             <Font name="Arial Bold" size="17.0" />
          </font>
       </Label>
-
-      
-      <TitledPane expanded="false" layoutX="468.0" layoutY="14.0" text="Filter">
+      <TableView fx:id="categoryMoviesTableView" layoutX="188.0" layoutY="47.0" onMouseClicked="#mICClick" prefHeight="450.0" prefWidth="465.0">
+         <columns>
+          <TableColumn fx:id="columnTitle" prefWidth="182.0" text="Title" />
+          <TableColumn fx:id="columnMyRating" prefWidth="87.0" text="My Rating" />
+            <TableColumn fx:id="columnImdbRating" prefWidth="101.0" text="IMDB Rating" />
+            <TableColumn fx:id="columnView" prefWidth="94.0" text="Last Viewed" />
+         </columns>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem fx:id="editM" mnemonicParsing="false" onAction="#clickEditM" text="Edit Movie" />
+                <MenuItem fx:id="deleteM" mnemonicParsing="false" onAction="#clickDeleteM" text="Delete Movie" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+      <TitledPane fx:id="filterPane" expanded="false" layoutX="454.0" layoutY="23.0" onMouseClicked="#ClickFilterPane" prefHeight="20.0" prefWidth="202.0" text="Filters">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="filterText" layoutX="15.0" layoutY="14.0" />
-                  <ToggleButton fx:id="filterButton" layoutX="145.0" layoutY="141.0" mnemonicParsing="false" onAction="#filterButt" text="Save" />
-                  <TextField fx:id="minFilter" layoutX="15.0" layoutY="47.0" prefHeight="25.0" prefWidth="42.0" />
-                  <ComboBox layoutX="15.0" layoutY="78.0" prefHeight="25.0" prefWidth="116.0" />
-                  <ComboBox layoutX="14.0" layoutY="109.0" prefHeight="25.0" prefWidth="119.0" />
-                  <ComboBox layoutX="15.0" layoutY="141.0" prefHeight="25.0" prefWidth="119.0" />
+                  <TextField fx:id="filterText" layoutX="18.0" layoutY="14.0" onMouseClicked="#clickFilterText" />
+                  <TextField fx:id="minFilter" layoutX="20.0" layoutY="43.0" onMouseClicked="#clickFilterMin" prefHeight="25.0" prefWidth="43.0" />
+                  <TableView fx:id="selectedCategoriesTable" layoutX="107.0" layoutY="74.0" prefHeight="122.0" prefWidth="72.0">
+                     <columns>
+                        <TableColumn fx:id="selectedCategoriesColumn" prefWidth="75.0" text="C1" />
+                     </columns>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#removeCategoryFilter" text="Remove Category" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </TableView>
+                  <TableView fx:id="allCategoriesTable" layoutX="20.0" layoutY="74.0" prefHeight="122.0" prefWidth="72.0">
+                    <columns>
+                      <TableColumn fx:id="allCategoriesColumn" prefWidth="75.0" text="C1" />
+                    </columns>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#addCategoryFilter" text="Add Category" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </TableView>
                </children>
             </AnchorPane>
         </content>
       </TitledPane>
-      <Circle fx:id="statusDot" fill="#ff2121" layoutX="657.0" layoutY="27.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="statusDot" fill="#ff2121" layoutX="640.0" layoutY="37.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
 
    </children>
 </AnchorPane>

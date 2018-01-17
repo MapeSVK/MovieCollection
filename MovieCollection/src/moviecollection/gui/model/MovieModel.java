@@ -7,7 +7,6 @@ package moviecollection.gui.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
 import moviecollection.be.Category;
 import moviecollection.be.Movie;
 import moviecollection.be.MovieInCategory;
@@ -83,6 +82,16 @@ public ObservableList<MovieInCategory> getMoviesById(int id)
     moviesInC.setAll(getNameEtc());
    return moviesInC; 
 }
+public ObservableList<MovieInCategory> getMultipleMoviesById(ObservableList<Category> multipleId)
+{
+    moviesInC.setAll(manager.getMoviesById(-1));
+    for(Category categoryId : multipleId)
+    {
+        moviesInC.addAll(manager.getMoviesById(categoryId.getId()));
+    }
+    moviesInC.setAll(getNameEtc());
+   return moviesInC; 
+}
 public ObservableList<MovieInCategory> getTest(String part)
 {
     ObservableList<MovieInCategory> IlikeToSing = FXCollections.observableArrayList();
@@ -96,14 +105,12 @@ public ObservableList<MovieInCategory> getTest(String part)
                    IlikeToSing.add(catMovie);
                    
                }
-            }
-        
-        
+            }  
         return IlikeToSing;
 }
 public ObservableList<MovieInCategory> getTest(String part,Double score)
 {
-    ObservableList<MovieInCategory> IlikeToSing = FXCollections.observableArrayList();
+    ObservableList<MovieInCategory> IlikeToDance = FXCollections.observableArrayList();
          
             for(MovieInCategory catMovie : moviesInC)
             {
@@ -111,13 +118,13 @@ public ObservableList<MovieInCategory> getTest(String part,Double score)
                if(catMovie.getName().contains(part) && catMovie.getRating()>=score)
                {
                   
-                   IlikeToSing.add(catMovie);
+                   IlikeToDance.add(catMovie);
                    
                }
             }
         
         
-        return IlikeToSing;
+        return IlikeToDance;
 }
 public ObservableList<MovieInCategory> getNameEtc()
     {
