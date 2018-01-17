@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package moviecollection.gui.controller;
 
 import java.io.File;
@@ -24,15 +19,9 @@ import moviecollection.gui.model.MovieModel;
 
 
 
-/**
- * FXML Controller class
- *
- * @author Mape
- */
+
 public class NewMovieController implements Initializable {
 
-    @FXML
-    private Button SaveButton;
     @FXML
     private Button CloseButton;
     @FXML
@@ -43,8 +32,6 @@ public class NewMovieController implements Initializable {
     private TextField IMDBRatingTextField;
     @FXML
     private TextField FileTextField;
-    @FXML
-    private Button ChooseButton;
     private MovieModel model;
     private MovieInCategory selectedMovieinC;
     @FXML
@@ -54,9 +41,8 @@ public class NewMovieController implements Initializable {
     @FXML
     private ComboBox<Category> thirdCat;
     private Category none = new Category(-1, "None");
-    /**
-     * Initializes the controller class.
-     */
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }    
@@ -76,15 +62,21 @@ public class NewMovieController implements Initializable {
  }
     @FXML
     private void ChooseButtonClick(ActionEvent event) {
- 
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter filtermP4 = new FileChooser.ExtensionFilter("select mp4","*.mp4");
-        FileChooser.ExtensionFilter filterMpeg4 = new FileChooser.ExtensionFilter("select mpeg4","*.mpeg4");
-        fileChooser.getExtensionFilters().addAll(filtermP4,filterMpeg4);
-        File file = fileChooser.showOpenDialog(null);
-        String filePath = file.toString();
-        
-        FileTextField.setText(filePath); //insert path of the file into the textField        
+            FileChooser fileChooser = new FileChooser();
+            FileChooser.ExtensionFilter filtermP4 = new FileChooser.ExtensionFilter("select mp4","*.mp4");
+            FileChooser.ExtensionFilter filterMpeg4 = new FileChooser.ExtensionFilter("select mpeg4","*.mpeg4");
+            fileChooser.getExtensionFilters().addAll(filtermP4,filterMpeg4);
+            File file = fileChooser.showOpenDialog(null);
+            
+            if (file!=null){ //if statement only to avoid nullPointException after pressing "cancel" in filechooser
+            String filePath = file.toString();
+            FileTextField.setText(filePath); //insert path of the file into the textField
+            }
+            else {
+                System.out.println("File was not choosen.");
+            }
+            
+                    
      }
     
     
@@ -96,9 +88,12 @@ public class NewMovieController implements Initializable {
 
         boolean exist=false;
         boolean isFilled = false;
+        boolean isMaxDouble = false;
+        boolean isNotNumber = false;
         
         model.loadAllMovies();
         for(Movie movie : model.getAllMovies()){
+        /*********** Prevent adding 2 same movies ***************/
            
                if(movie.getName().equals(TitleTextField.getText()) && selectedMovieinC==null)
                {
@@ -106,6 +101,8 @@ public class NewMovieController implements Initializable {
                 exist=true;
                }
            }
+        
+        /*********** Fields must be filled  ***************/
         if (!TitleTextField.getText().isEmpty() && 
             !PRatingTextField.getText().isEmpty() && 
             !IMDBRatingTextField.getText().isEmpty() &&
@@ -116,7 +113,24 @@ public class NewMovieController implements Initializable {
             Alert("Invalid fields","Fields must be filled!");   
         }
         
-        if(exist==false && isFilled ==true)
+        /*********** Rating must be NUMBER from 0.1 - 10.0 ***************/
+        try {
+        Double PRatingDouble = Double.parseDouble(PRatingTextField.getText());
+        Double IMDBRatingDouble = Double.parseDouble(IMDBRatingTextField.getText());
+            if (PRatingDouble <= 10 && PRatingDouble >=0.1 && IMDBRatingDouble <= 10 && IMDBRatingDouble >=0.1) {
+                isMaxDouble = true;
+            }
+            else {
+                Alert("Rating error", "Rating must be number from 0.1 - 10.0");
+            }
+        }
+        catch(NumberFormatException e){
+            isNotNumber = true;
+            Alert("Rating error", "Rating must be number from 0.1 - 10.0");
+        }
+
+        /*********** Final  ***************/
+        if(exist==false && isFilled ==true && isNotNumber ==false && isMaxDouble==true)
         {
            Save();
         }

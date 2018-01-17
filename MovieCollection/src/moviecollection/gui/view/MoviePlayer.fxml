@@ -12,12 +12,12 @@
    <bottom>
       <ToolBar prefHeight="40.0" prefWidth="248.0" BorderPane.alignment="CENTER">
         <items>
-            <Button fx:id="stopM" mnemonicParsing="false" onAction="#stop" text="stop" />
-          <Button fx:id="pauseM" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pause" text="pause" />
-            <Button fx:id="playM" contentDisplay="CENTER" mnemonicParsing="false" onAction="#play" text="play" />
-            <Button fx:id="rightM" mnemonicParsing="false" onAction="#fast" text="&gt;&gt;" />
-            <Button fx:id="leftM" mnemonicParsing="false" onAction="#slow" text="&lt;&lt;" />
-            <Button fx:id="exitM" mnemonicParsing="false" onAction="#exit" text="exit" />
+            <Button  mnemonicParsing="false" onAction="#stop" text="stop" />
+          <Button  alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#pause" text="pause" />
+            <Button  contentDisplay="CENTER" mnemonicParsing="false" onAction="#play" text="play" />
+            <Button  mnemonicParsing="false" onAction="#fast" text="&gt;&gt;" />
+            <Button  mnemonicParsing="false" onAction="#slow" text="&lt;&lt;" />
+            <Button  fx:id="exitM" mnemonicParsing="false" onAction="#exit" text="exit" />
         </items>
       </ToolBar>
    </bottom>

@@ -13,7 +13,7 @@
       <Label layoutX="33.0" layoutY="152.0" text="Categories" />
       <Label layoutX="33.0" layoutY="381.0" text="Personal Rating" />
       <Label layoutX="396.0" layoutY="381.0" text="IMDB Rating" />
-      <Button fx:id="SaveButton" layoutX="397.0" layoutY="669.0" mnemonicParsing="false" onAction="#SaveButtonClick" text="Save" />
+      <Button layoutX="397.0" layoutY="669.0" mnemonicParsing="false" onAction="#SaveButtonClick" text="Save" />
       <Button fx:id="CloseButton" layoutX="479.0" layoutY="669.0" mnemonicParsing="false" onAction="#CloseButtonClick" text="Close" />
       <TextField fx:id="TitleTextField" layoutX="123.0" layoutY="56.0" prefHeight="27.0" prefWidth="373.0" />
       <ComboBox fx:id="firstCat" layoutX="123.0" layoutY="156.0" prefWidth="150.0" />
@@ -23,6 +23,6 @@
       <TextField fx:id="IMDBRatingTextField" layoutX="396.0" layoutY="415.0" />
       <TextField fx:id="FileTextField" layoutX="129.0" layoutY="566.0" prefHeight="27.0" prefWidth="373.0" />
       <Label layoutX="30.0" layoutY="571.0" text="File" />
-      <Button fx:id="ChooseButton" layoutX="520.0" layoutY="566.0" mnemonicParsing="false" onAction="#ChooseButtonClick" text="Choose" />
+      <Button layoutX="520.0" layoutY="566.0" mnemonicParsing="false" onAction="#ChooseButtonClick" text="Choose" />
    </children>
 </AnchorPane>

@@ -9,6 +9,7 @@ import java.io.File;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
@@ -16,59 +17,46 @@ import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import moviecollection.be.MovieInCategory;
 import moviecollection.gui.model.MovieModel;
 
-/**
- * FXML Controller class
- *
- * @author Pepe15224
- */
+
 public class MoviePlayerController implements Initializable {
 
     @FXML
     private MediaView mediaView;
     private MediaPlayer mp;
-    private Media me;
     private String filePath="";
     private MovieModel model;
     private MovieInCategory selectedMovieinC;
     @FXML
-    private Button stopM;
-    @FXML
-    private Button pauseM;
-    @FXML
-    private Button playM;
-    @FXML
-    private Button rightM;
-    @FXML
-    private Button leftM;
-    @FXML
     private Button exitM;
     private Double speed=1d;
 
-    /**
-     * Initializes the controller class.
-     */
+   
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
-    }    
-  public void setModelAndMovie(MovieModel model, MovieInCategory selectedMovieinC) {
+    }   
+    
+    public void setModelAndMovie(MovieModel model, MovieInCategory selectedMovieinC) {
         this.model=model;
         this.selectedMovieinC=selectedMovieinC;
         playMovie();
         setDate();
     }
-  public void playMovie()
-  {
-      File file = new File(selectedMovieinC.getFilelink());
+    
+    public void playMovie(){
+        
+        File file = new File(selectedMovieinC.getFilelink());
         filePath = file.toURI().toString();
         Media media = new Media(filePath);
         mp = new MediaPlayer(media);
@@ -79,14 +67,13 @@ public class MoviePlayerController implements Initializable {
         width.bind(Bindings.selectDouble(mediaView.sceneProperty(), "width"));
         height.bind(Bindings.selectDouble(mediaView.sceneProperty(), "height"));
   }
-  public void setDate()
-  {
-      DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+  //Updates lastView date after double click on Movie and open Movie
+    public void setDate(){
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         selectedMovieinC.setLastview(dateFormat.format(date));
         model.editDate(selectedMovieinC);
-        
-  }
+    }
 
     @FXML
     private void stop(ActionEvent event) {
