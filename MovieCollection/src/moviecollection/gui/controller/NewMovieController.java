@@ -14,7 +14,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import moviecollection.be.Category;
@@ -47,18 +51,25 @@ public class NewMovieController implements Initializable {
     private Button ChooseButton;
     private MovieModel model;
     private MovieInCategory selectedMovieinC;
-    @FXML
     private ComboBox<Category> firstCat;
-    @FXML
     private ComboBox<Category> secCat;
-    @FXML
     private ComboBox<Category> thirdCat;
-    private Category none = new Category(-1, "None");
+    private TableColumn<Category, String> allCategories;
+    @FXML
+    private TableView<Category> allCategory;
+    @FXML
+    private TableColumn<Category, String> allCategoryCollumn;
+    @FXML
+    private TableView<Category> addToCategory;
+    @FXML
+    private TableColumn<Category, String> addToCategoriesColumn;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        allCategoryCollumn.setCellValueFactory(new PropertyValueFactory("name"));
+        addToCategoriesColumn.setCellValueFactory(new PropertyValueFactory("name"));
     }    
     public void setModelAndMovie(MovieModel model, MovieInCategory selectedMovieinC) {
         this.model=model;
@@ -118,23 +129,16 @@ public class NewMovieController implements Initializable {
         
         if(exist==false && isFilled ==true)
         {
-           Save();
+           Save();  
         }
-        
-
-
     }
     
     private void Save(){
+        
         if(selectedMovieinC==null)
         {
-            
-            if (firstCat.getValue() != secCat.getValue() && 
-            secCat.getValue() != thirdCat.getValue() &&
-            thirdCat.getValue() != firstCat.getValue() 
-            || firstCat.getValue() == none && secCat.getValue()== none && thirdCat.getValue() != none
-            || secCat.getValue() == none && thirdCat.getValue()== none && firstCat.getValue() != none
-            || thirdCat.getValue() == none && firstCat.getValue() == none && secCat.getValue() != none) {
+            if(addToCategory.getItems().size()!=0)
+            {
                 Movie myMovie = new Movie(-1,
             TitleTextField.getText(),
             Double.valueOf(PRatingTextField.getText()),
@@ -143,11 +147,12 @@ public class NewMovieController implements Initializable {
             null);
             model.addMovie(myMovie); 
             addMovieToCat(myMovie);
+            closeWindow();
+        }
+            else
+            {
+                Alert("No Category", "You need to add category to 'Add To' list");
             }
-             else {
-            Alert("CATEGORY PROBLEM","You cannot add movie to categories");
-            }
-   
         }
         else if(selectedMovieinC!=null)
         {
@@ -156,18 +161,16 @@ public class NewMovieController implements Initializable {
             selectedMovieinC.setPersonalrating(Double.valueOf(PRatingTextField.getText()));
             selectedMovieinC.setFilelink(FileTextField.getText());
             model.editMovies(selectedMovieinC);
+            closeWindow();
         }
-        closeWindow();
+        
     }
  private void addMovieToCat(Movie movie)
  {
-     if(firstCat.getValue()!=none )
-     model.addMovieToCategory(firstCat.getValue(), movie);
-     if(secCat.getValue()!=none )
-     model.addMovieToCategory(secCat.getValue(), movie);
-     if(thirdCat.getValue()!=none )
-     model.addMovieToCategory(thirdCat.getValue(), movie);
-     
+     for(int i =0; i<addToCategory.getItems().size();i++)
+     {
+         model.addMovieToCategory(addToCategory.getItems().get(i), movie);
+     }  
  }
     /*********** OTHER METHODS *************/
     private void closeWindow()
@@ -181,26 +184,15 @@ public class NewMovieController implements Initializable {
     }
     private void fill()
     {
-        
-        if(selectedMovieinC!=null)
-        {
             TitleTextField.setText(selectedMovieinC.getName());
             PRatingTextField.setText(""+selectedMovieinC.getPersonalrating());
             IMDBRatingTextField.setText(""+selectedMovieinC.getRating());
             FileTextField.setText(selectedMovieinC.getFilelink());       
-        }
     }
 private void fillCombo()
 {
-    firstCat.getItems().add(none);
-        firstCat.getItems().addAll(model.getAllCategories());
-        secCat.getItems().add(none);
-        secCat.getItems().addAll(model.getAllCategories());
-        thirdCat.getItems().add(none);
-        thirdCat.getItems().addAll(model.getAllCategories());
-        firstCat.getSelectionModel().selectFirst();
-        secCat.getSelectionModel().selectFirst();
-        thirdCat.getSelectionModel().selectFirst();
+    model.loadAllCategories();
+   allCategory.getItems().addAll(model.getAllCategories());
 }
 private void Alert(String title,String text)
 {
@@ -209,4 +201,24 @@ private void Alert(String title,String text)
             alert.setContentText(text);
             alert.showAndWait();
 }
+
+    @FXML
+    private void addCategory(ActionEvent event) {
+        Category selectedCat = allCategory.getSelectionModel().getSelectedItem();
+        if(selectedCat!=null)
+        {
+            addToCategory.getItems().add(selectedCat);
+            allCategory.getItems().remove(selectedCat);
+        }
+    }
+
+    @FXML
+    private void removeCategory(ActionEvent event) {
+        Category selectedCat = addToCategory.getSelectionModel().getSelectedItem();
+        if(selectedCat!=null)
+        {
+            addToCategory.getItems().remove(selectedCat);
+            allCategory.getItems().add(selectedCat);
+        }
+    }
 }
