@@ -9,7 +9,7 @@ package moviecollection.be;
  *
  * @author 1
  */
-public class Category {
+   public class Category {
     
     private int id;
     private String name;
@@ -38,12 +38,5 @@ public class Category {
     @Override
     public String toString() {
         return name;
-    }
-    
-    
-//    // Add movie to the category
-//     public void addMovie(Movie movie){
-//      movieList.add(movie);
-//  }
-    
+    } 
 }

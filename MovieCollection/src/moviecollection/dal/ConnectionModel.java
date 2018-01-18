@@ -25,10 +25,7 @@ import moviecollection.be.MovieInCategory;
 public class ConnectionModel {
     
     private ConnectionManager cm = new ConnectionManager();
-    
-    
-    /********** ADD, DELETE AND EDIT MOVIES ************/
-    
+   // Adds Movie to Database
     public void addMovie(Movie movie) {
        try (Connection con = cm.getConnection()) {
             String sql
@@ -46,7 +43,6 @@ public class ConnectionModel {
 
             int affected = pstmt.executeUpdate();
             
-
             // Get database generated id
             ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
@@ -58,7 +54,7 @@ public class ConnectionModel {
                     Level.SEVERE, null, ex);
         }
     }
-    
+   // Returns list of all movies form Database
     public List<Movie> getAllMovies()
     {
         List<Movie> allMovies = new ArrayList();
@@ -83,7 +79,7 @@ public class ConnectionModel {
           }
         return allMovies;
 }
-       
+   // Adds Category to Database     
     public void addCategory(Category category) {
         try (Connection con = cm.getConnection()) {
             String sql
@@ -110,7 +106,7 @@ public class ConnectionModel {
                     Level.SEVERE, null, ex);
         }
     }
-  
+   // Returns list of all categories from Database
     public List<Category> getAllCategories()
     {
         List<Category> allCategories = new ArrayList();
@@ -130,7 +126,7 @@ public class ConnectionModel {
           }
         return allCategories;
 }
-   
+   //Deletes selected Category and Movies inside this Category 
     public void deleteCategory(Category selectedCategory) {
         try (Connection con = cm.getConnection()) {
             String sql
@@ -146,7 +142,7 @@ public class ConnectionModel {
             Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-       
+   // Adds CatMovie to Database    
     public void addMovieToCategory(Category category, Movie movie)  {
         try (Connection con = cm.getConnection()) {
             PreparedStatement pstmt = con.prepareStatement(
@@ -155,13 +151,12 @@ public class ConnectionModel {
             pstmt.setInt(1, category.getId());
             pstmt.setInt(2, movie.getId());
             int affected = pstmt.executeUpdate();
-            
         }
         catch (Exception e) {
             System.out.println("");
         }
     }
-      
+   // Returns list of CatMovies by CategoryId
     public List<MovieInCategory> getMoviesById(int id)
     {
         List<MovieInCategory> moviesById = new ArrayList();
@@ -187,6 +182,7 @@ public class ConnectionModel {
         }
         return moviesById;
     }
+   //Updates Movie
     public void editMovies(MovieInCategory movieinC) {
         try (Connection con = cm.getConnection()) {
             String sql
@@ -204,14 +200,13 @@ public class ConnectionModel {
             int affected = pstmt.executeUpdate();
             if (affected<1)
                 throw new SQLException("Movie could not be updated");
-
         }
         catch (SQLException ex) {
             Logger.getLogger(ConnectionManager.class.getName()).log(
                     Level.SEVERE, null, ex);
         }    
     }
-       
+   // Updates CatMovie    
     public void editDate(MovieInCategory movieinC) {
         try (Connection con = cm.getConnection()) {
             String sql
@@ -225,14 +220,13 @@ public class ConnectionModel {
             int affected = pstmt.executeUpdate();
             if (affected<1)
                 throw new SQLException("Date could not be updated");
-
         }
         catch (SQLException ex) {
             Logger.getLogger(ConnectionManager.class.getName()).log(
                     Level.SEVERE, null, ex);
         }    
 }
-      
+   //Deletes Movie form Database   
     public void deleteMovie(MovieInCategory movieinC) {
         try (Connection con = cm.getConnection()) {
             String sql
@@ -247,6 +241,5 @@ public class ConnectionModel {
         catch (SQLException ex) {
             Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-       
+    }   
 }

@@ -31,12 +31,8 @@ public class MoviePlayerController implements Initializable {
     @FXML
     private Button exitM;
     private Double speed=1d;
-
-   
-  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
     }   
     
     public void setModelAndMovie(MovieModel model, MovieInCategory selectedMovieinC) {
@@ -59,6 +55,7 @@ public class MoviePlayerController implements Initializable {
         width.bind(Bindings.selectDouble(mediaView.sceneProperty(), "width"));
         height.bind(Bindings.selectDouble(mediaView.sceneProperty(), "height"));
   }
+    
   //Updates lastView date after double click on Movie and open Movie
     public void setDate(){
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -99,6 +96,5 @@ public class MoviePlayerController implements Initializable {
         mp.stop();
         Stage stage = (Stage) exitM.getScene().getWindow();
         stage.close();
-        
     }
 }

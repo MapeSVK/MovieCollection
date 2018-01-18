@@ -73,6 +73,8 @@ public class MainViewController implements Initializable {
     private TableColumn<Category, String> allCategoriesColumn;
     
     private MovieModel model = new MovieModel();
+    @FXML
+    private MenuItem deleteC;
 
     /* INITIALIZE */
     @Override
@@ -83,18 +85,12 @@ public class MainViewController implements Initializable {
        columnView.setCellValueFactory(new PropertyValueFactory("lastview"));
        allCategoriesColumn.setCellValueFactory(new PropertyValueFactory("name"));
        selectedCategoriesColumn.setCellValueFactory(new PropertyValueFactory("name"));
- 
        
        model.loadAllCategories();
        fillCat();
        categoryListView.setItems(model.getAllCategories()); 
-       
-       categoryListView.getSelectionModel().selectFirst();
-       Category firstSelectedCategory = categoryListView.getSelectionModel().getSelectedItem();
-       categoryMoviesTableView.setItems(model.getMoviesById(firstSelectedCategory.getId()));
-    }    
+    }
    
-    
     /* 1. MediaPlayer appears when you double-click on the Movie. Double-click on the Movie also updates date.
        2. Edit and Delete functions appears when you click on Movie */
     @FXML
@@ -131,20 +127,19 @@ public class MainViewController implements Initializable {
           }
      }
     
-
     /* 1. If category is selected it shows movies inside of the category 
        2. Delete function appears when you click on Category 
-       3. Filter is still active when you click on different category */
-    
+       3. Filter is still active when you click on different category */   
     @FXML
     private void categoryClick(MouseEvent event) {
+        deleteC.setDisable(true);
         Category selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
         if(selectedCategory!=null)
         {           
            fillCat();
             selectedCategoriesTable.getItems().clear();
             categoryMoviesTableView.setItems(model.getMoviesById(selectedCategory.getId()));
-                        
+            deleteC.setDisable(false);
         }
         if(selectedCategory!=null && !minFilter.getText().equals(""))
         {       
@@ -174,7 +169,6 @@ public class MainViewController implements Initializable {
             Alert("ERROR", "Movie cannot be added. Window is missing.");
         }
     }
-
     
     /* Opens new FXML - NewMovie with pre-filled textfields */
     @FXML
@@ -196,7 +190,6 @@ public class MainViewController implements Initializable {
         }
     }
 
-
     /* Deletes Movie but before that it asks you if you rly want to delete */
     @FXML
     private void clickDeleteM(ActionEvent event) {
@@ -208,7 +201,6 @@ public class MainViewController implements Initializable {
                 model.deleteMovie(categoryMoviesTableView.getSelectionModel().getSelectedItem());
             }
     }
-
     
    /* Opens new FXML - Category */
     @FXML
@@ -239,14 +231,13 @@ public class MainViewController implements Initializable {
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 model.deleteCategory(categoryListView.getSelectionModel().getSelectedItem());
             }             
-    }
-    
+    } 
    
     /************* FILTER SETTINGS **************/
     private boolean alreadyExecutedListener1;
     private boolean alreadyExecutedListener2;
 
-    
+   //Chandes the size of FilterPane
     @FXML
     private void ClickFilterPane(MouseEvent event) {
         if(filterPane.isExpanded()==true){
@@ -255,8 +246,7 @@ public class MainViewController implements Initializable {
         else
             filterPane.setPrefHeight(20);
     }
-    
-    
+   // Starts listener that is responsible for text filter
     @FXML
     private void clickFilterText(MouseEvent event) {
         if(!alreadyExecutedListener1){
@@ -278,6 +268,7 @@ public class MainViewController implements Initializable {
         alreadyExecutedListener1 = true;
       }
     }
+   // Starts listener that is responsible for rating filter 
     @FXML
     private void clickFilterMin(MouseEvent event) {
       if (!alreadyExecutedListener2) {
@@ -299,7 +290,7 @@ public class MainViewController implements Initializable {
         alreadyExecutedListener2 = true;
       }
     }
-    
+   // Removes Category Filter
     @FXML
     private void removeCategoryFilter(ActionEvent event) {
         Category selectedCat = selectedCategoriesTable.getSelectionModel().getSelectedItem();
@@ -318,7 +309,7 @@ public class MainViewController implements Initializable {
             }
         }
     }
-
+   // Adds Category Filter
     @FXML
     private void addCategoryFilter(ActionEvent event) {
         Category selectedCat = allCategoriesTable.getSelectionModel().getSelectedItem();
@@ -339,8 +330,8 @@ public class MainViewController implements Initializable {
     }
 
     /************ DATE NOTIFICATION ***************/
-    // Alert appears if there is a Movie, which was last seen 2 years ago
     
+    // Alert appears if there is a Movie, which was last seen 2 years ago   
     public void twoYearsNotification() {
     model.loadAllMovies();
        
@@ -375,6 +366,7 @@ public class MainViewController implements Initializable {
            }           
         }
     }
+    
    /****************** HELPER METHODS ******************/
     
     // Calculation between actualDate and date (lastView)
@@ -409,5 +401,4 @@ public class MainViewController implements Initializable {
         allCategoriesTable.getItems().clear();
         allCategoriesTable.getItems().addAll(model.getAllCategories());
     }
-
 }

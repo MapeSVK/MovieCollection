@@ -19,21 +19,19 @@ public class CategoryController implements Initializable {
     private ComboBox<String> categoryBox;
     @FXML
     private Button closeButton; 
-    
     private MovieModel model;
   
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
         categoryBox.getItems().addAll("Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film-Noir", "Game-Show", "History", "Horror", "Music", "Musical", "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi", "Sport", "Talk-Show", "Thriller", "War", "Western");
-    
     }    
    
     public void setModel(MovieModel model) 
     {
         this.model=model;
     }
-   
+   //Adds Category to Database
     @FXML
     private void addCategory(ActionEvent event) {
         boolean exist=false;

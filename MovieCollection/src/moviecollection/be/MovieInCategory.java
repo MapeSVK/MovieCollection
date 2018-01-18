@@ -28,7 +28,6 @@ public class MovieInCategory {
         this.lastview = lastview;
     }
 
-
     public String getFilelink() {
         return filelink;
     }
@@ -36,7 +35,6 @@ public class MovieInCategory {
     public void setFilelink(String filelink) {
         this.filelink = filelink;
     }
-
 
     public Double getPersonalrating() {
         return personalrating;
@@ -46,7 +44,6 @@ public class MovieInCategory {
         this.personalrating = personalrating;
     }
 
-
     public Double getRating() {
         return rating;
     }
@@ -54,7 +51,6 @@ public class MovieInCategory {
     public void setRating(Double rating) {
         this.rating = rating;
     }
-
 
     public MovieInCategory(int CategoryId, int MovieId, int id) {
         this.CategoryId = CategoryId;
@@ -69,7 +65,6 @@ public class MovieInCategory {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public int getId() {
         return id;
@@ -94,6 +89,4 @@ public class MovieInCategory {
     public void setMovieId(int MovieId) {
         this.MovieId = MovieId;
     }
-
-  
 }

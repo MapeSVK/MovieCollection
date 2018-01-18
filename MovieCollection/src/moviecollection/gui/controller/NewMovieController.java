@@ -38,8 +38,6 @@ public class NewMovieController implements Initializable {
     private TableView<Category> addToCategory;
     @FXML
     private TableColumn<Category, String> addToCategoriesColumn;
-    
-    
     @FXML
     private TextField FileTextField;
     private MovieModel model;
@@ -53,14 +51,15 @@ public class NewMovieController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         allCategoryCollumn.setCellValueFactory(new PropertyValueFactory("name"));
         addToCategoriesColumn.setCellValueFactory(new PropertyValueFactory("name"));
-    }    
+    }   
+    
     public void setModelAndMovie(MovieModel model, MovieInCategory selectedMovieinC) {
         this.model=model;
         this.selectedMovieinC=selectedMovieinC;
         fillCombo();
-        fill();
-        
+        fill();      
     }
+    
     public void setModelAndMovie(MovieModel model)
     {
          this.model=model;
@@ -95,6 +94,7 @@ public class NewMovieController implements Initializable {
         
         model.loadAllMovies();
         for(Movie movie : model.getAllMovies()){
+            
         /*********** Prevent adding 2 same movies ***************/
            
                if(movie.getName().equals(TitleTextField.getText()) && selectedMovieinC==null)
@@ -166,8 +166,7 @@ public class NewMovieController implements Initializable {
             selectedMovieinC.setFilelink(FileTextField.getText());
             model.editMovies(selectedMovieinC);
             closeWindow();
-        }
-        
+        }  
     }
     
     @FXML
@@ -229,5 +228,4 @@ public class NewMovieController implements Initializable {
                 alert.setContentText(text);
                 alert.showAndWait();
     }
-
 }
