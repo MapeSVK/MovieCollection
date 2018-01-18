@@ -28,11 +28,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.MediaException;
-import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import moviecollection.be.Category;
@@ -55,23 +53,14 @@ public class MainViewController implements Initializable {
     private TableColumn<MovieInCategory, Double> columnImdbRating;
     @FXML
     private TableColumn<MovieInCategory, Double> columnView; 
-    private MovieModel model = new MovieModel();
     @FXML
     private MenuItem editM;
     @FXML
-    private MenuItem deleteM;
+    private MenuItem deleteM; 
     @FXML
-    private MenuItem deleteC;  
+    private TextField filterText;    
     @FXML
-    private TextField filterText;
-    private ToggleButton filterButton;
-    @FXML
-    private TextField minFilter;
-
-    
-    
-    
-    private Category none = new Category(-1, "None");
+    private TextField minFilter;   
     @FXML
     private TitledPane filterPane;
     @FXML
@@ -82,6 +71,8 @@ public class MainViewController implements Initializable {
     private TableView<Category> allCategoriesTable;
     @FXML
     private TableColumn<Category, String> allCategoriesColumn;
+    
+    private MovieModel model = new MovieModel();
 
     /* INITIALIZE */
     @Override
@@ -138,7 +129,7 @@ public class MainViewController implements Initializable {
                 editM.setDisable(true);
                 deleteM.setDisable(true);      
           }
-      }
+     }
     
 
     /* 1. If category is selected it shows movies inside of the category 
@@ -163,10 +154,7 @@ public class MainViewController implements Initializable {
         {          
             categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
         }
-        else {
-            
-        }
-        }
+    }
 
     /* Opens new FXML - NewMovie */
     @FXML
@@ -217,8 +205,7 @@ public class MainViewController implements Initializable {
         
         Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-            model.deleteMovie(categoryMoviesTableView.getSelectionModel().getSelectedItem());
-            } else {
+                model.deleteMovie(categoryMoviesTableView.getSelectionModel().getSelectedItem());
             }
     }
 
@@ -250,9 +237,8 @@ public class MainViewController implements Initializable {
         
         Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-            model.deleteCategory(categoryListView.getSelectionModel().getSelectedItem());
-            } else {
-            }               
+                model.deleteCategory(categoryListView.getSelectionModel().getSelectedItem());
+            }             
     }
     
    
@@ -263,40 +249,65 @@ public class MainViewController implements Initializable {
     
     @FXML
     private void ClickFilterPane(MouseEvent event) {
-        if(filterPane.isExpanded()==true)
-        {
+        if(filterPane.isExpanded()==true){
             filterPane.setPrefHeight(235);
         }
         else
             filterPane.setPrefHeight(20);
     }
+    
+    
     @FXML
     private void clickFilterText(MouseEvent event) {
-      if(!alreadyExecutedListener1){
-        filterText.textProperty().addListener((observable, oldValue, newValue) -> {
-       try{ 
-        if(minFilter.getText().equals(""))
-        {   
-            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
-        }
-        else if(!minFilter.getText().equals(""))
-        {
-            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
-        }
-       }
-    catch (NumberFormatException e) {
-            Alert("ERROR", "Minimal IMDB rating should be number, not text!");
-        }
-});
-      alreadyExecutedListener1 = true;
+        if(!alreadyExecutedListener1){
+            filterText.textProperty().addListener((observable, oldValue, newValue) -> {
+                try{ 
+                    if(minFilter.getText().equals(""))
+                    {   
+                        categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+                    }
+                    else if(!minFilter.getText().equals(""))
+                    {
+                        categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
+                    }
+                }
+                catch (NumberFormatException e) {
+                    Alert("ERROR", "Minimal IMDB rating should be number, not text!");
+                }
+            });
+        alreadyExecutedListener1 = true;
       }
     }
     @FXML
     private void clickFilterMin(MouseEvent event) {
       if (!alreadyExecutedListener2) {
-        minFilter.textProperty().addListener((observable, oldValue, newValue) -> {
-        
-        try{ 
+        minFilter.textProperty().addListener((observable, oldValue, newValue) -> {       
+            try{ 
+                if(!minFilter.getText().equals(""))
+                {       
+                    categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
+                }
+                else if(minFilter.getText().equals(""))
+                {          
+                    categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+                }
+            }
+            catch (NumberFormatException e) {
+                Alert("ERROR", "Minimal IMDB rating should be number, not text!");
+            }       
+        });
+        alreadyExecutedListener2 = true;
+      }
+    }
+    
+    @FXML
+    private void removeCategoryFilter(ActionEvent event) {
+        Category selectedCat = selectedCategoriesTable.getSelectionModel().getSelectedItem();
+        if(selectedCat!=null)
+        {
+           selectedCategoriesTable.getItems().remove(selectedCat);
+           allCategoriesTable.getItems().add(selectedCat);
+           categoryMoviesTableView.setItems(model.getMultipleMoviesById(selectedCategoriesTable.getItems()));
             if(!minFilter.getText().equals(""))
             {       
                 categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
@@ -306,13 +317,25 @@ public class MainViewController implements Initializable {
                 categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
             }
         }
-        catch (NumberFormatException e) {
-            Alert("ERROR", "Minimal IMDB rating should be number, not text!");
+    }
+
+    @FXML
+    private void addCategoryFilter(ActionEvent event) {
+        Category selectedCat = allCategoriesTable.getSelectionModel().getSelectedItem();
+        if(selectedCat!=null)
+        {
+           allCategoriesTable.getItems().remove(selectedCat);
+           selectedCategoriesTable.getItems().add(selectedCat);
+         categoryMoviesTableView.setItems(model.getMultipleMoviesById(selectedCategoriesTable.getItems())); 
+         if(!minFilter.getText().equals(""))
+        {       
+            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
         }
-        
-        });
-        alreadyExecutedListener2 = true;
-     }
+        else if(minFilter.getText().equals(""))
+        {          
+            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+        }
+        }
     }
 
     /************ DATE NOTIFICATION ***************/
@@ -349,9 +372,7 @@ public class MainViewController implements Initializable {
            } 
            catch (ParseException ex) {
                Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
-           }
-           
-           
+           }           
         }
     }
    /****************** HELPER METHODS ******************/
@@ -365,10 +386,10 @@ public class MainViewController implements Initializable {
     // Will show basic alert pop-up window
     private void Alert(String title,String text)
     {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(title);
-            alert.setContentText(text);
-            alert.showAndWait();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle(title);
+                alert.setContentText(text);
+                alert.showAndWait();
     }
  
     /* Show notification when there is old and bad movie. 
@@ -380,53 +401,13 @@ public class MainViewController implements Initializable {
         if(!alreadyExecutedNotification) {
              twoYearsNotification();
          alreadyExecutedNotification = true;
+        }
     }
-}
   
-private void fillCat()
-{
-    
-    allCategoriesTable.getItems().clear();
-    allCategoriesTable.getItems().addAll(model.getAllCategories());
-}
-
-    @FXML
-    private void removeCategoryFilter(ActionEvent event) {
-        Category selectedCat = selectedCategoriesTable.getSelectionModel().getSelectedItem();
-        if(selectedCat!=null)
-        {
-           selectedCategoriesTable.getItems().remove(selectedCat);
-           allCategoriesTable.getItems().add(selectedCat);
-           categoryMoviesTableView.setItems(model.getMultipleMoviesById(selectedCategoriesTable.getItems()));
-           if(!minFilter.getText().equals(""))
-        {       
-            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
-        }
-        else if(minFilter.getText().equals(""))
-        {          
-            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
-        }
-        }
+    private void fillCat()
+    {
+        allCategoriesTable.getItems().clear();
+        allCategoriesTable.getItems().addAll(model.getAllCategories());
     }
-
-    @FXML
-    private void addCategoryFilter(ActionEvent event) {
-        Category selectedCat = allCategoriesTable.getSelectionModel().getSelectedItem();
-        if(selectedCat!=null)
-        {
-           allCategoriesTable.getItems().remove(selectedCat);
-           selectedCategoriesTable.getItems().add(selectedCat);
-         categoryMoviesTableView.setItems(model.getMultipleMoviesById(selectedCategoriesTable.getItems())); 
-         if(!minFilter.getText().equals(""))
-        {       
-            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
-        }
-        else if(minFilter.getText().equals(""))
-        {          
-            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
-        }
-        }
-    }
-   
 
 }

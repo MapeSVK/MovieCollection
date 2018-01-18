@@ -19,7 +19,7 @@
             <ContextMenu>
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#clickAddC" text="Add Category" />
-                 <MenuItem fx:id="deleteC" mnemonicParsing="false" onAction="#clickDeleteC" text="Delete Category" />
+                 <MenuItem mnemonicParsing="false" onAction="#clickDeleteC" text="Delete Category" />
                  <MenuItem mnemonicParsing="false" />
                  <MenuItem mnemonicParsing="false" onAction="#clickAddM" text="Add Movie" />
               </items>
