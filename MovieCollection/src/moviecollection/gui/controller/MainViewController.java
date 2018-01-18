@@ -98,7 +98,11 @@ public class MainViewController implements Initializable {
        fillCat();
        categoryListView.setItems(model.getAllCategories()); 
        
+       categoryListView.getSelectionModel().selectFirst();
+       Category firstSelectedCategory = categoryListView.getSelectionModel().getSelectedItem();
+       categoryMoviesTableView.setItems(model.getMoviesById(firstSelectedCategory.getId()));
     }    
+   
     
     /* 1. MediaPlayer appears when you double-click on the Movie. Double-click on the Movie also updates date.
        2. Edit and Delete functions appears when you click on Movie */
@@ -140,6 +144,7 @@ public class MainViewController implements Initializable {
     /* 1. If category is selected it shows movies inside of the category 
        2. Delete function appears when you click on Category 
        3. Filter is still active when you click on different category */
+    
     @FXML
     private void categoryClick(MouseEvent event) {
         Category selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
@@ -148,7 +153,7 @@ public class MainViewController implements Initializable {
            fillCat();
             selectedCategoriesTable.getItems().clear();
             categoryMoviesTableView.setItems(model.getMoviesById(selectedCategory.getId()));
-            deleteC.setDisable(false);            
+                        
         }
         if(selectedCategory!=null && !minFilter.getText().equals(""))
         {       
@@ -159,7 +164,7 @@ public class MainViewController implements Initializable {
             categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
         }
         else {
-            deleteC.setDisable(true);
+            
         }
         }
 
@@ -239,12 +244,21 @@ public class MainViewController implements Initializable {
 
     /* Deletes selected Category */
     @FXML
-    private void clickDeleteC(ActionEvent event) { 
-        model.deleteCategory(categoryListView.getSelectionModel().getSelectedItem());       
+    private void clickDeleteC(ActionEvent event) {         
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setContentText("Are you sure?");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+            model.deleteCategory(categoryListView.getSelectionModel().getSelectedItem());
+            } else {
+            }               
     }
     
    
     /************* FILTER SETTINGS **************/
+    private boolean alreadyExecutedListener1;
+    private boolean alreadyExecutedListener2;
 
     
     @FXML
@@ -258,29 +272,47 @@ public class MainViewController implements Initializable {
     }
     @FXML
     private void clickFilterText(MouseEvent event) {
+      if(!alreadyExecutedListener1){
         filterText.textProperty().addListener((observable, oldValue, newValue) -> {
-    if(minFilter.getText().equals(""))
-        {          
+       try{ 
+        if(minFilter.getText().equals(""))
+        {   
             categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
         }
         else if(!minFilter.getText().equals(""))
-        {       
+        {
             categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
         }
+       }
+    catch (NumberFormatException e) {
+            Alert("ERROR", "Minimal IMDB rating should be number, not text!");
+        }
 });
+      alreadyExecutedListener1 = true;
+      }
     }
     @FXML
     private void clickFilterMin(MouseEvent event) {
+      if (!alreadyExecutedListener2) {
         minFilter.textProperty().addListener((observable, oldValue, newValue) -> {
-        if(!minFilter.getText().equals(""))
-        {       
-            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
+        
+        try{ 
+            if(!minFilter.getText().equals(""))
+            {       
+                categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
+            }
+            else if(minFilter.getText().equals(""))
+            {          
+                categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+            }
         }
-        else if(minFilter.getText().equals(""))
-        {          
-            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+        catch (NumberFormatException e) {
+            Alert("ERROR", "Minimal IMDB rating should be number, not text!");
         }
+        
         });
+        alreadyExecutedListener2 = true;
+     }
     }
 
     /************ DATE NOTIFICATION ***************/
@@ -342,12 +374,12 @@ public class MainViewController implements Initializable {
     /* Show notification when there is old and bad movie. 
     Notification appears after mouse enter application and 
     this method is executed only once (trick with boolean) */
-    private boolean alreadyExecuted;
+    private boolean alreadyExecutedNotification;
     @FXML
     private void showNotification(MouseEvent event) {
-        if(!alreadyExecuted) {
+        if(!alreadyExecutedNotification) {
              twoYearsNotification();
-         alreadyExecuted = true;
+         alreadyExecutedNotification = true;
     }
 }
   
