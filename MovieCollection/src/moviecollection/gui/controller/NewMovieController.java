@@ -8,8 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -20,8 +18,6 @@ import moviecollection.be.Category;
 import moviecollection.be.Movie;
 import moviecollection.be.MovieInCategory;
 import moviecollection.gui.model.MovieModel;
-
-
 
 
 public class NewMovieController implements Initializable {
@@ -35,18 +31,6 @@ public class NewMovieController implements Initializable {
     @FXML
     private TextField IMDBRatingTextField;
     @FXML
-    private TextField FileTextField;
-    private MovieModel model;
-    private MovieInCategory selectedMovieinC;
-    private ComboBox<Category> firstCat;
-    private ComboBox<Category> secCat;
-    private ComboBox<Category> thirdCat;
-
-    private Category none = new Category(-1, "None");
-    
-
-    private TableColumn<Category, String> allCategories;
-    @FXML
     private TableView<Category> allCategory;
     @FXML
     private TableColumn<Category, String> allCategoryCollumn;
@@ -54,8 +38,13 @@ public class NewMovieController implements Initializable {
     private TableView<Category> addToCategory;
     @FXML
     private TableColumn<Category, String> addToCategoriesColumn;
+    
+    
     @FXML
-    private Button ChooseButton;
+    private TextField FileTextField;
+    private MovieModel model;
+    private MovieInCategory selectedMovieinC;
+  
     /**
      * Initializes the controller class.
      */
@@ -72,13 +61,13 @@ public class NewMovieController implements Initializable {
         fill();
         
     }
- public void setModelAndMovie(MovieModel model)
- {
-     this.model=model;
-     this.selectedMovieinC=null;
-     fillCombo();
+    public void setModelAndMovie(MovieModel model)
+    {
+         this.model=model;
+         this.selectedMovieinC=null;
+         fillCombo();
+    }
      
- }
     @FXML
     private void ChooseButtonClick(ActionEvent event) {
             FileChooser fileChooser = new FileChooser();
@@ -93,15 +82,9 @@ public class NewMovieController implements Initializable {
             }
             else {
                 System.out.println("File was not choosen.");
-            }
-            
-                    
+            }              
      }
-    
-    
-    
-    /************* SAVE AND CLOSE METHODS *************/
-    
+ 
     @FXML
     private void SaveButtonClick(ActionEvent event) {
 
@@ -155,22 +138,21 @@ public class NewMovieController implements Initializable {
         }
     }
     
-    private void Save(){
-        
+    private void Save(){  
         if(selectedMovieinC==null)
         {
             if(addToCategory.getItems().size()!=0)
             {
                 Movie myMovie = new Movie(-1,
-            TitleTextField.getText(),
-            Double.valueOf(PRatingTextField.getText()),
-            Double.valueOf(IMDBRatingTextField.getText()),
-            FileTextField.getText(),
-            null);
-            model.addMovie(myMovie); 
-            addMovieToCat(myMovie);
-            closeWindow();
-        }
+                TitleTextField.getText(),
+                Double.valueOf(PRatingTextField.getText()),
+                Double.valueOf(IMDBRatingTextField.getText()),
+                FileTextField.getText(),
+                null);
+                model.addMovie(myMovie); 
+                addMovieToCat(myMovie);
+                closeWindow();
+            }
             else
             {
                 Alert("No Category", "You need to add category to 'Add To' list");
@@ -187,43 +169,7 @@ public class NewMovieController implements Initializable {
         }
         
     }
- private void addMovieToCat(Movie movie)
- {
-     for(int i =0; i<addToCategory.getItems().size();i++)
-     {
-         model.addMovieToCategory(addToCategory.getItems().get(i), movie);
-     }  
- }
-    /*********** OTHER METHODS *************/
-    private void closeWindow()
-    {
-        Stage stage = (Stage) CloseButton.getScene().getWindow();
-        stage.close();
-    }
-    @FXML
-    private void CloseButtonClick(ActionEvent event) {
-        closeWindow();
-    }
-    private void fill()
-    {
-            TitleTextField.setText(selectedMovieinC.getName());
-            PRatingTextField.setText(""+selectedMovieinC.getPersonalrating());
-            IMDBRatingTextField.setText(""+selectedMovieinC.getRating());
-            FileTextField.setText(selectedMovieinC.getFilelink());       
-    }
-private void fillCombo()
-{
-   
-   allCategory.getItems().addAll(model.getAllCategories());
-}
-private void Alert(String title,String text)
-{
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(title);
-            alert.setContentText(text);
-            alert.showAndWait();
-}
-
+    
     @FXML
     private void addCategory(ActionEvent event) {
         Category selectedCat = allCategory.getSelectionModel().getSelectedItem();
@@ -243,4 +189,45 @@ private void Alert(String title,String text)
             allCategory.getItems().add(selectedCat);
         }
     }
+    
+    private void addMovieToCat(Movie movie)
+    {
+         for(int i =0; i<addToCategory.getItems().size();i++)
+         {
+             model.addMovieToCategory(addToCategory.getItems().get(i), movie);
+         }  
+    }
+    
+    @FXML
+    private void CloseButtonClick(ActionEvent event) {
+        closeWindow();
+    }
+    
+    private void closeWindow()
+    {
+        Stage stage = (Stage) CloseButton.getScene().getWindow();
+        stage.close();
+    }
+    
+    private void fill()
+    {
+            TitleTextField.setText(selectedMovieinC.getName());
+            PRatingTextField.setText(""+selectedMovieinC.getPersonalrating());
+            IMDBRatingTextField.setText(""+selectedMovieinC.getRating());
+            FileTextField.setText(selectedMovieinC.getFilelink());       
+    }
+    
+    private void fillCombo()
+    {
+       allCategory.getItems().addAll(model.getAllCategories());
+    }
+    
+    private void Alert(String title,String text)
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle(title);
+                alert.setContentText(text);
+                alert.showAndWait();
+    }
+
 }
