@@ -9,10 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
-
-
 
 <AnchorPane id="AnchorPane" onMouseEntered="#showNotification" prefHeight="497.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.controller.MainViewController">
 
@@ -49,7 +46,7 @@
             </ContextMenu>
          </contextMenu>
       </TableView>
-      <TitledPane fx:id="filterPane" expanded="false" layoutX="454.0" layoutY="23.0" onMouseClicked="#ClickFilterPane" prefHeight="20.0" prefWidth="202.0" text="Filters">
+      <TitledPane fx:id="filterPane" expanded="false" layoutX="457.0" layoutY="23.0" onMouseClicked="#ClickFilterPane" prefHeight="25.0" prefWidth="196.0" text="Filters">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0">
                <children>
@@ -83,7 +80,6 @@
             </AnchorPane>
         </content>
       </TitledPane>
-      <Circle fx:id="statusDot" fill="#ff2121" layoutX="640.0" layoutY="37.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
 
    </children>
 </AnchorPane>

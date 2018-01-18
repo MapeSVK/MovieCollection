@@ -22,7 +22,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
@@ -83,8 +82,6 @@ public class MainViewController implements Initializable {
     private TableView<Category> allCategoriesTable;
     @FXML
     private TableColumn<Category, String> allCategoriesColumn;
-    @FXML
-    private Circle statusDot;
 
     /* INITIALIZE */
     @Override
@@ -96,9 +93,9 @@ public class MainViewController implements Initializable {
        allCategoriesColumn.setCellValueFactory(new PropertyValueFactory("name"));
        selectedCategoriesColumn.setCellValueFactory(new PropertyValueFactory("name"));
  
-       fillCat();
+       
        model.loadAllCategories();
-
+       fillCat();
        categoryListView.setItems(model.getAllCategories()); 
        
     }    
@@ -147,24 +144,23 @@ public class MainViewController implements Initializable {
     private void categoryClick(MouseEvent event) {
         Category selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
         if(selectedCategory!=null)
-        {
-//            fillCat();
+        {           
+           fillCat();
             selectedCategoriesTable.getItems().clear();
             categoryMoviesTableView.setItems(model.getMoviesById(selectedCategory.getId()));
-            deleteC.setDisable(false);
-            
-//            if(minFilter.getText().equals(""))
-//        {          
-//            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
-//        }
-//        else if(!minFilter.getText().equals(""))
-//        {       
-//            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
-//        }
+            deleteC.setDisable(false);            
         }
-//        else {
-//            deleteC.setDisable(true);
-//        }
+        if(selectedCategory!=null && !minFilter.getText().equals(""))
+        {       
+            categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
+        }
+        else if(selectedCategory!=null && !filterText.getText().equals(""))
+        {          
+            categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+        }
+        else {
+            deleteC.setDisable(true);
+        }
         }
 
     /* Opens new FXML - NewMovie */
@@ -286,8 +282,7 @@ public class MainViewController implements Initializable {
         }
         });
     }
-    
-    
+
     /************ DATE NOTIFICATION ***************/
     // Alert appears if there is a Movie, which was last seen 2 years ago
     
@@ -327,8 +322,6 @@ public class MainViewController implements Initializable {
            
         }
     }
-    
-   
    /****************** HELPER METHODS ******************/
     
     // Calculation between actualDate and date (lastView)
@@ -345,8 +338,7 @@ public class MainViewController implements Initializable {
             alert.setContentText(text);
             alert.showAndWait();
     }
-
-    
+ 
     /* Show notification when there is old and bad movie. 
     Notification appears after mouse enter application and 
     this method is executed only once (trick with boolean) */
@@ -357,14 +349,11 @@ public class MainViewController implements Initializable {
              twoYearsNotification();
          alreadyExecuted = true;
     }
-   
-    
-   
 }
-    
+  
 private void fillCat()
 {
-    model.loadAllCategories();
+    
     allCategoriesTable.getItems().clear();
     allCategoriesTable.getItems().addAll(model.getAllCategories());
 }
