@@ -11,10 +11,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onMouseEntered="#showNotification" prefHeight="497.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.controller.MainViewController">
+<AnchorPane id="MainAnchorPane" onMouseEntered="#showNotification" prefHeight="549.0" prefWidth="819.0" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.controller.MainViewController">
 
    <children>
-      <ListView fx:id="categoryListView" layoutX="18.0" layoutY="47.0" onMouseClicked="#categoryClick" prefHeight="450.0" prefWidth="160.0">
+      <ListView fx:id="categoryListView" layoutX="18.0" layoutY="87.0" onMouseClicked="#categoryClick" prefHeight="445.0" prefWidth="160.0">
          <contextMenu>
             <ContextMenu>
               <items>
@@ -25,17 +25,12 @@
               </items>
             </ContextMenu>
          </contextMenu></ListView>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="17.0" prefHeight="17.0" prefWidth="156.0" text="Categories">
-         <font>
-            <Font name="Arial Bold" size="17.0" />
-         </font>
-      </Label>
-      <TableView fx:id="categoryMoviesTableView" layoutX="188.0" layoutY="47.0" onMouseClicked="#mICClick" prefHeight="450.0" prefWidth="465.0">
+      <TableView fx:id="categoryMoviesTableView" layoutX="190.0" layoutY="47.0" onMouseClicked="#mICClick" prefHeight="485.0" prefWidth="592.0">
          <columns>
-          <TableColumn fx:id="columnTitle" prefWidth="182.0" text="Title" />
-          <TableColumn fx:id="columnMyRating" prefWidth="87.0" text="My Rating" />
-            <TableColumn fx:id="columnImdbRating" prefWidth="101.0" text="IMDB Rating" />
-            <TableColumn fx:id="columnView" prefWidth="94.0" text="Last Viewed" />
+          <TableColumn fx:id="columnTitle" prefWidth="235.0" text="Title" />
+          <TableColumn fx:id="columnMyRating" prefWidth="129.0" text="My Rating" />
+            <TableColumn fx:id="columnImdbRating" prefWidth="113.0" text="IMDB Rating" />
+            <TableColumn fx:id="columnView" prefWidth="114.0" text="Last Viewed" />
          </columns>
          <contextMenu>
             <ContextMenu>
@@ -46,15 +41,15 @@
             </ContextMenu>
          </contextMenu>
       </TableView>
-      <TitledPane fx:id="filterPane" expanded="false" layoutX="457.0" layoutY="23.0" onMouseClicked="#ClickFilterPane" prefHeight="25.0" prefWidth="196.0" text="Filters">
+      <TitledPane fx:id="filterPane" expanded="false" layoutX="499.0" layoutY="19.0" onMouseClicked="#ClickFilterPane" prefHeight="26.0" prefWidth="283.0" text="  Filters">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="263.0">
                <children>
-                  <TextField fx:id="filterText" layoutX="18.0" layoutY="14.0" onMouseClicked="#clickFilterText" />
-                  <TextField fx:id="minFilter" layoutX="20.0" layoutY="43.0" onMouseClicked="#clickFilterMin" prefHeight="25.0" prefWidth="43.0" />
-                  <TableView fx:id="selectedCategoriesTable" layoutX="107.0" layoutY="74.0" prefHeight="122.0" prefWidth="72.0">
+                  <TextField fx:id="filterText" layoutX="17.0" layoutY="14.0" onMouseClicked="#clickFilterText" prefHeight="27.0" prefWidth="240.0" promptText="Title" />
+                  <TextField fx:id="minFilter" layoutX="17.0" layoutY="65.0" onMouseClicked="#clickFilterMin" prefHeight="17.0" prefWidth="240.0" promptText="Minimum IMDB Rating" />
+                  <TableView fx:id="selectedCategoriesTable" layoutX="146.0" layoutY="110.0" prefHeight="140.0" prefWidth="115.0">
                      <columns>
-                        <TableColumn fx:id="selectedCategoriesColumn" prefWidth="75.0" text="C1" />
+                        <TableColumn fx:id="selectedCategoriesColumn" prefWidth="114.0" text="FILTERED" />
                      </columns>
                      <contextMenu>
                         <ContextMenu>
@@ -64,9 +59,9 @@
                         </ContextMenu>
                      </contextMenu>
                   </TableView>
-                  <TableView fx:id="allCategoriesTable" layoutX="20.0" layoutY="74.0" prefHeight="122.0" prefWidth="72.0">
+                  <TableView fx:id="allCategoriesTable" layoutX="17.0" layoutY="110.0" prefHeight="140.0" prefWidth="115.0">
                     <columns>
-                      <TableColumn fx:id="allCategoriesColumn" prefWidth="75.0" text="C1" />
+                      <TableColumn fx:id="allCategoriesColumn" prefWidth="114.0" text="CHOOSE" />
                     </columns>
                      <contextMenu>
                         <ContextMenu>
@@ -79,7 +74,15 @@
                </children>
             </AnchorPane>
         </content>
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
       </TitledPane>
+      <Label id="categoryLbl" alignment="CENTER" layoutX="18.0" layoutY="47.0" prefHeight="41.0" prefWidth="160.0" text="Category" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </Label>
 
    </children>
 </AnchorPane>

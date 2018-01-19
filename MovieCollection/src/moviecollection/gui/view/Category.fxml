@@ -4,12 +4,22 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="181.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.controller.CategoryController">
+<AnchorPane id="CAnchorPane" prefHeight="181.0" prefWidth="450.0" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.controller.CategoryController">
    <children>
-      <ComboBox fx:id="categoryBox" layoutX="270.0" layoutY="42.0" prefWidth="150.0" promptText="Category" />
-      <Label layoutX="14.0" layoutY="47.0" text="Select the category you  want to add:" />
-      <Button layoutX="148.0" layoutY="110.0" mnemonicParsing="false" onAction="#addCategory" text="Add" />
-      <Button fx:id="closeButton" layoutX="234.0" layoutY="110.0" mnemonicParsing="false" onAction="#closeButtonClick" text="Close" />
+      <ComboBox id="CComboBox" fx:id="categoryBox" layoutX="270.0" layoutY="42.0" prefWidth="150.0" promptText="Category" />
+      <Label layoutX="14.0" layoutY="47.0" text="Select the category you  want to add:" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Label>
+      <Button layoutX="148.0" layoutY="110.0" mnemonicParsing="false" onAction="#addCategory" styleClass="buttons" text="Add" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Button>
+      <Button fx:id="closeButton" layoutX="234.0" layoutY="110.0" mnemonicParsing="false" onAction="#closeButtonClick" styleClass="buttons" text="Close" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Button>
    </children>
 </AnchorPane>

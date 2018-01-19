@@ -83,7 +83,7 @@ public class MainViewController implements Initializable {
        columnView.setCellValueFactory(new PropertyValueFactory("lastview"));
        allCategoriesColumn.setCellValueFactory(new PropertyValueFactory("name"));
        selectedCategoriesColumn.setCellValueFactory(new PropertyValueFactory("name"));
- 
+       
        
        model.loadAllCategories();
        fillCat();
@@ -250,7 +250,8 @@ public class MainViewController implements Initializable {
     @FXML
     private void ClickFilterPane(MouseEvent event) {
         if(filterPane.isExpanded()==true){
-            filterPane.setPrefHeight(235);
+            filterPane.setPrefHeight(300);
+            
         }
         else
             filterPane.setPrefHeight(20);
