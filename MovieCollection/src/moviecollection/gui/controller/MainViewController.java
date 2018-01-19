@@ -257,6 +257,7 @@ public class MainViewController implements Initializable {
                     if(minFilter.getText().equals(""))
                     {   
                         categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
+                        
                     }
                     else if(!minFilter.getText().equals(""))
                     {
@@ -279,9 +280,10 @@ public class MainViewController implements Initializable {
                 if(!minFilter.getText().equals(""))
                 {       
                     categoryMoviesTableView.setItems(model.getTest(filterText.getText(),Double.valueOf(minFilter.getText())));
+                    
                 }
                 else if(minFilter.getText().equals(""))
-                {          
+                {      
                     categoryMoviesTableView.setItems(model.getTest(filterText.getText()));
                 }
             }
