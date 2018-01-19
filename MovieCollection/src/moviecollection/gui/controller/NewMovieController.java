@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -51,6 +52,9 @@ public class NewMovieController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         allCategoryCollumn.setCellValueFactory(new PropertyValueFactory("name"));
         addToCategoriesColumn.setCellValueFactory(new PropertyValueFactory("name"));
+        
+        allCategory.setPlaceholder(new Label("ALL" + "\n" + "CATEGORIES"));
+        addToCategory.setPlaceholder(new Label("ADDED" + "\n" + "CATEGORIES"));
     }   
     
     public void setModelAndMovie(MovieModel model, MovieInCategory selectedMovieinC) {

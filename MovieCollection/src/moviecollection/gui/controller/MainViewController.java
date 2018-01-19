@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
@@ -96,6 +97,11 @@ public class MainViewController implements Initializable {
            categoryMoviesTableView.setItems(model.getMoviesById(
            categoryListView.getSelectionModel().getSelectedItem().getId()));
        }
+       
+       categoryMoviesTableView.setPlaceholder(new Label("NO MOVIE WAS FOUND!"));
+       allCategoriesTable.setPlaceholder(new Label("ALL" + "\n" + "CATEGORIES"));
+       selectedCategoriesTable.setPlaceholder(new Label("FILTERED" + "\n" + "CATEGORIES"));
+       
     }
    
     /* 1. MediaPlayer appears when you double-click on the Movie. Double-click on the Movie also updates date.

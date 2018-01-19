@@ -93,7 +93,6 @@
 .table-view .column-header-background .label{
     -fx-background-color: transparent;
     -fx-text-fill: white;
-    -fx-font-weight: bold;
     -fx-font-size: 13px;
     
 }
@@ -291,8 +290,6 @@
     -fx-background-insets: 5px;
     
 }
-
-
 
 
 

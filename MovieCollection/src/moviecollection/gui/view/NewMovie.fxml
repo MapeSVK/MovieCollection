@@ -12,21 +12,36 @@
 
 <AnchorPane id="MAnchorPane" prefHeight="725.0" prefWidth="600.0" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moviecollection.gui.controller.NewMovieController">
    <children>
-      <Label layoutX="236.0" layoutY="5.0" text="ADD / EDIT MOVIE" textFill="WHITE">
+      <Label layoutX="221.0" layoutY="14.0" text="ADD / EDIT MOVIE" textFill="WHITE">
          <font>
-            <Font size="15.0" />
+            <Font name="Arial Bold" size="18.0" />
          </font></Label>
-      <Label layoutX="282.0" layoutY="69.0" text="TITLE" textFill="WHITE" />
-      <Label layoutX="260.0" layoutY="156.0" text="CATEGORIES" textFill="WHITE" />
-      <Label layoutX="119.0" layoutY="373.0" text="PERSONAL RATING" textFill="WHITE" />
-      <Label layoutX="379.0" layoutY="373.0" text="IMDB RATING" textFill="WHITE" />
+      <Label layoutX="282.0" layoutY="72.0" text="TITLE" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="260.0" layoutY="156.0" text="CATEGORIES" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="119.0" layoutY="373.0" text="PERSONAL RATING" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="379.0" layoutY="373.0" text="IMDB RATING" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Label>
       <Button layoutX="397.0" layoutY="669.0" mnemonicParsing="false" onAction="#SaveButtonClick" styleClass="buttons" text="Save" textFill="WHITE" />
       <Button fx:id="CloseButton" layoutX="479.0" layoutY="669.0" mnemonicParsing="false" onAction="#CloseButtonClick" styleClass="buttons" text="Close" textFill="WHITE" />
       <TextField fx:id="TitleTextField" layoutX="129.0" layoutY="95.0" prefHeight="27.0" prefWidth="373.0" />
       <TextField fx:id="PRatingTextField" layoutX="147.0" layoutY="402.0" prefHeight="27.0" prefWidth="65.0" />
       <TextField fx:id="IMDBRatingTextField" layoutX="389.0" layoutY="402.0" prefHeight="27.0" prefWidth="65.0" />
       <TextField fx:id="FileTextField" layoutX="74.0" layoutY="509.0" prefHeight="27.0" prefWidth="373.0" />
-      <Label layoutX="287.0" layoutY="482.0" text="FILE" textFill="WHITE" />
+      <Label layoutX="286.0" layoutY="483.0" text="FILE" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Label>
 
       <Button layoutX="447.0" layoutY="509.0" mnemonicParsing="false" onAction="#ChooseButtonClick" prefHeight="27.0" prefWidth="82.0" styleClass="buttons" text="Choose" textFill="WHITE" />
       <TableView fx:id="allCategory" layoutX="74.0" layoutY="180.0" prefHeight="140.0" prefWidth="210.0">
