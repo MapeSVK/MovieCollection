@@ -1,0 +1,305 @@
+/*
+    darth gray - #666666 - najviac seda;
+    barbara - #ABDB25 - zelena;
+    Fog - #999999 - menej seda
+    #fff;
+    #ccc
+*/
+
+/****************** TITLED PANE ***************/
+.titled-pane 
+{    
+-fx-text-fill: #fff;
+}
+.titled-pane:focused 
+{
+-fx-text-fill: #fff;
+}
+.titled-pane > .title 
+{
+-fx-background-color: #424242, #424242, #424242;
+-fx-background-insets: 0, 0, 0;
+-fx-background-radius: 0 0 0 0, 0 0 0 0, 0 0 0 0;
+-fx-border-width: 2 2 0 2;
+-fx-border-color: #fff;
+}
+
+
+.titled-pane > .title > .arrow-button 
+{
+-fx-background-color: null;
+-fx-background-insets: 0;
+-fx-background-radius: 0;
+-fx-padding: 0.0em 0.25em 0.0em 0.0em; /* 0 3 0 0 */
+}
+
+.titled-pane > .title > .arrow-button .arrow 
+{
+-fx-background-color: #99a964, #99a964;
+-fx-background-insets: 1 0 -1 0, 0;
+-fx-padding: 0.35em 0.4em 0.35em 0.4em; /* 3 3.75 3 3.75 */
+-fx-shape: "M 0 0 h 7 l -3.5 4 z";
+}
+
+.titled-pane:collapsed > .title > .arrow-button .arrow 
+{
+-fx-rotate: -90;
+}
+
+.titled-pane > *.content 
+{
+-fx-background-color: #424242;
+-fx-box-border: #424242;
+-fx-background-insets: 0, 0 1 1 1;
+-fx-padding: 0.167em;
+-fx-border-width: 0 2 2 2;
+-fx-border-color: #fff;
+ }
+
+.titled-pane:focused > .title > .arrow-button .arrow 
+{
+-fx-background-color: #99a964;
+}
+/********************** TABLE VIEW ***************************/
+
+.table-view{
+   -fx-background-color: #fff;
+   -fx-border-width: 1 1 1 1;
+   -fx-border-color: #fff;
+   
+}
+
+.table-view:focused{
+    -fx-background-color: transparent;
+}
+
+
+
+
+
+
+/*Style of each column header's background in the tableView*/
+.table-view .column-header-background{
+    -fx-background-color: #424242;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #fff;
+    -fx-padding: 5px;
+    
+    
+}
+
+
+ /*Style of each column header's label  in the tableView */
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+/*Style of each column in the tableView*/
+.table-view .table-column{
+    -fx-alignment:center;
+}
+
+ /*Style of each table cell*/
+.table-view .table-cell{
+    -fx-text-fill: white;
+} 
+
+
+
+
+/*Style for each < non odd> row of table view*/
+    .table-row-cell{
+    -fx-background-color: #616161;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.0em; 
+    
+}
+
+/*Style for each <odd> row of table view*/
+.table-row-cell:odd{
+    -fx-background-color: #424242;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.0em; 
+    
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #99a964;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}
+
+
+/*Style of each entire row in the table view when is getting focused*/
+.table-row-cell:focused {
+    -fx-background-color:#99a964;
+}
+
+.table-view > .virtual-flow > .scroll-bar:vertical,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track-background, 
+.table-view > .virtual-flow > .scroll-bar:horizontal,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
+    -fx-background-color: transparent;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-button,
+.table-view *.scroll-bar:horizontal *.decrement-button {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-arrow, 
+.table-view *.scroll-bar:horizontal *.decrement-arrow {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
+
+.table-view > .virtual-flow > .scroll-bar > .increment-button, 
+.table-view > .virtual-flow > .scroll-bar > .decrement-button {
+    -fx-opacity: 0;
+}
+
+.table-view .filler {
+    -fx-opacity: 0;
+    -fx-background-color: transparent;
+}
+
+
+/********************  ListView  **********************/
+
+
+
+.list-cell{
+    -fx-background-color: #616161;
+    -fx-text-fill: #fff;
+    
+}
+
+.list-cell:odd{
+    -fx-background-color: #424242;
+    
+    
+}
+
+.list-cell:selected {
+    -fx-background-color: #99a964;
+    
+}
+
+.list-view{
+   -fx-background-color: #fff;
+   -fx-border-width: 2 1 1 1;
+   -fx-border-color: #fff;
+   -fx-text-fill: #fff;
+   
+}
+
+.list-view:focused{
+    -fx-background-color: transparent;
+}
+
+
+
+
+#MainAnchorPane {
+    -fx-background-color: #999;
+}
+
+#categoryLbl {
+    -fx-background-color: #424242;
+    -fx-border-width: 2px;
+    -fx-border-color: #fff;
+
+}
+
+.context-menu {
+  -fx-background-color: #616161;
+  -fx-text-fill: #fff;
+  -fx-border-width: 2px;
+  -fx-border-color: #fff;
+}
+
+
+.menu-item{
+   -fx-text-fill: #fff;
+   
+   
+
+}
+.menu-item .label{
+   -fx-text-fill: #fff;
+   
+   
+
+}
+.menu-item:focused {
+     -fx-background-color: #99a964;
+     -fx-text-fill: #fff;
+     
+}
+
+#CAnchorPane{
+   -fx-background-color: #999; 
+}
+
+.buttons{
+    
+    -fx-background-color: #424242;
+}
+
+#CComboBox:selected:focused:hover
+{
+    -fx-background-color: #fff
+}
+#CComboBox {
+    -fx-background-color: #fff;
+}
+
+#MAnchorPane{
+   -fx-background-color: #999; 
+}
+
+.tool-bar {
+    
+    
+    -fx-background-color:#999;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: .9em 0.4em .9em 0.4em;
+    -fx-effect: dropshadow(two-pass-box,black,5,.2,0,0);
+    
+}
+
+.tool-bar .buttons {
+    
+    -fx-padding: 1em 1em 1em 1em;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    
+}
+
+
+
+
+
+
+
+
+       
+
+
+
