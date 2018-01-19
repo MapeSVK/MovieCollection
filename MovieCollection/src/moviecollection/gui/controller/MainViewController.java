@@ -90,6 +90,12 @@ public class MainViewController implements Initializable {
        model.loadAllCategories();
        fillCat();
        categoryListView.setItems(model.getAllCategories()); 
+       if(categoryListView.getItems().size()!=0)
+       {
+           categoryListView.getSelectionModel().selectFirst();
+           categoryMoviesTableView.setItems(model.getMoviesById(
+           categoryListView.getSelectionModel().getSelectedItem().getId()));
+       }
     }
    
     /* 1. MediaPlayer appears when you double-click on the Movie. Double-click on the Movie also updates date.
